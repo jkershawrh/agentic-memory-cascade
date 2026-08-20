@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cascade Compression</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&family=Red+Hat+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand-primary: #EE0000;
+  --brand-secondary: #0071C5;
+  --brand-dark: #151515;
+  --brand-surface: #1a1a1a;
+  --brand-border: #2e2e2e;
+  --brand-muted: #6A6E73;
+  --brand-green: #3E8635;
+  --brand-red: #C9190B;
+  --brand-yellow: #F0AB00;
+  --brand-teal: #4EC9B0;
+  --brand-blue: #4394E5;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Red Hat Text', system-ui, sans-serif;
+  color: #e0e0e0;
+  background: var(--brand-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Red Hat Display', system-ui, sans-serif;
+}
+
+/* Header */
+.header {
+  height: 56px;
+  background: var(--brand-dark);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--brand-border);
+}
+
+.header svg { height: 28px; }
+
+.header-divider {
+  width: 1px;
+  height: 24px;
+  background: #444;
+  margin: 0 16px;
+}
+
+.header-title {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.header-status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--brand-muted);
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Brand stripe */
+.stripe {
+  height: 3px;
+  background: var(--brand-primary);
+}
+
+/* Main */
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Stat tiles */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-tile {
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--brand-muted);
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.stat-value.green { color: var(--brand-green); }
+.stat-value.red { color: var(--brand-red); }
+.stat-value.blue { color: var(--brand-blue); }
+.stat-value.teal { color: var(--brand-teal); }
+
+.stat-sub {
+  font-size: 13px;
+  color: var(--brand-muted);
+  margin-top: 4px;
+}
+
+/* Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.card-title {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title .badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.badge-green { background: rgba(62,134,53,0.2); color: var(--brand-green); }
+.badge-red { background: rgba(201,25,11,0.2); color: var(--brand-red); }
+.badge-blue { background: rgba(67,148,229,0.2); color: var(--brand-blue); }
+
+/* Agent list */
+.agent-list { list-style: none; }
+
+.agent-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--brand-border);
+  font-size: 14px;
+}
+
+.agent-item:last-child { border-bottom: none; }
+
+.agent-name {
+  font-family: 'Red Hat Text', monospace;
+  color: var(--brand-teal);
+}
+
+.agent-status {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.agent-confirms {
+  color: var(--brand-muted);
+  font-size: 13px;
+}
+
+/* Event log */
+.event-log {
+  max-height: 300px;
+  overflow-y: auto;
+  font-size: 13px;
+}
+
+.event-row {
+  display: flex;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(46,46,46,0.5);
+}
+
+.event-time { color: var(--brand-muted); min-width: 140px; }
+.event-type { min-width: 90px; font-weight: 500; }
+.event-type.activated { color: var(--brand-green); }
+.event-type.discovered { color: var(--brand-blue); }
+.event-type.demoted { color: var(--brand-red); }
+.event-type.ttl_expired { color: var(--brand-yellow); }
+.event-agent { color: var(--brand-teal); }
+
+/* Progress bar */
+.progress-bar {
+  height: 6px;
+  background: var(--brand-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 3px;
+  transition: width 1s ease;
+}
+
+/* Defense stack */
+.defense-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.defense-tile {
+  background: var(--brand-surface);
+  border: 1px solid var(--brand-border);
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+}
+
+.defense-icon {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.defense-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--brand-muted);
+  margin-bottom: 4px;
+}
+
+.defense-value {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Section titles */
+.section-title {
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid var(--brand-border);
+  padding: 16px 24px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--brand-muted);
+}
+
+@media (max-width: 768px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .card-grid { grid-template-columns: 1fr; }
+  .defense-grid { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 145" style="height: 32px;">
+    <path d="M127.47 83.49c12.51 0 30.61-2.58 30.61-17.46a14 14 0 0 0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89 8.69 103.76.5 97.51.5 91.69.5 90 8 83.06 8c-6.68 0-11.64-5.6-17.89-5.6-6 0-9.91 4.09-12.93 12.5 0 0-8.41 23.72-9.49 27.16A6.43 6.43 0 0 0 42.53 44c0 9.22 36.3 39.45 84.94 39.45M160 72.07c1.73 8.19 1.73 9.05 1.73 10.13 0 14-15.74 21.77-36.43 21.77C78.54 104 37.58 76.6 37.58 58.49a18.45 18.45 0 0 1 1.51-7.33C22.27 52 .5 55 .5 74.22c0 31.48 74.59 70.28 133.65 70.28 45.28 0 56.7-20.48 56.7-36.65 0-12.72-11-27.16-30.83-35.78" fill="#e00"/>
+    <path d="M160 72.07c1.73 8.19 1.73 9.05 1.73 10.13 0 14-15.74 21.77-36.43 21.77C78.54 104 37.58 76.6 37.58 58.49a18.45 18.45 0 0 1 1.51-7.33l3.66-9.06A6.43 6.43 0 0 0 42.53 44c0 9.22 36.3 39.45 84.94 39.45 12.51 0 30.61-2.58 30.61-17.46a14 14 0 0 0-.31-3.42" fill="#151515"/>
+  </svg>
+  <div class="header-divider"></div>
+  <span class="header-title">Cascade Compression</span>
+  <div class="header-status">
+    <div class="pulse"></div>
+    <span id="status-text">Connecting...</span>
+  </div>
+</div>
+<div class="stripe"></div>
+
+<!-- Main -->
+<div class="main">
+
+  <!-- Top stat tiles -->
+  <div class="stat-grid">
+    <div class="stat-tile">
+      <div class="stat-label">Signals processed</div>
+      <div class="stat-value" id="total-signals">—</div>
+      <div class="stat-sub" id="signal-rate"></div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Compression</div>
+      <div class="stat-value green" id="compression">—</div>
+      <div class="stat-sub">of signals handled without inference</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Activated agents</div>
+      <div class="stat-value teal" id="agent-count">—</div>
+      <div class="stat-sub" id="agent-sub">self-discovered</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">LLM classifications</div>
+      <div class="stat-value blue" id="llm-classified">—</div>
+      <div class="stat-sub" id="llm-sub"></div>
+    </div>
+  </div>
+
+  <!-- Defense in depth -->
+  <div class="section-title">Defense in depth</div>
+  <div class="defense-grid">
+    <div class="defense-tile">
+      <div class="defense-label">Zero-FN gate</div>
+      <div class="defense-value green" id="fn-gate">0.0%</div>
+    </div>
+    <div class="defense-tile">
+      <div class="defense-label">Shadow checks</div>
+      <div class="defense-value blue" id="shadow-checks">—</div>
+    </div>
+    <div class="defense-tile">
+      <div class="defense-label">Shadow demotions</div>
+      <div class="defense-value red" id="shadow-demotions">—</div>
+    </div>
+    <div class="defense-tile">
+      <div class="defense-label">Activation TTL</div>
+      <div class="defense-value" id="ttl-hours">—</div>
+    </div>
+    <div class="defense-tile">
+      <div class="defense-label">Human gate</div>
+      <div class="defense-value" id="human-gate">OFF</div>
+    </div>
+  </div>
+
+  <!-- Memory archive -->
+  <div class="section-title">Memory archive</div>
+  <div class="defense-grid">
+    <div class="defense-tile">
+      <div class="defense-label">Memories</div>
+      <div class="defense-value teal" id="mem-size">—</div>
+    </div>
+    <div class="defense-tile">
+      <div class="defense-label">Formed total</div>
+      <div class="defense-value blue" id="mem-formed">—</div>
+    </div>
+    <div class="defense-tile">
+      <div class="defense-label">Evictions</div>
+      <div class="defense-value" id="mem-evictions">—</div>
+    </div>
+    <div class="defense-tile">
+      <div class="defense-label">Avg strength</div>
+      <div class="defense-value green" id="mem-strength">—</div>
+    </div>
+    <div class="defense-tile">
+      <div class="defense-label">Fed. sources</div>
+      <div class="defense-value" id="mem-sources">—</div>
+    </div>
+  </div>
+
+  <!-- Two-column cards -->
+  <div class="card-grid">
+
+    <!-- Agent discovery -->
+    <div class="card">
+      <div class="card-title">
+        Agent discovery
+        <span class="badge badge-green" id="discovery-badge">—</span>
+      </div>
+      <ul class="agent-list" id="agent-list">
+        <li class="agent-item"><span class="agent-name">Loading...</span></li>
+      </ul>
+    </div>
+
+    <!-- Promotion log -->
+    <div class="card">
+      <div class="card-title">
+        Promotion log
+        <span class="badge badge-blue" id="log-badge">—</span>
+      </div>
+      <div class="event-log" id="event-log">
+        <div class="event-row">
+          <span class="event-time">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Replay progress (shown when replay is active) -->
+  <div class="card" id="replay-card" style="display:none; margin-bottom: 24px;">
+    <div class="card-title">
+      Historical replay
+      <span class="badge badge-blue" id="replay-badge">—</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+      <span id="replay-processed" style="font-size: 14px;">—</span>
+      <span id="replay-speed" style="font-size: 14px; color: var(--brand-muted);">—</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="replay-progress" style="width: 0%"></div>
+    </div>
+    <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+      <span id="replay-compression" style="font-size: 13px; color: var(--brand-green);">—</span>
+      <span id="replay-eta" style="font-size: 13px; color: var(--brand-muted);">—</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  Red Hat Cascade Compression — Self-tuning signal processing for CPU inference at scale — 10 domains, 20 collectors, 3 federated cascades
+</div>
+
+<script>
+const API_BASE = window.location.origin;
+let lastSignals = 0;
+let lastTime = Date.now();
+
+function fmt(n) {
+  if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
+  return n.toString();
+}
+
+async function fetchStats() {
+  try {
+    const r = await fetch(API_BASE + '/stats');
+    const d = await r.json();
+    if (!d.stats) return;
+
+    const s = d.stats;
+    const now = Date.now();
+    const dt = (now - lastTime) / 1000;
+    const rate = dt > 0 ? Math.round((s.signals_processed - lastSignals) / dt) : 0;
+    lastSignals = s.signals_processed;
+    lastTime = now;
+
+    document.getElementById('total-signals').textContent = fmt(s.signals_processed);
+    document.getElementById('signal-rate').textContent = rate > 0 ? fmt(rate) + '/s' : '';
+    document.getElementById('compression').textContent = (s.compression_ratio * 100).toFixed(1) + '%';
+    document.getElementById('shadow-checks').textContent = s.shadow_checks || '0';
+    document.getElementById('shadow-demotions').textContent = s.shadow_demotions || '0';
+    document.getElementById('ttl-hours').textContent = (s.activation_ttl_hours || 72) + 'h';
+    document.getElementById('fn-gate').textContent = '0.0%';
+
+    const activated = d.activated_agents || [];
+    document.getElementById('agent-count').textContent = activated.length;
+    document.getElementById('agent-sub').textContent = activated.length + ' self-discovered';
+
+    if (d.llm) {
+      document.getElementById('llm-classified').textContent = fmt(d.llm.classified || 0);
+      document.getElementById('llm-sub').textContent = (d.llm.noise_pct || 0) + '% noise';
+
+      const list = document.getElementById('agent-list');
+      const types = d.llm.top_noise_types || [];
+      if (types.length > 0) {
+        list.innerHTML = types.slice(0, 10).map(t => `
+          <li class="agent-item">
+            <span class="agent-name">${t.signal_type}</span>
+            ${t.activated
+              ? '<span class="agent-status badge-green">ACTIVATED</span>'
+              : '<span class="agent-confirms">' + t.noise_count + ' confirms</span>'}
+          </li>
+        `).join('');
+        document.getElementById('discovery-badge').textContent = types.length + ' types';
+      }
+    }
+
+    const log = d.promotion_log || [];
+    if (log.length > 0) {
+      const el = document.getElementById('event-log');
+      el.innerHTML = log.slice().reverse().map(e => `
+        <div class="event-row">
+          <span class="event-time">${(e.timestamp || '').slice(0, 19)}</span>
+          <span class="event-type ${e.event || ''}">${e.event || '?'}</span>
+          <span class="event-agent">${e.agent || ''}</span>
+        </div>
+      `).join('');
+      document.getElementById('log-badge').textContent = log.length + ' events';
+    }
+
+    document.getElementById('status-text').textContent = 'Live — polling every 5s';
+    document.getElementById('human-gate').textContent = 'OFF';
+    document.getElementById('human-gate').style.color = 'var(--brand-muted)';
+
+  } catch (e) {
+    document.getElementById('status-text').textContent = 'Connection error';
+  }
+}
+
+async function fetchMemories() {
+  try {
+    const r = await fetch(API_BASE + '/memories/stats');
+    if (!r.ok) return;
+    const d = await r.json();
+    document.getElementById('mem-size').textContent = fmt(d.size || 0);
+    document.getElementById('mem-formed').textContent = fmt(d.formed_total || 0);
+    document.getElementById('mem-evictions').textContent = fmt(d.evictions_total || 0);
+    document.getElementById('mem-strength').textContent = (d.avg_strength || 0).toFixed(2);
+    document.getElementById('mem-sources').textContent = d.federated_sources || '—';
+  } catch (e) {}
+}
+
+async function fetchReplay() {
+  try {
+    const r = await fetch(API_BASE + '/stats');
+    const d = await r.json();
+    // Check if replay data exists in the response
+    // If not, try a replay-specific endpoint
+    const card = document.getElementById('replay-card');
+
+    // For now, show replay card if there is active processing
+    const s = d.stats;
+    if (s && s.signals_processed > 0) {
+      card.style.display = 'block';
+      document.getElementById('replay-badge').textContent = 'active';
+    }
+  } catch (e) {}
+}
+
+async function poll() {
+  await fetchStats();
+  await fetchMemories();
+  await fetchReplay();
+}
+
+poll();
+setInterval(poll, 5000);
+</script>
+</body>
+</html>

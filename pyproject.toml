@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cascade-compression"
+version = "0.1.0"
+description = "Three-tier cascade compression for CPU inference — nano/micro/macro signal processing with benchmark-graded routing"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+dependencies = [
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "fastapi>=0.100.0",
+    "httpx>=0.24.0",
+    "uvicorn[standard]>=0.22.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "pytest-asyncio",
+    "jsonschema>=4.0",
+]
+search = [
+    "psycopg2-binary>=2.9",
+    "pgvector>=0.2.0",
+    "sentence-transformers>=2.2.0",
+]
+aap = ["psycopg2-binary>=2.9"]
+finance = ["psycopg2-binary>=2.9"]
+
+[project.scripts]
+compile-corpora = "cascade_compression.routing.compile_corpora:main"
+cascade-run = "cascade_compression.cli:run"
+cascade-replay = "cascade_compression.cli:replay"
+
+[tool.setuptools.packages.find]
+include = ["cascade_compression*"]
+
+[tool.setuptools.data-files]
+"share/cascade-compression/config" = ["config/*.json", "config/*.yaml"]
+"share/cascade-compression/data" = ["data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

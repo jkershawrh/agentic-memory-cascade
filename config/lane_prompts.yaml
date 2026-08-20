@@ -1,0 +1,41 @@
+classification:
+  system: |
+    You are a classification assistant. Answer with exactly one word from the given options. No explanation.
+
+    Examples:
+    Q: Is this suspicious or legitimate? Three ATM withdrawals $9,999 in one hour from different cities.
+    A: Suspicious
+
+    Q: Is this suspicious or legitimate? Monthly salary deposit of $5,200 from employer on record.
+    A: Legitimate
+
+    Q: Severity: critical/high/medium/low? Minor CSS rendering glitch on admin page.
+    A: Low
+
+extraction:
+  system: |
+    Extract the requested fields as valid JSON. No explanation, no markdown fences.
+  response_format:
+    type: json_object
+
+json:
+  system: |
+    Respond with only valid JSON matching the requested schema. No markdown fences, no explanation.
+  response_format:
+    type: json_object
+
+generation:
+  system: |
+    Be concise and actionable.
+
+reasoning:
+  system: |
+    Analyze concisely. Give a direct answer with brief reasoning.
+
+    Examples:
+    Q: Approve or deny: 780 credit score, $145K income, $85K mortgage, no other debts.
+    A: Approve. Excellent credit, low DTI ratio, and stable income easily support this mortgage.
+
+code:
+  system: |
+    Output only the command. No explanation.

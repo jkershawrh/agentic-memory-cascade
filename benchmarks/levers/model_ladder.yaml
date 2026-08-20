@@ -1,0 +1,27 @@
+# Lever 5: Model Ladder — same task across the size spectrum
+# "Which model is good enough for each task tier?"
+
+lever: model_ladder
+description: Quality vs latency vs throughput curve across model sizes
+
+ladder:
+  - alias: granite-350m
+    params_b: 0.35
+  - alias: granite-4-0-h-tiny-cpu
+    params_b: 1.0
+  - alias: granite-2b-cpu
+    params_b: 2.0
+  - alias: qwen25-3b-cpu
+    params_b: 3.0
+  - alias: granite-4.1-3b
+    params_b: 3.0
+  - alias: phi3-mini-cpu
+    params_b: 3.8
+  - alias: granite-3-2-8b-instruct-cpu
+    params_b: 8.0
+  - alias: granite-4.1-8b
+    params_b: 8.0
+
+# Run every task on every model — produces quality/throughput frontier curve
+# This validates TCO calculator's model_by_tier assignments
+measure: [throughput_tok_s, latency_p95_ms, quality_accuracy]

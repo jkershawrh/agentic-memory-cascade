@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.11", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+      - run: uv sync --extra dev --locked
+      - run: uv run python -m pytest -q
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+      - run: uv build
+      - run: |
+          python -m venv .wheel-venv
+          .wheel-venv/bin/pip install dist/*.whl
+          cd /tmp
+          "$GITHUB_WORKSPACE/.wheel-venv/bin/python" - <<'PY'
+          from cascade_compression.resources import resource_path
+          from cascade_compression.tco.api import _load_json
+
+          assert resource_path("config", "strategies.yaml").is_file()
+          assert _load_json("hardware_profiles.json")["profiles"]
+          PY

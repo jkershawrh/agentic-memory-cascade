@@ -1,0 +1,18 @@
+# Lever 3: Prefix Caching — KV cache reuse for repeated prompt templates
+# "Same system prompt, different data — cache the shared prefix"
+
+lever: prefix_cache
+description: vLLM prefix caching for repeated prompt templates
+backend: vllm
+
+models:
+  - granite-2b-cpu-speculative  # Only vLLM model on Oberon
+
+protocol:
+  # Run same task N times with identical system prompt but varying user content
+  # First run = cold (no cache), subsequent = warm (prefix cached)
+  cold_runs: 3
+  warm_runs: 30
+  prompt_template_shared: true
+
+measure: [warm_cache_speedup, latency_p95_ms, ttft_ms]

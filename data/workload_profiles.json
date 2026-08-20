@@ -1,0 +1,159 @@
+{
+  "profiles": [
+    {
+      "id": "dispute-resolution",
+      "name": "Dispute Resolution",
+      "industry": "fsi",
+      "description": "Classify disputes, extract entities, route to teams. High volume with most disputes following standard patterns.",
+      "daily_volume": 500000,
+      "signal_distribution": {
+        "routine_pct": 85,
+        "ambiguous_pct": 12,
+        "complex_pct": 3
+      },
+      "tokens_per_signal": {
+        "input": 150,
+        "output": 20
+      },
+      "latency_requirement_ms": 500,
+      "model_by_tier": {
+        "nano": null,
+        "micro": "granite-350m",
+        "macro": "phi3-mini"
+      }
+    },
+    {
+      "id": "fraud-case-triage",
+      "name": "Fraud Case Triage",
+      "industry": "fsi",
+      "description": "Score transactions for fraud risk. Very high volume, extremely time-sensitive, most transactions are legitimate.",
+      "daily_volume": 1000000,
+      "signal_distribution": {
+        "routine_pct": 92,
+        "ambiguous_pct": 6,
+        "complex_pct": 2
+      },
+      "tokens_per_signal": {
+        "input": 80,
+        "output": 15
+      },
+      "latency_requirement_ms": 200,
+      "model_by_tier": {
+        "nano": null,
+        "micro": "granite-350m",
+        "macro": "granite-8b"
+      }
+    },
+    {
+      "id": "loan-document-intake",
+      "name": "Loan Document Intake",
+      "industry": "fsi",
+      "description": "Extract fields from loan applications. Lower volume but higher complexity per document.",
+      "daily_volume": 50000,
+      "signal_distribution": {
+        "routine_pct": 70,
+        "ambiguous_pct": 22,
+        "complex_pct": 8
+      },
+      "tokens_per_signal": {
+        "input": 500,
+        "output": 100
+      },
+      "latency_requirement_ms": 2000,
+      "model_by_tier": {
+        "nano": null,
+        "micro": "granite-2b",
+        "macro": "phi3-mini"
+      }
+    },
+    {
+      "id": "compliance-screening",
+      "name": "Compliance Screening",
+      "industry": "fsi",
+      "description": "Screen transactions and communications for regulatory compliance.",
+      "daily_volume": 200000,
+      "signal_distribution": {
+        "routine_pct": 75,
+        "ambiguous_pct": 18,
+        "complex_pct": 7
+      },
+      "tokens_per_signal": {
+        "input": 300,
+        "output": 50
+      },
+      "latency_requirement_ms": 1000,
+      "model_by_tier": {
+        "nano": null,
+        "micro": "qwen-3b",
+        "macro": "phi3-mini"
+      },
+      "quality_gap": "0% accuracy across all models \u2014 requires fine-tuned model or human-in-loop"
+    },
+    {
+      "id": "claims-processing",
+      "name": "Claims Processing",
+      "industry": "insurance",
+      "description": "Triage incoming claims, extract policy information, assess underwriting risk.",
+      "daily_volume": 50000,
+      "signal_distribution": {
+        "routine_pct": 70,
+        "ambiguous_pct": 22,
+        "complex_pct": 8
+      },
+      "tokens_per_signal": {
+        "input": 400,
+        "output": 80
+      },
+      "latency_requirement_ms": 2000,
+      "model_by_tier": {
+        "nano": null,
+        "micro": "granite-350m",
+        "macro": "granite-4.1-8b"
+      }
+    },
+    {
+      "id": "retail-operations",
+      "name": "Retail Operations",
+      "industry": "retail",
+      "description": "Categorize products, analyze review sentiment, classify demand signals.",
+      "daily_volume": 200000,
+      "signal_distribution": {
+        "routine_pct": 85,
+        "ambiguous_pct": 12,
+        "complex_pct": 3
+      },
+      "tokens_per_signal": {
+        "input": 120,
+        "output": 20
+      },
+      "latency_requirement_ms": 500,
+      "model_by_tier": {
+        "nano": null,
+        "micro": "granite-350m",
+        "macro": "phi3-mini"
+      }
+    },
+    {
+      "id": "telecom-operations",
+      "name": "Telecom Operations",
+      "industry": "telecom",
+      "description": "Route support tickets, detect network anomalies, predict customer churn.",
+      "daily_volume": 500000,
+      "signal_distribution": {
+        "routine_pct": 80,
+        "ambiguous_pct": 15,
+        "complex_pct": 5
+      },
+      "tokens_per_signal": {
+        "input": 150,
+        "output": 25
+      },
+      "latency_requirement_ms": 500,
+      "model_by_tier": {
+        "nano": null,
+        "micro": "granite-2b",
+        "macro": "phi3-mini"
+      }
+    }
+  ]
+}

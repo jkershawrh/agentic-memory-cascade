@@ -1,0 +1,94 @@
+# Red/Green/Yellow Benchmark Matrix
+# Thresholds for evaluating benchmark results
+# Pattern: triforce benchmark_rubric.yaml + validation_matrix.yaml
+
+metrics:
+  throughput_tok_s:
+    description: Tokens per second (output tokens / wall-clock time)
+    unit: tok/s
+    thresholds:
+      green: 40     # Competitive for production inference
+      yellow: 20    # Usable but needs optimization
+      # Below yellow = red
+
+  latency_p95_ms:
+    description: 95th percentile latency
+    unit: ms
+    direction: lower_is_better
+    thresholds:
+      green: 500    # Sub-second for classification
+      yellow: 2000  # Acceptable for async processing
+      # Above yellow = red
+
+  ttft_ms:
+    description: Time to first token (streaming readiness)
+    unit: ms
+    direction: lower_is_better
+    thresholds:
+      green: 200
+      yellow: 500
+
+  quality_accuracy:
+    description: Task-specific accuracy (F1, exact match, or structured validation)
+    unit: ratio
+    thresholds:
+      green: 0.85   # Model is suitable for the task
+      yellow: 0.70  # Usable with human-in-the-loop
+
+  cold_start_ms:
+    description: Model cold-load + first inference latency
+    unit: ms
+    direction: lower_is_better
+    thresholds:
+      green: 5000
+      yellow: 15000
+
+  warm_cache_speedup:
+    description: Warm cache latency / cold latency
+    unit: x
+    thresholds:
+      green: 10.0   # Cache is transformative
+      yellow: 2.0   # Cache helps meaningfully
+
+  optimization_speedup:
+    description: Optimized throughput / baseline throughput
+    unit: x
+    thresholds:
+      green: 1.5    # Matches triforce INT8 claim threshold
+      yellow: 1.2
+
+  batch_scaling:
+    description: Throughput at concurrency=8 / single-stream throughput
+    unit: x
+    thresholds:
+      green: 3.0    # Good parallelism benefit
+      yellow: 2.0
+
+  quality_preservation:
+    description: Optimized quality / baseline quality
+    unit: ratio
+    thresholds:
+      green: 0.98   # Optimization doesn't hurt quality
+      yellow: 0.90  # Minor quality loss
+
+  workflow_e2e_ms:
+    description: Full pipeline end-to-end latency
+    unit: ms
+    direction: lower_is_better
+    thresholds:
+      green: 3000
+      yellow: 10000
+
+# Measurement protocol
+protocol:
+  cold_start_samples: 3
+  warmup_samples: 10
+  steady_state_samples: 30
+  variance_threshold: 0.20    # Flag results with CoV > 20%
+  retry_on_variance: true
+
+# Matrix axes
+axes:
+  rows: "model × optimization_config"
+  columns: "metric × execution_mode"
+  slices: "industry × platform"

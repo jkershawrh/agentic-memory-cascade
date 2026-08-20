@@ -1,0 +1,64 @@
+# Per-industry vertical definitions
+# task_overrides map deepfield task_types to the actual benchmark task IDs
+# that exist in the compiled corpora (from intel-tco-calculator benchmarks).
+
+basic:
+  display_name: General / Basic
+  latency_sla_ms: 500
+  task_overrides: {}
+  quality_gaps: []
+
+fsi:
+  display_name: Financial Services
+  latency_sla_ms: 200
+  task_overrides:
+    classify_signal: fraud-scoring
+    correlate_findings: dispute-classification
+    suggest_remediation: compliance-screening
+    summarize_finding: loan-document-extraction
+  quality_gaps:
+    - task: compliance-screening
+      best_quality: 0.0
+      note: "0% quality — requires fine-tuned model or human-in-loop"
+
+healthcare:
+  display_name: Healthcare
+  latency_sla_ms: 1000
+  task_overrides:
+    classify_signal: clinical-classification
+    summarize_finding: clinical-summarization
+    correlate_findings: medical-ner
+  quality_gaps:
+    - task: clinical-classification
+      best_quality: 0.348
+      note: "35% accuracy — requires domain-specific fine-tuning"
+    - task: medical-ner
+      best_quality: 0.50
+      note: "50% accuracy — NER requires domain-specific training"
+
+insurance:
+  display_name: Insurance
+  latency_sla_ms: 2000
+  task_overrides:
+    classify_signal: claims-triage
+    summarize_finding: policy-extraction
+    root_cause_analysis: underwriting-risk
+  quality_gaps: []
+
+retail:
+  display_name: Retail
+  latency_sla_ms: 500
+  task_overrides:
+    classify_signal: product-categorization
+    correlate_findings: review-sentiment
+    filter_noise: demand-classification
+  quality_gaps: []
+
+telecom:
+  display_name: Telecommunications
+  latency_sla_ms: 500
+  task_overrides:
+    classify_signal: ticket-routing
+    correlate_findings: network-anomaly
+    root_cause_analysis: churn-prediction
+  quality_gaps: []

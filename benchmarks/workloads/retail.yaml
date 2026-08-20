@@ -1,0 +1,57 @@
+# Retail Industry Workloads
+
+industry: retail
+description: Product and customer intelligence — categorization, sentiment, demand signals
+
+tasks:
+  - id: product-categorization
+    name: Product Categorization
+    cascade_tier: micro
+    model_assignments: [granite-2b-cpu, granite-350m, granite-4.1-3b]
+    max_tokens: 64
+    tokens_estimate: {input: 100, output: 30}
+    prompt: |
+      Categorize this product listing. Return JSON with: primary_category, subcategory, department (electronics/clothing/home/grocery/sports/beauty/toys), price_tier (budget/mid/premium/luxury), target_audience (kids/teens/adults/seniors/all).
+
+      {product}
+    quality_check: structured_json
+    quality_target: primary_category
+    sample_input: "Sony WH-1000XM5 Wireless Noise Cancelling Headphones. Premium over-ear headphones with industry-leading noise cancellation. 30-hour battery life. Touch sensor controls. Speak-to-Chat. Price: $349.99. Available in Black, Silver, Midnight Blue."
+
+  - id: review-sentiment
+    name: Review Sentiment & Entity Extraction
+    cascade_tier: micro
+    model_assignments: [granite-2b-cpu, qwen25-3b-cpu, granite-4.1-3b]
+    max_tokens: 200
+    tokens_estimate: {input: 150, output: 80}
+    prompt: |
+      Analyze this product review. Return JSON with: sentiment (positive/negative/mixed/neutral), rating_predicted (1-5), key_topics (array of mentioned aspects like quality/price/shipping/durability), issues (array of complaints if any), purchase_intent_signal (repeat_buyer/one_time/churning).
+
+      {review}
+    quality_check: structured_json
+    quality_target: sentiment
+    sample_input: "Bought these headphones 3 months ago and they're amazing for my daily commute. Noise cancellation is best I've tried. Only complaint is the carrying case feels cheap for the price. Battery life is as advertised. Would buy again but hoping for a price drop. 4/5 stars."
+
+  - id: demand-classification
+    name: Demand Signal Classification
+    cascade_tier: micro
+    model_assignments: [granite-2b-cpu, granite-350m, qwen25-3b-cpu]
+    max_tokens: 64
+    tokens_estimate: {input: 80, output: 30}
+    prompt: |
+      Classify this inventory/demand signal. Return JSON with: signal_type (stockout_risk/overstock/seasonal_trend/promotion_lift/competitor_action/new_product_demand), urgency (low/medium/high/critical), recommended_action (increase_order/reduce_order/hold/investigate).
+
+      {signal}
+    quality_check: structured_json
+    quality_target: signal_type
+    sample_input: "SKU WH1000XM5-BLK: Current stock 47 units. Avg daily sales last 7d: 12 units (up 340% from prior week). Reorder lead time: 14 days. Competitor Best Buy showing 'limited stock' badge. Amazon Prime Day in 6 days."
+
+workflow:
+  name: Product Intelligence Pipeline
+  steps:
+    - task: product-categorization
+      tier: micro
+    - task: review-sentiment
+      tier: micro
+    - task: demand-classification
+      tier: micro

@@ -1,0 +1,45 @@
+{
+  "_note": "Throughput numbers are ESTIMATED — replace with RHAIIS 3.5 benchmark data when available. These represent single-stream inference on the specified hardware.",
+  "models": [
+    {
+      "id": "granite-2b",
+      "name": "Granite 2B (INT8)",
+      "params_billions": 2,
+      "quantization": "INT8",
+      "use_case": "Classification, NER, fraud scoring",
+      "amx_optimized": true
+    },
+    {
+      "id": "qwen-3b",
+      "name": "Qwen 2.5 3B",
+      "params_billions": 3,
+      "quantization": "bfloat16",
+      "use_case": "Classification, summarization, document parsing",
+      "amx_optimized": true
+    },
+    {
+      "id": "phi3-mini",
+      "name": "Phi-3 Mini 3.8B",
+      "params_billions": 3.8,
+      "quantization": "bfloat16",
+      "use_case": "Complex reasoning, multi-step analysis",
+      "amx_optimized": true
+    },
+    {
+      "id": "granite-8b",
+      "name": "Granite 3.2 8B Instruct",
+      "params_billions": 8,
+      "quantization": "bfloat16",
+      "use_case": "Complex reasoning, detailed NER",
+      "amx_optimized": true
+    },
+    {
+      "id": "llama-70b",
+      "name": "Llama 3.1 70B",
+      "params_billions": 70,
+      "quantization": "bfloat16",
+      "use_case": "Frontier reasoning (GPU only)",
+      "amx_optimized": false
+    }
+  ]
+}

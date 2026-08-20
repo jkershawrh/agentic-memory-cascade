@@ -1,0 +1,57 @@
+# Insurance Industry Workloads
+
+industry: insurance
+description: Claims processing — triage, underwriting risk, policy document analysis
+
+tasks:
+  - id: claims-triage
+    name: Claims Triage Classification
+    cascade_tier: micro
+    model_assignments: [granite-2b-cpu, granite-350m, granite-4.1-3b]
+    max_tokens: 64
+    tokens_estimate: {input: 150, output: 30}
+    prompt: |
+      Classify this insurance claim. Return JSON with: claim_type (auto/property/health/life/liability), severity (minor/moderate/major/catastrophic), priority (routine/expedited/urgent), fraud_flag (true/false).
+
+      {claim}
+    quality_check: structured_json
+    quality_target: claim_type
+    sample_input: "Claimant reports rear-end collision on I-35 on 2026-07-20. Vehicle: 2024 Toyota Camry. Damage: bumper, trunk lid, tail lights. No injuries reported. Police report filed #APD-2026-44521. Other driver cited for following too closely. Estimated repair: $4,200."
+
+  - id: underwriting-risk
+    name: Underwriting Risk Assessment
+    cascade_tier: macro
+    model_assignments: [phi3-mini-cpu, granite-3-2-8b-instruct-cpu, granite-4.1-8b]
+    max_tokens: 300
+    tokens_estimate: {input: 400, output: 100}
+    prompt: |
+      Assess the underwriting risk for this insurance application. Return JSON with: risk_tier (preferred/standard/substandard/decline), risk_factors (array of concerns), recommended_premium_adjustment (percentage), conditions (array of required conditions for approval).
+
+      {application}
+    quality_check: structured_json
+    quality_target: risk_tier
+    sample_input: "Life insurance application. Applicant: Male, 52, non-smoker (quit 8 years ago). BMI: 28.3. Family history: father had MI at 61, mother Type 2 diabetes. Current medications: Lisinopril 10mg (hypertension, controlled). Occupation: desk job. Exercise: 3x/week moderate. Requested coverage: $1M term 20yr."
+
+  - id: policy-extraction
+    name: Policy Document Field Extraction
+    cascade_tier: micro
+    model_assignments: [qwen25-3b-cpu, granite-2b-cpu, granite-4.1-3b]
+    max_tokens: 400
+    tokens_estimate: {input: 500, output: 150}
+    prompt: |
+      Extract key coverage details from this insurance policy excerpt. Return JSON with: policy_number, policy_type, effective_date, expiration_date, covered_perils (array), exclusions (array), deductible_amount, coverage_limit, premium_annual.
+
+      {policy_text}
+    quality_check: structured_json
+    quality_target: policy_number
+    sample_input: "HOMEOWNERS INSURANCE POLICY HO-2026-8834521. Effective 2026-01-15 to 2027-01-15. Property: 2847 Maple Lane, Denver CO 80220. Coverage A (Dwelling): $450,000. Coverage B (Other Structures): $45,000. Coverage C (Personal Property): $225,000. Coverage D (Loss of Use): $90,000. Deductible: $2,500 all perils, $5,000 wind/hail. Exclusions: flood, earthquake, nuclear hazard, ordinance/law. Annual Premium: $2,340."
+
+workflow:
+  name: Claims Processing Pipeline
+  steps:
+    - task: claims-triage
+      tier: micro
+    - task: policy-extraction
+      tier: micro
+    - task: underwriting-risk
+      tier: macro

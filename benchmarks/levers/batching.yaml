@@ -1,0 +1,25 @@
+# Lever 8: Continuous Batching / Concurrency Scaling
+# "Production workloads aren't single-stream"
+
+lever: batching
+description: Concurrent request throughput scaling — all deployed models
+
+concurrency_levels: [1, 4, 8, 16, 32]
+
+models:
+  # OVMS baseline
+  - granite-2b-cpu
+  - qwen25-3b-cpu
+  - granite-3-2-8b-instruct-cpu
+  # OVMS optimized
+  - granite-2b-int8
+  # llama.cpp GGUF
+  - granite-2b-q4
+  - granite-2b-q8
+  - granite-8b-q4
+  # BitNet + SmolLM2
+  - bitnet-2b
+  - smollm2-360m
+
+measure: [batch_scaling, throughput_tok_s, latency_p95_ms]
+saturation_detection: true

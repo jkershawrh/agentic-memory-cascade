@@ -1,0 +1,2013 @@
+{
+  "industry": "healthcare",
+  "size_per_task": 100,
+  "seed": 42,
+  "tasks": {
+    "clinical-classification": [
+      {
+        "id": "classify-0",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 60-year-old male with COPD with acute exacerbation. Recent Total knee arthroplasty. Medications: Levothyroxine 75mcg, Gabapentin 300mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-1",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: MRI spine. Marcus Thompson, 28yo male. Findings: Small pleural effusion.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-2",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 79-year-old female with COPD with acute exacerbation, Coronary artery disease. Recent MRI brain with contrast. Medications: Lisinopril 10mg, Prednisone 10mg, Amlodipine 5mg, Levothyroxine 75mcg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-3",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Lisa Nakamura, 30yo. WBC 13.6, Hgb 8.4, Plt 216, Creatinine 3.2, Troponin 11.82.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-4",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: James O'Brien, 73yo female. Current medications: Omeprazole 20mg, Clopidogrel 75mg, Atorvastatin 40mg, Lisinopril 10mg. Assessment: Atrial fibrillation on Warfarin - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-5",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: David Kim, 84yo female. Current medications: Metformin 500mg, Clopidogrel 75mg, Prednisone 10mg, Omeprazole 20mg. Assessment: Congestive heart failure - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-6",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Priya Patel, 52yo. WBC 6.7, Hgb 13.1, Plt 234, Creatinine 3.1, Troponin 5.14.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-7",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: Ultrasound chest. Carlos Mendez, 53yo male. Findings: 2cm hypodense lesion in liver.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-8",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: CT brain. Grace Okonkwo, 57yo male. Findings: Consolidation in right lower lobe.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-9",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 50-year-old male with COPD with acute exacerbation, Congestive heart failure. Recent Lumbar puncture. Medications: Warfarin 5mg, Omeprazole 20mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-10",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 71-year-old female with Type 2 Diabetes on Metformin 500mg. Recent Lumbar puncture. Medications: Warfarin 5mg, Lisinopril 10mg, Levothyroxine 75mcg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-11",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 41-year-old female with COPD with acute exacerbation, Chronic kidney disease stage 3, Primary osteoarthritis right knee. Recent Endoscopic retrograde cholangiopancreatography. Medications: Gabapentin 300mg, Clopidogrel 75mg, Atorvastatin 40mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-12",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Grace Okonkwo, 82yo. WBC 11.8, Hgb 10.1, Plt 212, Creatinine 0.5, Troponin 8.49.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-13",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 33-year-old male with Essential hypertension on Lisinopril 10mg, Congestive heart failure. Recent Cardiac catheterization. Medications: Atorvastatin 40mg, Levothyroxine 75mcg, Furosemide 40mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-14",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Thomas Mueller, 56yo female. Current medications: Levothyroxine 75mcg, Amlodipine 5mg. Assessment: Coronary artery disease - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-15",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: MRI spine. Wei Zhang, 84yo male. Findings: Consolidation in right lower lobe.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-16",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Grace Okonkwo, 56yo. WBC 15.5, Hgb 16.7, Plt 221, Creatinine 1.1, Troponin 5.83.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-17",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Anna Kowalski, 32yo male. Current medications: Furosemide 40mg, Atorvastatin 40mg, Amlodipine 5mg, Gabapentin 300mg. Assessment: Type 2 Diabetes on Metformin 500mg - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-18",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Emily Watson, 62yo male. Current medications: Prednisone 10mg, Omeprazole 20mg. Assessment: Pneumonia with sepsis - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-19",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 45-year-old male with Essential hypertension on Lisinopril 10mg, COPD with acute exacerbation, Pneumonia with sepsis. Recent Endoscopic retrograde cholangiopancreatography. Medications: Levothyroxine 75mcg, Clopidogrel 75mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-20",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 30-year-old male with Pneumonia with sepsis, Congestive heart failure. Recent CT angiogram of chest. Medications: Atorvastatin 40mg, Clopidogrel 75mg, Omeprazole 20mg, Levothyroxine 75mcg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-21",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: MRI brain. Maria Rodriguez, 63yo female. Findings: No acute abnormality.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-22",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Carlos Mendez, 61yo male. Current medications: Levothyroxine 75mcg, Gabapentin 300mg. Assessment: Congestive heart failure - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-23",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 58-year-old male with Congestive heart failure. Recent Cardiac catheterization. Medications: Atorvastatin 40mg, Prednisone 10mg, Warfarin 5mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-24",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Emily Watson, 58yo. WBC 12.6, Hgb 10.4, Plt 326, Creatinine 2.4, Troponin 5.13.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-25",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 34-year-old male with Type 2 Diabetes on Metformin 500mg, Atrial fibrillation on Warfarin, COPD with acute exacerbation. Recent MRI brain with contrast. Medications: Aspirin 81mg, Metformin 500mg, Atorvastatin 40mg, Omeprazole 20mg, Levothyroxine 75mcg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-26",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Ahmed Hassan, 38yo female. Current medications: Aspirin 81mg, Amlodipine 5mg, Metformin 500mg. Assessment: Primary osteoarthritis right knee - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-27",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Wei Zhang, 56yo. WBC 8.2, Hgb 15.4, Plt 216, Creatinine 1.3, Troponin 7.92.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-28",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: MRI brain. Fatima Al-Rashid, 60yo male. Findings: No acute abnormality.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-29",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 69-year-old female with Pneumonia with sepsis, Congestive heart failure. Recent Cardiac catheterization. Medications: Amlodipine 5mg, Warfarin 5mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-30",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Marcus Thompson, 80yo. WBC 13.8, Hgb 10.7, Plt 258, Creatinine 2.8, Troponin 3.91.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-31",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Maria Rodriguez, 49yo. WBC 9.4, Hgb 13.2, Plt 264, Creatinine 2.1, Troponin 5.31.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-32",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Thomas Mueller, 46yo male. Current medications: Clopidogrel 75mg, Levothyroxine 75mcg. Assessment: Congestive heart failure - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-33",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Emily Watson, 43yo male. Current medications: Warfarin 5mg, Lisinopril 10mg, Furosemide 40mg, Amlodipine 5mg, Clopidogrel 75mg. Assessment: Coronary artery disease - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-34",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: MRI chest. Anna Kowalski, 56yo male. Findings: 2cm hypodense lesion in liver.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-35",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Grace Okonkwo, 65yo female. Current medications: Prednisone 10mg, Furosemide 40mg, Levothyroxine 75mcg. Assessment: Congestive heart failure - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-36",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Lisa Nakamura, 87yo male. Current medications: Clopidogrel 75mg, Atorvastatin 40mg, Omeprazole 20mg, Warfarin 5mg. Assessment: Major depressive disorder - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-37",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Maria Rodriguez, 54yo female. Current medications: Amlodipine 5mg, Omeprazole 20mg, Gabapentin 300mg, Furosemide 40mg, Prednisone 10mg. Assessment: COPD with acute exacerbation - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-38",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Wei Zhang, 74yo male. Current medications: Atorvastatin 40mg, Amlodipine 5mg, Levothyroxine 75mcg, Gabapentin 300mg. Assessment: Primary osteoarthritis right knee - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-39",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: MRI chest. Ahmed Hassan, 59yo female. Findings: 2cm hypodense lesion in liver.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-40",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 79-year-old male with COPD with acute exacerbation, Type 2 Diabetes on Metformin 500mg. Recent MRI brain with contrast. Medications: Amlodipine 5mg, Omeprazole 20mg, Clopidogrel 75mg, Furosemide 40mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-41",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Anna Kowalski, 60yo. WBC 3.8, Hgb 16.6, Plt 214, Creatinine 2.8, Troponin 9.37.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-42",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 56-year-old male with Pneumonia with sepsis. Recent Total knee arthroplasty. Medications: Clopidogrel 75mg, Aspirin 81mg, Furosemide 40mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-43",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Grace Okonkwo, 57yo female. Current medications: Aspirin 81mg, Atorvastatin 40mg. Assessment: Pneumonia with sepsis - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-44",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 73-year-old female with Coronary artery disease, Essential hypertension on Lisinopril 10mg, Pneumonia with sepsis. Recent Total knee arthroplasty. Medications: Prednisone 10mg, Atorvastatin 40mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-45",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 79-year-old female with Congestive heart failure. Recent Endoscopic retrograde cholangiopancreatography. Medications: Metformin 500mg, Amlodipine 5mg, Furosemide 40mg, Lisinopril 10mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-46",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Grace Okonkwo, 44yo. WBC 9.5, Hgb 14.6, Plt 237, Creatinine 1.6, Troponin 2.95.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-47",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 82-year-old male with Pneumonia with sepsis, Primary osteoarthritis right knee. Recent Lumbar puncture. Medications: Metformin 500mg, Furosemide 40mg, Omeprazole 20mg, Aspirin 81mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-48",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Carlos Mendez, 58yo female. Current medications: Gabapentin 300mg, Clopidogrel 75mg. Assessment: Pneumonia with sepsis - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-49",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Wei Zhang, 87yo male. Current medications: Lisinopril 10mg, Atorvastatin 40mg. Assessment: Major depressive disorder - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-50",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: X-ray brain. Ahmed Hassan, 64yo female. Findings: Small pleural effusion.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-51",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: James O'Brien, 49yo female. Current medications: Clopidogrel 75mg, Prednisone 10mg, Furosemide 40mg. Assessment: Congestive heart failure - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-52",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient James O'Brien, 49yo. WBC 4.9, Hgb 8.4, Plt 127, Creatinine 2.4, Troponin 8.37.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-53",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Thomas Mueller, 38yo male. Current medications: Omeprazole 20mg, Aspirin 81mg, Metformin 500mg, Atorvastatin 40mg, Furosemide 40mg. Assessment: Chronic kidney disease stage 3 - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-54",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 87-year-old male with Type 2 Diabetes on Metformin 500mg, COPD with acute exacerbation, Congestive heart failure. Recent Endoscopic retrograde cholangiopancreatography. Medications: Lisinopril 10mg, Clopidogrel 75mg, Prednisone 10mg, Gabapentin 300mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-55",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Anna Kowalski, 82yo female. Current medications: Warfarin 5mg, Prednisone 10mg, Metformin 500mg, Lisinopril 10mg. Assessment: Pneumonia with sepsis - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-56",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Lisa Nakamura, 35yo male. Current medications: Aspirin 81mg, Metformin 500mg. Assessment: COPD with acute exacerbation - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-57",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: MRI spine. Thomas Mueller, 62yo male. Findings: No acute abnormality.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-58",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Maria Rodriguez, 59yo male. Current medications: Atorvastatin 40mg, Warfarin 5mg, Levothyroxine 75mcg. Assessment: Type 2 Diabetes on Metformin 500mg - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-59",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: CT chest. James O'Brien, 84yo female. Findings: Consolidation in right lower lobe.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-60",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 30-year-old male with Congestive heart failure, Major depressive disorder. Recent Total knee arthroplasty. Medications: Aspirin 81mg, Warfarin 5mg, Amlodipine 5mg, Furosemide 40mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-61",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: Ultrasound chest. Carlos Mendez, 77yo female. Findings: Small pleural effusion.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-62",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Fatima Al-Rashid, 39yo. WBC 12.4, Hgb 14.8, Plt 204, Creatinine 1.4, Troponin 1.57.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-63",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Grace Okonkwo, 87yo. WBC 11.3, Hgb 13.0, Plt 147, Creatinine 1.3, Troponin 10.10.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-64",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 40-year-old male with Chronic kidney disease stage 3, Congestive heart failure. Recent Lumbar puncture. Medications: Amlodipine 5mg, Furosemide 40mg, Levothyroxine 75mcg, Clopidogrel 75mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-65",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Anna Kowalski, 49yo male. Current medications: Omeprazole 20mg, Gabapentin 300mg, Atorvastatin 40mg, Metformin 500mg, Warfarin 5mg. Assessment: Chronic kidney disease stage 3 - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-66",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: Ultrasound chest. Maria Rodriguez, 82yo female. Findings: Small pleural effusion.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-67",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: CT abdomen. Anna Kowalski, 74yo male. Findings: 2cm hypodense lesion in liver.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-68",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Priya Patel, 85yo female. Current medications: Omeprazole 20mg, Levothyroxine 75mcg. Assessment: Pneumonia with sepsis - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-69",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Thomas Mueller, 29yo. WBC 17.7, Hgb 14.8, Plt 151, Creatinine 2.1, Troponin 8.33.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-70",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 66-year-old male with Atrial fibrillation on Warfarin, Pneumonia with sepsis. Recent Bronchoscopy with BAL. Medications: Aspirin 81mg, Clopidogrel 75mg, Gabapentin 300mg, Amlodipine 5mg, Prednisone 10mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-71",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Priya Patel, 73yo male. Current medications: Furosemide 40mg, Levothyroxine 75mcg, Atorvastatin 40mg. Assessment: Pneumonia with sepsis - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-72",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Sarah Chen, 84yo. WBC 9.9, Hgb 10.7, Plt 296, Creatinine 3.5, Troponin 1.28.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-73",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: MRI brain. Carlos Mendez, 62yo female. Findings: Consolidation in right lower lobe.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-74",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Lisa Nakamura, 42yo male. Current medications: Warfarin 5mg, Omeprazole 20mg. Assessment: Type 2 Diabetes on Metformin 500mg - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-75",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 66-year-old female with Coronary artery disease. Recent CT angiogram of chest. Medications: Gabapentin 300mg, Omeprazole 20mg, Prednisone 10mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-76",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Lisa Nakamura, 86yo female. Current medications: Aspirin 81mg, Clopidogrel 75mg. Assessment: Atrial fibrillation on Warfarin - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-77",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Priya Patel, 75yo. WBC 4.6, Hgb 10.1, Plt 112, Creatinine 2.7, Troponin 11.32.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-78",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Ahmed Hassan, 33yo. WBC 17.9, Hgb 9.0, Plt 220, Creatinine 3.6, Troponin 1.63.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-79",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: MRI brain. Carlos Mendez, 78yo male. Findings: No acute abnormality.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-80",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Carlos Mendez, 32yo. WBC 14.8, Hgb 10.2, Plt 164, Creatinine 3.3, Troponin 2.46.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-81",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Emily Watson, 54yo female. Current medications: Atorvastatin 40mg, Aspirin 81mg. Assessment: Pneumonia with sepsis - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-82",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient David Kim, 39yo. WBC 5.6, Hgb 8.5, Plt 315, Creatinine 2.3, Troponin 8.95.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-83",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: Ultrasound chest. Grace Okonkwo, 71yo male. Findings: No acute abnormality.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-84",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: CT abdomen. Anna Kowalski, 79yo male. Findings: Small pleural effusion.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-85",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Anna Kowalski, 62yo. WBC 16.2, Hgb 13.0, Plt 210, Creatinine 2.0, Troponin 10.66.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-86",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: CT chest. Fatima Al-Rashid, 83yo female. Findings: No acute abnormality.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-87",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 37-year-old female with Congestive heart failure. Recent MRI brain with contrast. Medications: Warfarin 5mg, Gabapentin 300mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-88",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 70-year-old female with Type 2 Diabetes on Metformin 500mg, Chronic kidney disease stage 3, Congestive heart failure. Recent Bronchoscopy with BAL. Medications: Lisinopril 10mg, Warfarin 5mg, Gabapentin 300mg, Clopidogrel 75mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-89",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: X-ray chest. Ahmed Hassan, 38yo female. Findings: Consolidation in right lower lobe.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-90",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Robert Johansson, 68yo. WBC 4.0, Hgb 14.7, Plt 115, Creatinine 0.8, Troponin 6.37.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-91",
+        "task": "clinical-classification",
+        "text": "RADIOLOGY REPORT: MRI abdomen. Wei Zhang, 83yo female. Findings: No acute abnormality.",
+        "expected": "radiology_report"
+      },
+      {
+        "id": "classify-92",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 81-year-old female with Pneumonia with sepsis, Major depressive disorder. Recent Endoscopic retrograde cholangiopancreatography. Medications: Atorvastatin 40mg, Clopidogrel 75mg, Gabapentin 300mg, Lisinopril 10mg, Omeprazole 20mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-93",
+        "task": "clinical-classification",
+        "text": "DISCHARGE SUMMARY: 87-year-old female with Coronary artery disease. Recent Cardiac catheterization. Medications: Warfarin 5mg, Metformin 500mg, Levothyroxine 75mcg, Clopidogrel 75mg, Atorvastatin 40mg.",
+        "expected": "discharge_summary"
+      },
+      {
+        "id": "classify-94",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Lisa Nakamura, 62yo female. Current medications: Prednisone 10mg, Amlodipine 5mg, Aspirin 81mg, Warfarin 5mg, Levothyroxine 75mcg. Assessment: Type 2 Diabetes on Metformin 500mg - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-95",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient Priya Patel, 75yo. WBC 9.4, Hgb 11.6, Plt 313, Creatinine 1.5, Troponin 4.86.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-96",
+        "task": "clinical-classification",
+        "text": "LAB REPORT: Patient David Kim, 83yo. WBC 11.8, Hgb 12.7, Plt 302, Creatinine 3.5, Troponin 8.95.",
+        "expected": "lab_report"
+      },
+      {
+        "id": "classify-97",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Fatima Al-Rashid, 46yo male. Current medications: Omeprazole 20mg, Levothyroxine 75mcg, Aspirin 81mg, Clopidogrel 75mg. Assessment: Essential hypertension on Lisinopril 10mg - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-98",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Lisa Nakamura, 50yo male. Current medications: Furosemide 40mg, Warfarin 5mg, Levothyroxine 75mcg, Prednisone 10mg, Omeprazole 20mg. Assessment: COPD with acute exacerbation - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      },
+      {
+        "id": "classify-99",
+        "task": "clinical-classification",
+        "text": "PROGRESS NOTE: Grace Okonkwo, 33yo female. Current medications: Omeprazole 20mg, Gabapentin 300mg. Assessment: Chronic kidney disease stage 3 - stable. Plan: continue current regimen.",
+        "expected": "progress_note"
+      }
+    ],
+    "medical-ner": [
+      {
+        "id": "ner-0",
+        "task": "medical-ner",
+        "text": "84-year-old female with Type 2 Diabetes on Metformin 500mg, Atrial fibrillation on Warfarin. Recent Lumbar puncture. Current medications: Lisinopril 10mg, Levothyroxine 75mcg, Prednisone 10mg, Gabapentin 300mg, Amlodipine 5mg.",
+        "expected_entities": [
+          "Lisinopril 10mg",
+          "Levothyroxine 75mcg"
+        ]
+      },
+      {
+        "id": "ner-1",
+        "task": "medical-ner",
+        "text": "82-year-old male with Pneumonia with sepsis, Major depressive disorder, COPD with acute exacerbation. Recent Total knee arthroplasty. Current medications: Furosemide 40mg, Lisinopril 10mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Furosemide 40mg",
+          "Lisinopril 10mg"
+        ]
+      },
+      {
+        "id": "ner-2",
+        "task": "medical-ner",
+        "text": "30-year-old male with Major depressive disorder, Pneumonia with sepsis, COPD with acute exacerbation, Congestive heart failure. Recent MRI brain with contrast. Current medications: Atorvastatin 40mg, Amlodipine 5mg, Levothyroxine 75mcg, Omeprazole 20mg, Metformin 500mg.",
+        "expected_entities": [
+          "Atorvastatin 40mg",
+          "Amlodipine 5mg"
+        ]
+      },
+      {
+        "id": "ner-3",
+        "task": "medical-ner",
+        "text": "67-year-old male with Primary osteoarthritis right knee, Chronic kidney disease stage 3, Congestive heart failure, Atrial fibrillation on Warfarin. Recent MRI brain with contrast. Current medications: Omeprazole 20mg, Lisinopril 10mg, Warfarin 5mg, Aspirin 81mg.",
+        "expected_entities": [
+          "Omeprazole 20mg",
+          "Lisinopril 10mg"
+        ]
+      },
+      {
+        "id": "ner-4",
+        "task": "medical-ner",
+        "text": "75-year-old male with Essential hypertension on Lisinopril 10mg, Chronic kidney disease stage 3, Primary osteoarthritis right knee, Atrial fibrillation on Warfarin. Recent MRI brain with contrast. Current medications: Aspirin 81mg, Levothyroxine 75mcg, Gabapentin 300mg, Lisinopril 10mg, Amlodipine 5mg.",
+        "expected_entities": [
+          "Aspirin 81mg",
+          "Levothyroxine 75mcg"
+        ]
+      },
+      {
+        "id": "ner-5",
+        "task": "medical-ner",
+        "text": "71-year-old female with Coronary artery disease, Atrial fibrillation on Warfarin. Recent Total knee arthroplasty. Current medications: Clopidogrel 75mg, Prednisone 10mg, Aspirin 81mg, Warfarin 5mg, Lisinopril 10mg, Gabapentin 300mg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-6",
+        "task": "medical-ner",
+        "text": "68-year-old male with Primary osteoarthritis right knee, COPD with acute exacerbation, Congestive heart failure, Essential hypertension on Lisinopril 10mg. Recent MRI brain with contrast. Current medications: Prednisone 10mg, Furosemide 40mg, Metformin 500mg, Amlodipine 5mg.",
+        "expected_entities": [
+          "Prednisone 10mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-7",
+        "task": "medical-ner",
+        "text": "81-year-old female with Major depressive disorder, Coronary artery disease, Congestive heart failure, COPD with acute exacerbation. Recent CT angiogram of chest. Current medications: Clopidogrel 75mg, Omeprazole 20mg, Warfarin 5mg, Furosemide 40mg, Gabapentin 300mg, Amlodipine 5mg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Omeprazole 20mg"
+        ]
+      },
+      {
+        "id": "ner-8",
+        "task": "medical-ner",
+        "text": "78-year-old male with Pneumonia with sepsis, COPD with acute exacerbation. Recent Total knee arthroplasty. Current medications: Metformin 500mg, Levothyroxine 75mcg, Furosemide 40mg, Omeprazole 20mg, Lisinopril 10mg.",
+        "expected_entities": [
+          "Metformin 500mg",
+          "Levothyroxine 75mcg"
+        ]
+      },
+      {
+        "id": "ner-9",
+        "task": "medical-ner",
+        "text": "35-year-old male with Major depressive disorder, Congestive heart failure, COPD with acute exacerbation. Recent PCI to RCA with drug-eluting stent. Current medications: Lisinopril 10mg, Clopidogrel 75mg, Furosemide 40mg, Omeprazole 20mg, Metformin 500mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Lisinopril 10mg",
+          "Clopidogrel 75mg"
+        ]
+      },
+      {
+        "id": "ner-10",
+        "task": "medical-ner",
+        "text": "72-year-old male with Essential hypertension on Lisinopril 10mg, Atrial fibrillation on Warfarin, Coronary artery disease. Recent Bronchoscopy with BAL. Current medications: Omeprazole 20mg, Lisinopril 10mg, Prednisone 10mg.",
+        "expected_entities": [
+          "Omeprazole 20mg",
+          "Lisinopril 10mg"
+        ]
+      },
+      {
+        "id": "ner-11",
+        "task": "medical-ner",
+        "text": "29-year-old female with COPD with acute exacerbation, Major depressive disorder, Congestive heart failure. Recent Cardiac catheterization. Current medications: Lisinopril 10mg, Metformin 500mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Lisinopril 10mg",
+          "Metformin 500mg"
+        ]
+      },
+      {
+        "id": "ner-12",
+        "task": "medical-ner",
+        "text": "79-year-old male with Coronary artery disease, Chronic kidney disease stage 3, Essential hypertension on Lisinopril 10mg. Recent Lumbar puncture. Current medications: Clopidogrel 75mg, Amlodipine 5mg, Warfarin 5mg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Amlodipine 5mg"
+        ]
+      },
+      {
+        "id": "ner-13",
+        "task": "medical-ner",
+        "text": "39-year-old female with Congestive heart failure, Type 2 Diabetes on Metformin 500mg, Coronary artery disease, Atrial fibrillation on Warfarin. Recent Cardiac catheterization. Current medications: Atorvastatin 40mg, Amlodipine 5mg, Metformin 500mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Atorvastatin 40mg",
+          "Amlodipine 5mg"
+        ]
+      },
+      {
+        "id": "ner-14",
+        "task": "medical-ner",
+        "text": "48-year-old male with Atrial fibrillation on Warfarin, Essential hypertension on Lisinopril 10mg, Type 2 Diabetes on Metformin 500mg, Coronary artery disease. Recent PCI to RCA with drug-eluting stent. Current medications: Metformin 500mg, Levothyroxine 75mcg, Amlodipine 5mg, Omeprazole 20mg, Atorvastatin 40mg, Gabapentin 300mg.",
+        "expected_entities": [
+          "Metformin 500mg",
+          "Levothyroxine 75mcg"
+        ]
+      },
+      {
+        "id": "ner-15",
+        "task": "medical-ner",
+        "text": "33-year-old female with Essential hypertension on Lisinopril 10mg, Atrial fibrillation on Warfarin. Recent Bronchoscopy with BAL. Current medications: Metformin 500mg, Omeprazole 20mg, Gabapentin 300mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Metformin 500mg",
+          "Omeprazole 20mg"
+        ]
+      },
+      {
+        "id": "ner-16",
+        "task": "medical-ner",
+        "text": "86-year-old male with Essential hypertension on Lisinopril 10mg, Major depressive disorder. Recent Cardiac catheterization. Current medications: Atorvastatin 40mg, Clopidogrel 75mg, Metformin 500mg.",
+        "expected_entities": [
+          "Atorvastatin 40mg",
+          "Clopidogrel 75mg"
+        ]
+      },
+      {
+        "id": "ner-17",
+        "task": "medical-ner",
+        "text": "65-year-old female with Primary osteoarthritis right knee, Congestive heart failure, Major depressive disorder, COPD with acute exacerbation. Recent MRI brain with contrast. Current medications: Levothyroxine 75mcg, Clopidogrel 75mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Levothyroxine 75mcg",
+          "Clopidogrel 75mg"
+        ]
+      },
+      {
+        "id": "ner-18",
+        "task": "medical-ner",
+        "text": "67-year-old female with Atrial fibrillation on Warfarin, Primary osteoarthritis right knee. Recent Lumbar puncture. Current medications: Prednisone 10mg, Furosemide 40mg, Amlodipine 5mg, Omeprazole 20mg, Aspirin 81mg, Clopidogrel 75mg.",
+        "expected_entities": [
+          "Prednisone 10mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-19",
+        "task": "medical-ner",
+        "text": "59-year-old male with Primary osteoarthritis right knee, Essential hypertension on Lisinopril 10mg, Pneumonia with sepsis, Chronic kidney disease stage 3. Recent Total knee arthroplasty. Current medications: Gabapentin 300mg, Atorvastatin 40mg, Omeprazole 20mg, Lisinopril 10mg.",
+        "expected_entities": [
+          "Gabapentin 300mg",
+          "Atorvastatin 40mg"
+        ]
+      },
+      {
+        "id": "ner-20",
+        "task": "medical-ner",
+        "text": "62-year-old female with Pneumonia with sepsis, Primary osteoarthritis right knee, COPD with acute exacerbation. Recent PCI to RCA with drug-eluting stent. Current medications: Omeprazole 20mg, Furosemide 40mg, Metformin 500mg, Prednisone 10mg, Amlodipine 5mg, Aspirin 81mg.",
+        "expected_entities": [
+          "Omeprazole 20mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-21",
+        "task": "medical-ner",
+        "text": "76-year-old female with COPD with acute exacerbation, Type 2 Diabetes on Metformin 500mg, Pneumonia with sepsis, Primary osteoarthritis right knee. Recent Endoscopic retrograde cholangiopancreatography. Current medications: Metformin 500mg, Aspirin 81mg, Lisinopril 10mg, Clopidogrel 75mg, Omeprazole 20mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Metformin 500mg",
+          "Aspirin 81mg"
+        ]
+      },
+      {
+        "id": "ner-22",
+        "task": "medical-ner",
+        "text": "44-year-old female with Atrial fibrillation on Warfarin, Major depressive disorder, Essential hypertension on Lisinopril 10mg. Recent CT angiogram of chest. Current medications: Gabapentin 300mg, Omeprazole 20mg, Amlodipine 5mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Gabapentin 300mg",
+          "Omeprazole 20mg"
+        ]
+      },
+      {
+        "id": "ner-23",
+        "task": "medical-ner",
+        "text": "39-year-old male with COPD with acute exacerbation, Major depressive disorder, Primary osteoarthritis right knee, Chronic kidney disease stage 3. Recent Cardiac catheterization. Current medications: Atorvastatin 40mg, Prednisone 10mg, Furosemide 40mg.",
+        "expected_entities": [
+          "Atorvastatin 40mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-24",
+        "task": "medical-ner",
+        "text": "87-year-old male with COPD with acute exacerbation, Essential hypertension on Lisinopril 10mg. Recent Total knee arthroplasty. Current medications: Aspirin 81mg, Furosemide 40mg, Lisinopril 10mg, Omeprazole 20mg, Gabapentin 300mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Aspirin 81mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-25",
+        "task": "medical-ner",
+        "text": "63-year-old male with COPD with acute exacerbation, Atrial fibrillation on Warfarin, Coronary artery disease, Type 2 Diabetes on Metformin 500mg. Recent MRI brain with contrast. Current medications: Aspirin 81mg, Clopidogrel 75mg, Furosemide 40mg, Metformin 500mg.",
+        "expected_entities": [
+          "Aspirin 81mg",
+          "Clopidogrel 75mg"
+        ]
+      },
+      {
+        "id": "ner-26",
+        "task": "medical-ner",
+        "text": "84-year-old male with Essential hypertension on Lisinopril 10mg, Pneumonia with sepsis, Chronic kidney disease stage 3, Coronary artery disease. Recent Total knee arthroplasty. Current medications: Gabapentin 300mg, Amlodipine 5mg, Levothyroxine 75mcg, Lisinopril 10mg, Aspirin 81mg, Furosemide 40mg.",
+        "expected_entities": [
+          "Gabapentin 300mg",
+          "Amlodipine 5mg"
+        ]
+      },
+      {
+        "id": "ner-27",
+        "task": "medical-ner",
+        "text": "84-year-old female with Congestive heart failure, COPD with acute exacerbation. Recent Bronchoscopy with BAL. Current medications: Amlodipine 5mg, Gabapentin 300mg, Metformin 500mg, Lisinopril 10mg.",
+        "expected_entities": [
+          "Amlodipine 5mg",
+          "Gabapentin 300mg"
+        ]
+      },
+      {
+        "id": "ner-28",
+        "task": "medical-ner",
+        "text": "46-year-old male with Coronary artery disease, Atrial fibrillation on Warfarin, Chronic kidney disease stage 3. Recent CT angiogram of chest. Current medications: Atorvastatin 40mg, Clopidogrel 75mg, Gabapentin 300mg.",
+        "expected_entities": [
+          "Atorvastatin 40mg",
+          "Clopidogrel 75mg"
+        ]
+      },
+      {
+        "id": "ner-29",
+        "task": "medical-ner",
+        "text": "63-year-old male with COPD with acute exacerbation, Pneumonia with sepsis, Congestive heart failure, Atrial fibrillation on Warfarin. Recent CT angiogram of chest. Current medications: Warfarin 5mg, Metformin 500mg, Levothyroxine 75mcg, Lisinopril 10mg, Prednisone 10mg.",
+        "expected_entities": [
+          "Warfarin 5mg",
+          "Metformin 500mg"
+        ]
+      },
+      {
+        "id": "ner-30",
+        "task": "medical-ner",
+        "text": "78-year-old male with Congestive heart failure, Chronic kidney disease stage 3, Pneumonia with sepsis. Recent PCI to RCA with drug-eluting stent. Current medications: Clopidogrel 75mg, Levothyroxine 75mcg, Amlodipine 5mg, Atorvastatin 40mg, Furosemide 40mg, Metformin 500mg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Levothyroxine 75mcg"
+        ]
+      },
+      {
+        "id": "ner-31",
+        "task": "medical-ner",
+        "text": "81-year-old female with Major depressive disorder, Coronary artery disease, Atrial fibrillation on Warfarin. Recent Bronchoscopy with BAL. Current medications: Omeprazole 20mg, Prednisone 10mg, Levothyroxine 75mcg, Amlodipine 5mg.",
+        "expected_entities": [
+          "Omeprazole 20mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-32",
+        "task": "medical-ner",
+        "text": "38-year-old female with Major depressive disorder, Essential hypertension on Lisinopril 10mg. Recent CT angiogram of chest. Current medications: Furosemide 40mg, Clopidogrel 75mg, Aspirin 81mg, Lisinopril 10mg, Metformin 500mg.",
+        "expected_entities": [
+          "Furosemide 40mg",
+          "Clopidogrel 75mg"
+        ]
+      },
+      {
+        "id": "ner-33",
+        "task": "medical-ner",
+        "text": "78-year-old male with Atrial fibrillation on Warfarin, Pneumonia with sepsis. Recent Lumbar puncture. Current medications: Aspirin 81mg, Furosemide 40mg, Gabapentin 300mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Aspirin 81mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-34",
+        "task": "medical-ner",
+        "text": "88-year-old male with Primary osteoarthritis right knee, Congestive heart failure. Recent CT angiogram of chest. Current medications: Clopidogrel 75mg, Prednisone 10mg, Warfarin 5mg, Omeprazole 20mg, Metformin 500mg, Furosemide 40mg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-35",
+        "task": "medical-ner",
+        "text": "85-year-old female with Type 2 Diabetes on Metformin 500mg, Essential hypertension on Lisinopril 10mg, Primary osteoarthritis right knee, Congestive heart failure. Recent Endoscopic retrograde cholangiopancreatography. Current medications: Prednisone 10mg, Omeprazole 20mg, Amlodipine 5mg, Levothyroxine 75mcg, Metformin 500mg.",
+        "expected_entities": [
+          "Prednisone 10mg",
+          "Omeprazole 20mg"
+        ]
+      },
+      {
+        "id": "ner-36",
+        "task": "medical-ner",
+        "text": "49-year-old female with Chronic kidney disease stage 3, Essential hypertension on Lisinopril 10mg, Primary osteoarthritis right knee, Pneumonia with sepsis. Recent Endoscopic retrograde cholangiopancreatography. Current medications: Gabapentin 300mg, Atorvastatin 40mg, Warfarin 5mg, Lisinopril 10mg, Aspirin 81mg, Metformin 500mg.",
+        "expected_entities": [
+          "Gabapentin 300mg",
+          "Atorvastatin 40mg"
+        ]
+      },
+      {
+        "id": "ner-37",
+        "task": "medical-ner",
+        "text": "68-year-old female with Coronary artery disease, Congestive heart failure. Recent MRI brain with contrast. Current medications: Gabapentin 300mg, Metformin 500mg, Levothyroxine 75mcg, Warfarin 5mg, Aspirin 81mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Gabapentin 300mg",
+          "Metformin 500mg"
+        ]
+      },
+      {
+        "id": "ner-38",
+        "task": "medical-ner",
+        "text": "83-year-old male with Congestive heart failure, COPD with acute exacerbation, Atrial fibrillation on Warfarin, Chronic kidney disease stage 3. Recent Lumbar puncture. Current medications: Aspirin 81mg, Amlodipine 5mg, Warfarin 5mg, Atorvastatin 40mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Aspirin 81mg",
+          "Amlodipine 5mg"
+        ]
+      },
+      {
+        "id": "ner-39",
+        "task": "medical-ner",
+        "text": "85-year-old male with Atrial fibrillation on Warfarin, Essential hypertension on Lisinopril 10mg, Primary osteoarthritis right knee. Recent Cardiac catheterization. Current medications: Prednisone 10mg, Levothyroxine 75mcg, Metformin 500mg, Furosemide 40mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Prednisone 10mg",
+          "Levothyroxine 75mcg"
+        ]
+      },
+      {
+        "id": "ner-40",
+        "task": "medical-ner",
+        "text": "86-year-old male with Pneumonia with sepsis, Primary osteoarthritis right knee, COPD with acute exacerbation, Congestive heart failure. Recent PCI to RCA with drug-eluting stent. Current medications: Metformin 500mg, Warfarin 5mg, Lisinopril 10mg, Clopidogrel 75mg.",
+        "expected_entities": [
+          "Metformin 500mg",
+          "Warfarin 5mg"
+        ]
+      },
+      {
+        "id": "ner-41",
+        "task": "medical-ner",
+        "text": "65-year-old female with Primary osteoarthritis right knee, Coronary artery disease. Recent Cardiac catheterization. Current medications: Gabapentin 300mg, Warfarin 5mg, Furosemide 40mg, Metformin 500mg, Aspirin 81mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Gabapentin 300mg",
+          "Warfarin 5mg"
+        ]
+      },
+      {
+        "id": "ner-42",
+        "task": "medical-ner",
+        "text": "86-year-old female with COPD with acute exacerbation, Major depressive disorder, Atrial fibrillation on Warfarin. Recent Cardiac catheterization. Current medications: Levothyroxine 75mcg, Prednisone 10mg, Atorvastatin 40mg, Furosemide 40mg, Clopidogrel 75mg.",
+        "expected_entities": [
+          "Levothyroxine 75mcg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-43",
+        "task": "medical-ner",
+        "text": "63-year-old male with Chronic kidney disease stage 3, Coronary artery disease, Major depressive disorder. Recent Total knee arthroplasty. Current medications: Furosemide 40mg, Omeprazole 20mg, Gabapentin 300mg, Atorvastatin 40mg, Warfarin 5mg.",
+        "expected_entities": [
+          "Furosemide 40mg",
+          "Omeprazole 20mg"
+        ]
+      },
+      {
+        "id": "ner-44",
+        "task": "medical-ner",
+        "text": "75-year-old female with Chronic kidney disease stage 3, Type 2 Diabetes on Metformin 500mg. Recent Lumbar puncture. Current medications: Prednisone 10mg, Lisinopril 10mg, Omeprazole 20mg, Furosemide 40mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Prednisone 10mg",
+          "Lisinopril 10mg"
+        ]
+      },
+      {
+        "id": "ner-45",
+        "task": "medical-ner",
+        "text": "50-year-old female with Chronic kidney disease stage 3, COPD with acute exacerbation, Essential hypertension on Lisinopril 10mg, Pneumonia with sepsis. Recent Cardiac catheterization. Current medications: Clopidogrel 75mg, Metformin 500mg, Gabapentin 300mg, Prednisone 10mg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Metformin 500mg"
+        ]
+      },
+      {
+        "id": "ner-46",
+        "task": "medical-ner",
+        "text": "37-year-old female with Major depressive disorder, Essential hypertension on Lisinopril 10mg, COPD with acute exacerbation. Recent Lumbar puncture. Current medications: Gabapentin 300mg, Aspirin 81mg, Amlodipine 5mg.",
+        "expected_entities": [
+          "Gabapentin 300mg",
+          "Aspirin 81mg"
+        ]
+      },
+      {
+        "id": "ner-47",
+        "task": "medical-ner",
+        "text": "50-year-old female with Chronic kidney disease stage 3, Type 2 Diabetes on Metformin 500mg, Essential hypertension on Lisinopril 10mg. Recent Bronchoscopy with BAL. Current medications: Gabapentin 300mg, Metformin 500mg, Aspirin 81mg, Amlodipine 5mg.",
+        "expected_entities": [
+          "Gabapentin 300mg",
+          "Metformin 500mg"
+        ]
+      },
+      {
+        "id": "ner-48",
+        "task": "medical-ner",
+        "text": "75-year-old female with Chronic kidney disease stage 3, Type 2 Diabetes on Metformin 500mg. Recent Total knee arthroplasty. Current medications: Atorvastatin 40mg, Warfarin 5mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Atorvastatin 40mg",
+          "Warfarin 5mg"
+        ]
+      },
+      {
+        "id": "ner-49",
+        "task": "medical-ner",
+        "text": "61-year-old female with Congestive heart failure, Pneumonia with sepsis, Major depressive disorder, Essential hypertension on Lisinopril 10mg. Recent Lumbar puncture. Current medications: Atorvastatin 40mg, Clopidogrel 75mg, Lisinopril 10mg, Omeprazole 20mg, Aspirin 81mg, Gabapentin 300mg.",
+        "expected_entities": [
+          "Atorvastatin 40mg",
+          "Clopidogrel 75mg"
+        ]
+      },
+      {
+        "id": "ner-50",
+        "task": "medical-ner",
+        "text": "48-year-old male with Atrial fibrillation on Warfarin, Chronic kidney disease stage 3, Coronary artery disease, Essential hypertension on Lisinopril 10mg. Recent Total knee arthroplasty. Current medications: Amlodipine 5mg, Gabapentin 300mg, Omeprazole 20mg, Lisinopril 10mg, Prednisone 10mg, Warfarin 5mg.",
+        "expected_entities": [
+          "Amlodipine 5mg",
+          "Gabapentin 300mg"
+        ]
+      },
+      {
+        "id": "ner-51",
+        "task": "medical-ner",
+        "text": "42-year-old female with Coronary artery disease, Type 2 Diabetes on Metformin 500mg, Chronic kidney disease stage 3. Recent PCI to RCA with drug-eluting stent. Current medications: Clopidogrel 75mg, Furosemide 40mg, Atorvastatin 40mg, Omeprazole 20mg, Warfarin 5mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-52",
+        "task": "medical-ner",
+        "text": "71-year-old male with Essential hypertension on Lisinopril 10mg, Major depressive disorder. Recent CT angiogram of chest. Current medications: Aspirin 81mg, Amlodipine 5mg, Gabapentin 300mg, Atorvastatin 40mg, Lisinopril 10mg.",
+        "expected_entities": [
+          "Aspirin 81mg",
+          "Amlodipine 5mg"
+        ]
+      },
+      {
+        "id": "ner-53",
+        "task": "medical-ner",
+        "text": "53-year-old male with Major depressive disorder, COPD with acute exacerbation. Recent Cardiac catheterization. Current medications: Prednisone 10mg, Warfarin 5mg, Omeprazole 20mg, Amlodipine 5mg, Furosemide 40mg, Gabapentin 300mg.",
+        "expected_entities": [
+          "Prednisone 10mg",
+          "Warfarin 5mg"
+        ]
+      },
+      {
+        "id": "ner-54",
+        "task": "medical-ner",
+        "text": "35-year-old female with Atrial fibrillation on Warfarin, Essential hypertension on Lisinopril 10mg, Congestive heart failure, Type 2 Diabetes on Metformin 500mg. Recent MRI brain with contrast. Current medications: Warfarin 5mg, Gabapentin 300mg, Aspirin 81mg, Prednisone 10mg.",
+        "expected_entities": [
+          "Warfarin 5mg",
+          "Gabapentin 300mg"
+        ]
+      },
+      {
+        "id": "ner-55",
+        "task": "medical-ner",
+        "text": "39-year-old male with Pneumonia with sepsis, Major depressive disorder, Essential hypertension on Lisinopril 10mg, Chronic kidney disease stage 3. Recent PCI to RCA with drug-eluting stent. Current medications: Metformin 500mg, Furosemide 40mg, Aspirin 81mg, Gabapentin 300mg, Amlodipine 5mg, Clopidogrel 75mg.",
+        "expected_entities": [
+          "Metformin 500mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-56",
+        "task": "medical-ner",
+        "text": "64-year-old male with Chronic kidney disease stage 3, Type 2 Diabetes on Metformin 500mg, Coronary artery disease. Recent Total knee arthroplasty. Current medications: Metformin 500mg, Amlodipine 5mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Metformin 500mg",
+          "Amlodipine 5mg"
+        ]
+      },
+      {
+        "id": "ner-57",
+        "task": "medical-ner",
+        "text": "33-year-old female with Chronic kidney disease stage 3, Primary osteoarthritis right knee. Recent Endoscopic retrograde cholangiopancreatography. Current medications: Aspirin 81mg, Levothyroxine 75mcg, Amlodipine 5mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Aspirin 81mg",
+          "Levothyroxine 75mcg"
+        ]
+      },
+      {
+        "id": "ner-58",
+        "task": "medical-ner",
+        "text": "73-year-old female with Congestive heart failure, COPD with acute exacerbation. Recent Cardiac catheterization. Current medications: Lisinopril 10mg, Aspirin 81mg, Gabapentin 300mg, Amlodipine 5mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Lisinopril 10mg",
+          "Aspirin 81mg"
+        ]
+      },
+      {
+        "id": "ner-59",
+        "task": "medical-ner",
+        "text": "27-year-old female with Congestive heart failure, Primary osteoarthritis right knee, Pneumonia with sepsis. Recent CT angiogram of chest. Current medications: Clopidogrel 75mg, Furosemide 40mg, Omeprazole 20mg, Aspirin 81mg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-60",
+        "task": "medical-ner",
+        "text": "39-year-old male with Primary osteoarthritis right knee, Type 2 Diabetes on Metformin 500mg, Coronary artery disease, Essential hypertension on Lisinopril 10mg. Recent Lumbar puncture. Current medications: Lisinopril 10mg, Warfarin 5mg, Metformin 500mg.",
+        "expected_entities": [
+          "Lisinopril 10mg",
+          "Warfarin 5mg"
+        ]
+      },
+      {
+        "id": "ner-61",
+        "task": "medical-ner",
+        "text": "56-year-old male with Major depressive disorder, Coronary artery disease, Congestive heart failure. Recent Cardiac catheterization. Current medications: Aspirin 81mg, Gabapentin 300mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Aspirin 81mg",
+          "Gabapentin 300mg"
+        ]
+      },
+      {
+        "id": "ner-62",
+        "task": "medical-ner",
+        "text": "66-year-old male with COPD with acute exacerbation, Congestive heart failure, Coronary artery disease. Recent Endoscopic retrograde cholangiopancreatography. Current medications: Atorvastatin 40mg, Prednisone 10mg, Metformin 500mg, Gabapentin 300mg, Aspirin 81mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Atorvastatin 40mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-63",
+        "task": "medical-ner",
+        "text": "31-year-old female with Primary osteoarthritis right knee, Congestive heart failure, Atrial fibrillation on Warfarin, Major depressive disorder. Recent Lumbar puncture. Current medications: Amlodipine 5mg, Aspirin 81mg, Atorvastatin 40mg, Prednisone 10mg, Levothyroxine 75mcg, Gabapentin 300mg.",
+        "expected_entities": [
+          "Amlodipine 5mg",
+          "Aspirin 81mg"
+        ]
+      },
+      {
+        "id": "ner-64",
+        "task": "medical-ner",
+        "text": "53-year-old female with COPD with acute exacerbation, Major depressive disorder, Type 2 Diabetes on Metformin 500mg, Chronic kidney disease stage 3. Recent CT angiogram of chest. Current medications: Amlodipine 5mg, Gabapentin 300mg, Levothyroxine 75mcg, Aspirin 81mg, Prednisone 10mg, Lisinopril 10mg.",
+        "expected_entities": [
+          "Amlodipine 5mg",
+          "Gabapentin 300mg"
+        ]
+      },
+      {
+        "id": "ner-65",
+        "task": "medical-ner",
+        "text": "67-year-old male with Atrial fibrillation on Warfarin, Essential hypertension on Lisinopril 10mg, Coronary artery disease. Recent PCI to RCA with drug-eluting stent. Current medications: Atorvastatin 40mg, Amlodipine 5mg, Warfarin 5mg.",
+        "expected_entities": [
+          "Atorvastatin 40mg",
+          "Amlodipine 5mg"
+        ]
+      },
+      {
+        "id": "ner-66",
+        "task": "medical-ner",
+        "text": "49-year-old male with Coronary artery disease, Atrial fibrillation on Warfarin, Chronic kidney disease stage 3. Recent Lumbar puncture. Current medications: Clopidogrel 75mg, Prednisone 10mg, Lisinopril 10mg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-67",
+        "task": "medical-ner",
+        "text": "51-year-old female with Congestive heart failure, Atrial fibrillation on Warfarin. Recent CT angiogram of chest. Current medications: Amlodipine 5mg, Furosemide 40mg, Gabapentin 300mg, Omeprazole 20mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Amlodipine 5mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-68",
+        "task": "medical-ner",
+        "text": "88-year-old female with Major depressive disorder, Atrial fibrillation on Warfarin. Recent Cardiac catheterization. Current medications: Omeprazole 20mg, Prednisone 10mg, Amlodipine 5mg, Metformin 500mg.",
+        "expected_entities": [
+          "Omeprazole 20mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-69",
+        "task": "medical-ner",
+        "text": "27-year-old female with Pneumonia with sepsis, Primary osteoarthritis right knee, Chronic kidney disease stage 3, Essential hypertension on Lisinopril 10mg. Recent Lumbar puncture. Current medications: Omeprazole 20mg, Clopidogrel 75mg, Amlodipine 5mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Omeprazole 20mg",
+          "Clopidogrel 75mg"
+        ]
+      },
+      {
+        "id": "ner-70",
+        "task": "medical-ner",
+        "text": "57-year-old female with Major depressive disorder, Pneumonia with sepsis, COPD with acute exacerbation, Atrial fibrillation on Warfarin. Recent PCI to RCA with drug-eluting stent. Current medications: Aspirin 81mg, Prednisone 10mg, Gabapentin 300mg, Furosemide 40mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Aspirin 81mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-71",
+        "task": "medical-ner",
+        "text": "34-year-old male with Primary osteoarthritis right knee, COPD with acute exacerbation. Recent Lumbar puncture. Current medications: Lisinopril 10mg, Aspirin 81mg, Metformin 500mg, Clopidogrel 75mg.",
+        "expected_entities": [
+          "Lisinopril 10mg",
+          "Aspirin 81mg"
+        ]
+      },
+      {
+        "id": "ner-72",
+        "task": "medical-ner",
+        "text": "32-year-old female with Major depressive disorder, Type 2 Diabetes on Metformin 500mg, Congestive heart failure, Chronic kidney disease stage 3. Recent Endoscopic retrograde cholangiopancreatography. Current medications: Metformin 500mg, Prednisone 10mg, Gabapentin 300mg, Atorvastatin 40mg, Warfarin 5mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Metformin 500mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-73",
+        "task": "medical-ner",
+        "text": "38-year-old male with COPD with acute exacerbation, Coronary artery disease, Congestive heart failure, Chronic kidney disease stage 3. Recent Endoscopic retrograde cholangiopancreatography. Current medications: Omeprazole 20mg, Atorvastatin 40mg, Amlodipine 5mg, Lisinopril 10mg, Prednisone 10mg.",
+        "expected_entities": [
+          "Omeprazole 20mg",
+          "Atorvastatin 40mg"
+        ]
+      },
+      {
+        "id": "ner-74",
+        "task": "medical-ner",
+        "text": "56-year-old male with Essential hypertension on Lisinopril 10mg, Type 2 Diabetes on Metformin 500mg, Pneumonia with sepsis. Recent PCI to RCA with drug-eluting stent. Current medications: Amlodipine 5mg, Prednisone 10mg, Gabapentin 300mg, Furosemide 40mg, Metformin 500mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Amlodipine 5mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-75",
+        "task": "medical-ner",
+        "text": "35-year-old female with Atrial fibrillation on Warfarin, Essential hypertension on Lisinopril 10mg, Type 2 Diabetes on Metformin 500mg. Recent PCI to RCA with drug-eluting stent. Current medications: Clopidogrel 75mg, Warfarin 5mg, Furosemide 40mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Warfarin 5mg"
+        ]
+      },
+      {
+        "id": "ner-76",
+        "task": "medical-ner",
+        "text": "60-year-old male with Atrial fibrillation on Warfarin, Type 2 Diabetes on Metformin 500mg. Recent CT angiogram of chest. Current medications: Warfarin 5mg, Aspirin 81mg, Amlodipine 5mg, Lisinopril 10mg.",
+        "expected_entities": [
+          "Warfarin 5mg",
+          "Aspirin 81mg"
+        ]
+      },
+      {
+        "id": "ner-77",
+        "task": "medical-ner",
+        "text": "55-year-old female with Congestive heart failure, Atrial fibrillation on Warfarin, Primary osteoarthritis right knee, Major depressive disorder. Recent PCI to RCA with drug-eluting stent. Current medications: Prednisone 10mg, Lisinopril 10mg, Gabapentin 300mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Prednisone 10mg",
+          "Lisinopril 10mg"
+        ]
+      },
+      {
+        "id": "ner-78",
+        "task": "medical-ner",
+        "text": "80-year-old male with Atrial fibrillation on Warfarin, Primary osteoarthritis right knee. Recent Cardiac catheterization. Current medications: Metformin 500mg, Levothyroxine 75mcg, Atorvastatin 40mg, Furosemide 40mg, Gabapentin 300mg.",
+        "expected_entities": [
+          "Metformin 500mg",
+          "Levothyroxine 75mcg"
+        ]
+      },
+      {
+        "id": "ner-79",
+        "task": "medical-ner",
+        "text": "73-year-old female with Pneumonia with sepsis, Primary osteoarthritis right knee. Recent Total knee arthroplasty. Current medications: Warfarin 5mg, Atorvastatin 40mg, Clopidogrel 75mg.",
+        "expected_entities": [
+          "Warfarin 5mg",
+          "Atorvastatin 40mg"
+        ]
+      },
+      {
+        "id": "ner-80",
+        "task": "medical-ner",
+        "text": "59-year-old male with COPD with acute exacerbation, Primary osteoarthritis right knee, Atrial fibrillation on Warfarin. Recent MRI brain with contrast. Current medications: Lisinopril 10mg, Prednisone 10mg, Metformin 500mg, Atorvastatin 40mg, Furosemide 40mg.",
+        "expected_entities": [
+          "Lisinopril 10mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-81",
+        "task": "medical-ner",
+        "text": "38-year-old male with COPD with acute exacerbation, Primary osteoarthritis right knee. Recent Total knee arthroplasty. Current medications: Gabapentin 300mg, Prednisone 10mg, Levothyroxine 75mcg, Amlodipine 5mg, Lisinopril 10mg, Metformin 500mg.",
+        "expected_entities": [
+          "Gabapentin 300mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-82",
+        "task": "medical-ner",
+        "text": "36-year-old female with Type 2 Diabetes on Metformin 500mg, Chronic kidney disease stage 3, Primary osteoarthritis right knee. Recent Endoscopic retrograde cholangiopancreatography. Current medications: Lisinopril 10mg, Gabapentin 300mg, Clopidogrel 75mg, Levothyroxine 75mcg, Aspirin 81mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Lisinopril 10mg",
+          "Gabapentin 300mg"
+        ]
+      },
+      {
+        "id": "ner-83",
+        "task": "medical-ner",
+        "text": "42-year-old female with Chronic kidney disease stage 3, Major depressive disorder, COPD with acute exacerbation. Recent Endoscopic retrograde cholangiopancreatography. Current medications: Aspirin 81mg, Amlodipine 5mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Aspirin 81mg",
+          "Amlodipine 5mg"
+        ]
+      },
+      {
+        "id": "ner-84",
+        "task": "medical-ner",
+        "text": "86-year-old male with Chronic kidney disease stage 3, Coronary artery disease, Major depressive disorder. Recent PCI to RCA with drug-eluting stent. Current medications: Furosemide 40mg, Lisinopril 10mg, Aspirin 81mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Furosemide 40mg",
+          "Lisinopril 10mg"
+        ]
+      },
+      {
+        "id": "ner-85",
+        "task": "medical-ner",
+        "text": "67-year-old female with Major depressive disorder, Atrial fibrillation on Warfarin, Primary osteoarthritis right knee. Recent Lumbar puncture. Current medications: Atorvastatin 40mg, Omeprazole 20mg, Warfarin 5mg, Clopidogrel 75mg.",
+        "expected_entities": [
+          "Atorvastatin 40mg",
+          "Omeprazole 20mg"
+        ]
+      },
+      {
+        "id": "ner-86",
+        "task": "medical-ner",
+        "text": "47-year-old female with Chronic kidney disease stage 3, Major depressive disorder, Coronary artery disease. Recent Cardiac catheterization. Current medications: Amlodipine 5mg, Atorvastatin 40mg, Prednisone 10mg, Omeprazole 20mg, Lisinopril 10mg.",
+        "expected_entities": [
+          "Amlodipine 5mg",
+          "Atorvastatin 40mg"
+        ]
+      },
+      {
+        "id": "ner-87",
+        "task": "medical-ner",
+        "text": "28-year-old female with Coronary artery disease, Major depressive disorder, Chronic kidney disease stage 3, Primary osteoarthritis right knee. Recent Bronchoscopy with BAL. Current medications: Amlodipine 5mg, Levothyroxine 75mcg, Furosemide 40mg.",
+        "expected_entities": [
+          "Amlodipine 5mg",
+          "Levothyroxine 75mcg"
+        ]
+      },
+      {
+        "id": "ner-88",
+        "task": "medical-ner",
+        "text": "55-year-old female with COPD with acute exacerbation, Primary osteoarthritis right knee, Congestive heart failure, Type 2 Diabetes on Metformin 500mg. Recent PCI to RCA with drug-eluting stent. Current medications: Warfarin 5mg, Furosemide 40mg, Prednisone 10mg, Amlodipine 5mg, Gabapentin 300mg, Atorvastatin 40mg.",
+        "expected_entities": [
+          "Warfarin 5mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-89",
+        "task": "medical-ner",
+        "text": "35-year-old male with Atrial fibrillation on Warfarin, COPD with acute exacerbation. Recent MRI brain with contrast. Current medications: Warfarin 5mg, Levothyroxine 75mcg, Amlodipine 5mg.",
+        "expected_entities": [
+          "Warfarin 5mg",
+          "Levothyroxine 75mcg"
+        ]
+      },
+      {
+        "id": "ner-90",
+        "task": "medical-ner",
+        "text": "38-year-old male with Chronic kidney disease stage 3, Coronary artery disease. Recent Bronchoscopy with BAL. Current medications: Furosemide 40mg, Omeprazole 20mg, Amlodipine 5mg, Prednisone 10mg.",
+        "expected_entities": [
+          "Furosemide 40mg",
+          "Omeprazole 20mg"
+        ]
+      },
+      {
+        "id": "ner-91",
+        "task": "medical-ner",
+        "text": "28-year-old female with Chronic kidney disease stage 3, Primary osteoarthritis right knee. Recent CT angiogram of chest. Current medications: Lisinopril 10mg, Aspirin 81mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Lisinopril 10mg",
+          "Aspirin 81mg"
+        ]
+      },
+      {
+        "id": "ner-92",
+        "task": "medical-ner",
+        "text": "83-year-old male with Major depressive disorder, Atrial fibrillation on Warfarin, Pneumonia with sepsis, Type 2 Diabetes on Metformin 500mg. Recent Total knee arthroplasty. Current medications: Prednisone 10mg, Furosemide 40mg, Omeprazole 20mg, Lisinopril 10mg, Atorvastatin 40mg, Metformin 500mg.",
+        "expected_entities": [
+          "Prednisone 10mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-93",
+        "task": "medical-ner",
+        "text": "68-year-old male with COPD with acute exacerbation, Coronary artery disease, Pneumonia with sepsis, Chronic kidney disease stage 3. Recent Cardiac catheterization. Current medications: Omeprazole 20mg, Gabapentin 300mg, Amlodipine 5mg, Furosemide 40mg.",
+        "expected_entities": [
+          "Omeprazole 20mg",
+          "Gabapentin 300mg"
+        ]
+      },
+      {
+        "id": "ner-94",
+        "task": "medical-ner",
+        "text": "48-year-old male with Primary osteoarthritis right knee, Pneumonia with sepsis, Type 2 Diabetes on Metformin 500mg, Atrial fibrillation on Warfarin. Recent PCI to RCA with drug-eluting stent. Current medications: Furosemide 40mg, Warfarin 5mg, Amlodipine 5mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Furosemide 40mg",
+          "Warfarin 5mg"
+        ]
+      },
+      {
+        "id": "ner-95",
+        "task": "medical-ner",
+        "text": "51-year-old female with Essential hypertension on Lisinopril 10mg, Pneumonia with sepsis, COPD with acute exacerbation, Major depressive disorder. Recent MRI brain with contrast. Current medications: Clopidogrel 75mg, Furosemide 40mg, Lisinopril 10mg, Atorvastatin 40mg, Levothyroxine 75mcg.",
+        "expected_entities": [
+          "Clopidogrel 75mg",
+          "Furosemide 40mg"
+        ]
+      },
+      {
+        "id": "ner-96",
+        "task": "medical-ner",
+        "text": "75-year-old male with Atrial fibrillation on Warfarin, Major depressive disorder, COPD with acute exacerbation. Recent Total knee arthroplasty. Current medications: Warfarin 5mg, Prednisone 10mg, Lisinopril 10mg, Aspirin 81mg, Omeprazole 20mg.",
+        "expected_entities": [
+          "Warfarin 5mg",
+          "Prednisone 10mg"
+        ]
+      },
+      {
+        "id": "ner-97",
+        "task": "medical-ner",
+        "text": "64-year-old male with Atrial fibrillation on Warfarin, COPD with acute exacerbation. Recent Lumbar puncture. Current medications: Amlodipine 5mg, Warfarin 5mg, Aspirin 81mg, Prednisone 10mg, Gabapentin 300mg, Lisinopril 10mg.",
+        "expected_entities": [
+          "Amlodipine 5mg",
+          "Warfarin 5mg"
+        ]
+      },
+      {
+        "id": "ner-98",
+        "task": "medical-ner",
+        "text": "46-year-old female with COPD with acute exacerbation, Pneumonia with sepsis, Atrial fibrillation on Warfarin. Recent Cardiac catheterization. Current medications: Warfarin 5mg, Metformin 500mg, Omeprazole 20mg, Levothyroxine 75mcg, Furosemide 40mg, Lisinopril 10mg.",
+        "expected_entities": [
+          "Warfarin 5mg",
+          "Metformin 500mg"
+        ]
+      },
+      {
+        "id": "ner-99",
+        "task": "medical-ner",
+        "text": "88-year-old female with Major depressive disorder, Primary osteoarthritis right knee, Pneumonia with sepsis, Coronary artery disease. Recent CT angiogram of chest. Current medications: Lisinopril 10mg, Warfarin 5mg, Metformin 500mg, Clopidogrel 75mg.",
+        "expected_entities": [
+          "Lisinopril 10mg",
+          "Warfarin 5mg"
+        ]
+      }
+    ],
+    "clinical-summarization": [
+      {
+        "id": "summary-0",
+        "task": "clinical-summarization",
+        "text": "47-year-old male admitted with altered mental status. History of Chronic kidney disease stage 3, COPD with acute exacerbation, Major depressive disorder, Pneumonia with sepsis. Emergent CT angiogram of chest. Current medications: Furosemide 40mg, Gabapentin 300mg, Levothyroxine 75mcg, Lisinopril 10mg, Warfarin 5mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-1",
+        "task": "clinical-summarization",
+        "text": "78-year-old female admitted with acute chest pain. History of Coronary artery disease, Primary osteoarthritis right knee, Essential hypertension on Lisinopril 10mg, Atrial fibrillation on Warfarin. Emergent MRI brain with contrast. Current medications: Clopidogrel 75mg, Atorvastatin 40mg, Metformin 500mg, Furosemide 40mg, Levothyroxine 75mcg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-2",
+        "task": "clinical-summarization",
+        "text": "79-year-old male admitted with shortness of breath. History of Pneumonia with sepsis, Atrial fibrillation on Warfarin. Emergent Cardiac catheterization. Current medications: Warfarin 5mg, Levothyroxine 75mcg, Amlodipine 5mg, Aspirin 81mg, Gabapentin 300mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-3",
+        "task": "clinical-summarization",
+        "text": "64-year-old female admitted with shortness of breath. History of Congestive heart failure, COPD with acute exacerbation, Atrial fibrillation on Warfarin, Major depressive disorder. Emergent Total knee arthroplasty. Current medications: Atorvastatin 40mg, Warfarin 5mg, Prednisone 10mg, Gabapentin 300mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-4",
+        "task": "clinical-summarization",
+        "text": "47-year-old male admitted with altered mental status. History of COPD with acute exacerbation, Coronary artery disease, Pneumonia with sepsis, Atrial fibrillation on Warfarin. Emergent Bronchoscopy with BAL. Current medications: Clopidogrel 75mg, Levothyroxine 75mcg, Amlodipine 5mg, Furosemide 40mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-5",
+        "task": "clinical-summarization",
+        "text": "54-year-old female admitted with acute chest pain. History of Essential hypertension on Lisinopril 10mg, Primary osteoarthritis right knee. Emergent MRI brain with contrast. Current medications: Prednisone 10mg, Atorvastatin 40mg, Omeprazole 20mg, Furosemide 40mg, Gabapentin 300mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-6",
+        "task": "clinical-summarization",
+        "text": "76-year-old female admitted with altered mental status. History of Atrial fibrillation on Warfarin, Essential hypertension on Lisinopril 10mg, Primary osteoarthritis right knee, Congestive heart failure. Emergent CT angiogram of chest. Current medications: Clopidogrel 75mg, Furosemide 40mg, Atorvastatin 40mg, Omeprazole 20mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-7",
+        "task": "clinical-summarization",
+        "text": "66-year-old female admitted with acute chest pain. History of Type 2 Diabetes on Metformin 500mg, Pneumonia with sepsis, Essential hypertension on Lisinopril 10mg. Emergent Lumbar puncture. Current medications: Furosemide 40mg, Metformin 500mg, Lisinopril 10mg, Aspirin 81mg, Prednisone 10mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-8",
+        "task": "clinical-summarization",
+        "text": "74-year-old male admitted with fall with hip pain. History of Chronic kidney disease stage 3, COPD with acute exacerbation, Pneumonia with sepsis, Type 2 Diabetes on Metformin 500mg. Emergent PCI to RCA with drug-eluting stent. Current medications: Omeprazole 20mg, Atorvastatin 40mg, Lisinopril 10mg, Prednisone 10mg, Aspirin 81mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-9",
+        "task": "clinical-summarization",
+        "text": "76-year-old male admitted with fall with hip pain. History of Essential hypertension on Lisinopril 10mg, Pneumonia with sepsis, Type 2 Diabetes on Metformin 500mg. Emergent Cardiac catheterization. Current medications: Furosemide 40mg, Lisinopril 10mg, Aspirin 81mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-10",
+        "task": "clinical-summarization",
+        "text": "74-year-old female admitted with acute chest pain. History of Primary osteoarthritis right knee, COPD with acute exacerbation. Emergent Total knee arthroplasty. Current medications: Lisinopril 10mg, Clopidogrel 75mg, Amlodipine 5mg, Prednisone 10mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-11",
+        "task": "clinical-summarization",
+        "text": "49-year-old male admitted with shortness of breath. History of COPD with acute exacerbation, Pneumonia with sepsis, Essential hypertension on Lisinopril 10mg. Emergent MRI brain with contrast. Current medications: Warfarin 5mg, Metformin 500mg, Prednisone 10mg, Aspirin 81mg, Furosemide 40mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-12",
+        "task": "clinical-summarization",
+        "text": "56-year-old female admitted with fall with hip pain. History of Essential hypertension on Lisinopril 10mg, Pneumonia with sepsis. Emergent MRI brain with contrast. Current medications: Lisinopril 10mg, Warfarin 5mg, Amlodipine 5mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-13",
+        "task": "clinical-summarization",
+        "text": "45-year-old female admitted with altered mental status. History of Essential hypertension on Lisinopril 10mg, Coronary artery disease, Chronic kidney disease stage 3, Primary osteoarthritis right knee. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Metformin 500mg, Levothyroxine 75mcg, Atorvastatin 40mg, Clopidogrel 75mg, Gabapentin 300mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-14",
+        "task": "clinical-summarization",
+        "text": "80-year-old male admitted with altered mental status. History of Primary osteoarthritis right knee, Essential hypertension on Lisinopril 10mg, Coronary artery disease. Emergent PCI to RCA with drug-eluting stent. Current medications: Levothyroxine 75mcg, Warfarin 5mg, Lisinopril 10mg, Gabapentin 300mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-15",
+        "task": "clinical-summarization",
+        "text": "54-year-old female admitted with altered mental status. History of Congestive heart failure, COPD with acute exacerbation, Major depressive disorder. Emergent PCI to RCA with drug-eluting stent. Current medications: Metformin 500mg, Warfarin 5mg, Lisinopril 10mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-16",
+        "task": "clinical-summarization",
+        "text": "33-year-old female admitted with acute chest pain. History of Chronic kidney disease stage 3, Congestive heart failure, Primary osteoarthritis right knee, Coronary artery disease. Emergent CT angiogram of chest. Current medications: Amlodipine 5mg, Lisinopril 10mg, Gabapentin 300mg, Warfarin 5mg, Aspirin 81mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-17",
+        "task": "clinical-summarization",
+        "text": "62-year-old male admitted with shortness of breath. History of Congestive heart failure, Atrial fibrillation on Warfarin. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Warfarin 5mg, Levothyroxine 75mcg, Lisinopril 10mg, Atorvastatin 40mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-18",
+        "task": "clinical-summarization",
+        "text": "35-year-old female admitted with shortness of breath. History of Major depressive disorder, Type 2 Diabetes on Metformin 500mg. Emergent PCI to RCA with drug-eluting stent. Current medications: Levothyroxine 75mcg, Prednisone 10mg, Aspirin 81mg, Lisinopril 10mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-19",
+        "task": "clinical-summarization",
+        "text": "40-year-old female admitted with acute chest pain. History of Congestive heart failure, Pneumonia with sepsis, Chronic kidney disease stage 3. Emergent Total knee arthroplasty. Current medications: Omeprazole 20mg, Aspirin 81mg, Atorvastatin 40mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-20",
+        "task": "clinical-summarization",
+        "text": "47-year-old male admitted with altered mental status. History of Pneumonia with sepsis, Essential hypertension on Lisinopril 10mg, Major depressive disorder. Emergent Bronchoscopy with BAL. Current medications: Gabapentin 300mg, Omeprazole 20mg, Metformin 500mg, Furosemide 40mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-21",
+        "task": "clinical-summarization",
+        "text": "79-year-old male admitted with fall with hip pain. History of Essential hypertension on Lisinopril 10mg, Coronary artery disease, Type 2 Diabetes on Metformin 500mg, Major depressive disorder. Emergent MRI brain with contrast. Current medications: Clopidogrel 75mg, Metformin 500mg, Furosemide 40mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-22",
+        "task": "clinical-summarization",
+        "text": "84-year-old male admitted with acute chest pain. History of Primary osteoarthritis right knee, Coronary artery disease, Atrial fibrillation on Warfarin, Essential hypertension on Lisinopril 10mg. Emergent MRI brain with contrast. Current medications: Prednisone 10mg, Omeprazole 20mg, Atorvastatin 40mg, Lisinopril 10mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-23",
+        "task": "clinical-summarization",
+        "text": "41-year-old male admitted with acute chest pain. History of Type 2 Diabetes on Metformin 500mg, Primary osteoarthritis right knee, Essential hypertension on Lisinopril 10mg, Coronary artery disease. Emergent Lumbar puncture. Current medications: Atorvastatin 40mg, Omeprazole 20mg, Lisinopril 10mg, Gabapentin 300mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-24",
+        "task": "clinical-summarization",
+        "text": "48-year-old female admitted with fall with hip pain. History of Pneumonia with sepsis, Coronary artery disease, Major depressive disorder, COPD with acute exacerbation. Emergent PCI to RCA with drug-eluting stent. Current medications: Furosemide 40mg, Clopidogrel 75mg, Gabapentin 300mg, Levothyroxine 75mcg, Aspirin 81mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-25",
+        "task": "clinical-summarization",
+        "text": "64-year-old female admitted with fall with hip pain. History of Type 2 Diabetes on Metformin 500mg, Atrial fibrillation on Warfarin, Pneumonia with sepsis, Primary osteoarthritis right knee. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Amlodipine 5mg, Atorvastatin 40mg, Lisinopril 10mg, Clopidogrel 75mg, Gabapentin 300mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-26",
+        "task": "clinical-summarization",
+        "text": "75-year-old female admitted with fall with hip pain. History of Type 2 Diabetes on Metformin 500mg, Coronary artery disease. Emergent Bronchoscopy with BAL. Current medications: Amlodipine 5mg, Omeprazole 20mg, Furosemide 40mg, Lisinopril 10mg, Gabapentin 300mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-27",
+        "task": "clinical-summarization",
+        "text": "57-year-old male admitted with shortness of breath. History of Chronic kidney disease stage 3, Pneumonia with sepsis. Emergent CT angiogram of chest. Current medications: Amlodipine 5mg, Omeprazole 20mg, Levothyroxine 75mcg, Furosemide 40mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-28",
+        "task": "clinical-summarization",
+        "text": "38-year-old male admitted with shortness of breath. History of Essential hypertension on Lisinopril 10mg, COPD with acute exacerbation. Emergent MRI brain with contrast. Current medications: Furosemide 40mg, Omeprazole 20mg, Amlodipine 5mg, Lisinopril 10mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-29",
+        "task": "clinical-summarization",
+        "text": "59-year-old female admitted with acute chest pain. History of Essential hypertension on Lisinopril 10mg, COPD with acute exacerbation. Emergent Bronchoscopy with BAL. Current medications: Atorvastatin 40mg, Warfarin 5mg, Metformin 500mg, Clopidogrel 75mg, Omeprazole 20mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-30",
+        "task": "clinical-summarization",
+        "text": "52-year-old female admitted with acute chest pain. History of Type 2 Diabetes on Metformin 500mg, Chronic kidney disease stage 3, Congestive heart failure, Primary osteoarthritis right knee. Emergent Cardiac catheterization. Current medications: Metformin 500mg, Amlodipine 5mg, Furosemide 40mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-31",
+        "task": "clinical-summarization",
+        "text": "81-year-old male admitted with acute chest pain. History of Type 2 Diabetes on Metformin 500mg, Pneumonia with sepsis. Emergent MRI brain with contrast. Current medications: Aspirin 81mg, Clopidogrel 75mg, Amlodipine 5mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-32",
+        "task": "clinical-summarization",
+        "text": "82-year-old male admitted with fall with hip pain. History of Essential hypertension on Lisinopril 10mg, Coronary artery disease. Emergent PCI to RCA with drug-eluting stent. Current medications: Furosemide 40mg, Aspirin 81mg, Lisinopril 10mg, Omeprazole 20mg, Warfarin 5mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-33",
+        "task": "clinical-summarization",
+        "text": "66-year-old female admitted with altered mental status. History of Primary osteoarthritis right knee, Major depressive disorder, Type 2 Diabetes on Metformin 500mg, Coronary artery disease. Emergent CT angiogram of chest. Current medications: Amlodipine 5mg, Aspirin 81mg, Omeprazole 20mg, Clopidogrel 75mg, Levothyroxine 75mcg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-34",
+        "task": "clinical-summarization",
+        "text": "32-year-old male admitted with fall with hip pain. History of Chronic kidney disease stage 3, Major depressive disorder, Primary osteoarthritis right knee, Pneumonia with sepsis. Emergent Bronchoscopy with BAL. Current medications: Metformin 500mg, Lisinopril 10mg, Atorvastatin 40mg, Amlodipine 5mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-35",
+        "task": "clinical-summarization",
+        "text": "70-year-old male admitted with shortness of breath. History of Atrial fibrillation on Warfarin, Major depressive disorder, Congestive heart failure. Emergent CT angiogram of chest. Current medications: Warfarin 5mg, Gabapentin 300mg, Omeprazole 20mg, Amlodipine 5mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-36",
+        "task": "clinical-summarization",
+        "text": "68-year-old male admitted with acute chest pain. History of Chronic kidney disease stage 3, Type 2 Diabetes on Metformin 500mg. Emergent Bronchoscopy with BAL. Current medications: Gabapentin 300mg, Omeprazole 20mg, Warfarin 5mg, Clopidogrel 75mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-37",
+        "task": "clinical-summarization",
+        "text": "47-year-old male admitted with acute chest pain. History of Pneumonia with sepsis, Primary osteoarthritis right knee. Emergent MRI brain with contrast. Current medications: Aspirin 81mg, Prednisone 10mg, Clopidogrel 75mg, Omeprazole 20mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-38",
+        "task": "clinical-summarization",
+        "text": "66-year-old male admitted with acute chest pain. History of Coronary artery disease, Major depressive disorder, Chronic kidney disease stage 3, Essential hypertension on Lisinopril 10mg. Emergent Cardiac catheterization. Current medications: Metformin 500mg, Lisinopril 10mg, Prednisone 10mg, Clopidogrel 75mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-39",
+        "task": "clinical-summarization",
+        "text": "30-year-old female admitted with shortness of breath. History of Coronary artery disease, COPD with acute exacerbation, Atrial fibrillation on Warfarin, Major depressive disorder. Emergent Bronchoscopy with BAL. Current medications: Omeprazole 20mg, Metformin 500mg, Levothyroxine 75mcg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-40",
+        "task": "clinical-summarization",
+        "text": "34-year-old female admitted with shortness of breath. History of Primary osteoarthritis right knee, Essential hypertension on Lisinopril 10mg, Atrial fibrillation on Warfarin, COPD with acute exacerbation. Emergent MRI brain with contrast. Current medications: Aspirin 81mg, Prednisone 10mg, Amlodipine 5mg, Furosemide 40mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-41",
+        "task": "clinical-summarization",
+        "text": "44-year-old male admitted with acute chest pain. History of Chronic kidney disease stage 3, Pneumonia with sepsis, COPD with acute exacerbation. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Prednisone 10mg, Metformin 500mg, Warfarin 5mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-42",
+        "task": "clinical-summarization",
+        "text": "81-year-old male admitted with shortness of breath. History of Pneumonia with sepsis, Essential hypertension on Lisinopril 10mg, Major depressive disorder, Congestive heart failure. Emergent MRI brain with contrast. Current medications: Prednisone 10mg, Lisinopril 10mg, Clopidogrel 75mg, Omeprazole 20mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-43",
+        "task": "clinical-summarization",
+        "text": "82-year-old female admitted with acute chest pain. History of Type 2 Diabetes on Metformin 500mg, Chronic kidney disease stage 3, Coronary artery disease. Emergent CT angiogram of chest. Current medications: Prednisone 10mg, Lisinopril 10mg, Omeprazole 20mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-44",
+        "task": "clinical-summarization",
+        "text": "33-year-old female admitted with fall with hip pain. History of Primary osteoarthritis right knee, COPD with acute exacerbation, Pneumonia with sepsis. Emergent Total knee arthroplasty. Current medications: Amlodipine 5mg, Omeprazole 20mg, Gabapentin 300mg, Prednisone 10mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-45",
+        "task": "clinical-summarization",
+        "text": "40-year-old female admitted with altered mental status. History of Type 2 Diabetes on Metformin 500mg, Chronic kidney disease stage 3. Emergent Total knee arthroplasty. Current medications: Omeprazole 20mg, Atorvastatin 40mg, Lisinopril 10mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-46",
+        "task": "clinical-summarization",
+        "text": "40-year-old male admitted with shortness of breath. History of Essential hypertension on Lisinopril 10mg, Atrial fibrillation on Warfarin, Major depressive disorder, Congestive heart failure. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Amlodipine 5mg, Levothyroxine 75mcg, Aspirin 81mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-47",
+        "task": "clinical-summarization",
+        "text": "51-year-old male admitted with acute chest pain. History of Primary osteoarthritis right knee, Congestive heart failure. Emergent Cardiac catheterization. Current medications: Prednisone 10mg, Gabapentin 300mg, Atorvastatin 40mg, Warfarin 5mg, Levothyroxine 75mcg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-48",
+        "task": "clinical-summarization",
+        "text": "66-year-old female admitted with shortness of breath. History of Type 2 Diabetes on Metformin 500mg, Atrial fibrillation on Warfarin. Emergent Lumbar puncture. Current medications: Amlodipine 5mg, Lisinopril 10mg, Atorvastatin 40mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-49",
+        "task": "clinical-summarization",
+        "text": "43-year-old male admitted with altered mental status. History of Chronic kidney disease stage 3, Essential hypertension on Lisinopril 10mg, Major depressive disorder, Primary osteoarthritis right knee. Emergent Lumbar puncture. Current medications: Atorvastatin 40mg, Amlodipine 5mg, Furosemide 40mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-50",
+        "task": "clinical-summarization",
+        "text": "41-year-old female admitted with shortness of breath. History of Atrial fibrillation on Warfarin, COPD with acute exacerbation, Major depressive disorder. Emergent CT angiogram of chest. Current medications: Atorvastatin 40mg, Furosemide 40mg, Levothyroxine 75mcg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-51",
+        "task": "clinical-summarization",
+        "text": "39-year-old male admitted with fall with hip pain. History of Atrial fibrillation on Warfarin, Congestive heart failure. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Warfarin 5mg, Clopidogrel 75mg, Gabapentin 300mg, Metformin 500mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-52",
+        "task": "clinical-summarization",
+        "text": "66-year-old male admitted with fall with hip pain. History of Chronic kidney disease stage 3, Essential hypertension on Lisinopril 10mg, Primary osteoarthritis right knee. Emergent Total knee arthroplasty. Current medications: Metformin 500mg, Gabapentin 300mg, Warfarin 5mg, Levothyroxine 75mcg, Aspirin 81mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-53",
+        "task": "clinical-summarization",
+        "text": "43-year-old male admitted with altered mental status. History of Type 2 Diabetes on Metformin 500mg, Primary osteoarthritis right knee. Emergent Bronchoscopy with BAL. Current medications: Levothyroxine 75mcg, Amlodipine 5mg, Clopidogrel 75mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-54",
+        "task": "clinical-summarization",
+        "text": "35-year-old female admitted with acute chest pain. History of Primary osteoarthritis right knee, Congestive heart failure, Atrial fibrillation on Warfarin, Pneumonia with sepsis. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Gabapentin 300mg, Furosemide 40mg, Metformin 500mg, Prednisone 10mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-55",
+        "task": "clinical-summarization",
+        "text": "39-year-old male admitted with fall with hip pain. History of Pneumonia with sepsis, Essential hypertension on Lisinopril 10mg. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Gabapentin 300mg, Omeprazole 20mg, Amlodipine 5mg, Atorvastatin 40mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-56",
+        "task": "clinical-summarization",
+        "text": "32-year-old male admitted with fall with hip pain. History of Primary osteoarthritis right knee, COPD with acute exacerbation, Pneumonia with sepsis. Emergent PCI to RCA with drug-eluting stent. Current medications: Amlodipine 5mg, Omeprazole 20mg, Clopidogrel 75mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-57",
+        "task": "clinical-summarization",
+        "text": "31-year-old female admitted with altered mental status. History of Chronic kidney disease stage 3, Pneumonia with sepsis, Major depressive disorder. Emergent Lumbar puncture. Current medications: Levothyroxine 75mcg, Lisinopril 10mg, Clopidogrel 75mg, Aspirin 81mg, Atorvastatin 40mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-58",
+        "task": "clinical-summarization",
+        "text": "68-year-old male admitted with shortness of breath. History of Major depressive disorder, Coronary artery disease. Emergent PCI to RCA with drug-eluting stent. Current medications: Prednisone 10mg, Furosemide 40mg, Gabapentin 300mg, Omeprazole 20mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-59",
+        "task": "clinical-summarization",
+        "text": "75-year-old female admitted with acute chest pain. History of Congestive heart failure, Type 2 Diabetes on Metformin 500mg. Emergent Cardiac catheterization. Current medications: Clopidogrel 75mg, Prednisone 10mg, Metformin 500mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-60",
+        "task": "clinical-summarization",
+        "text": "53-year-old male admitted with fall with hip pain. History of Atrial fibrillation on Warfarin, Major depressive disorder, Primary osteoarthritis right knee. Emergent Lumbar puncture. Current medications: Lisinopril 10mg, Levothyroxine 75mcg, Metformin 500mg, Clopidogrel 75mg, Omeprazole 20mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-61",
+        "task": "clinical-summarization",
+        "text": "67-year-old female admitted with shortness of breath. History of COPD with acute exacerbation, Chronic kidney disease stage 3, Essential hypertension on Lisinopril 10mg. Emergent Cardiac catheterization. Current medications: Metformin 500mg, Amlodipine 5mg, Prednisone 10mg, Aspirin 81mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-62",
+        "task": "clinical-summarization",
+        "text": "73-year-old male admitted with altered mental status. History of Primary osteoarthritis right knee, Congestive heart failure, Type 2 Diabetes on Metformin 500mg. Emergent Cardiac catheterization. Current medications: Metformin 500mg, Furosemide 40mg, Aspirin 81mg, Warfarin 5mg, Prednisone 10mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-63",
+        "task": "clinical-summarization",
+        "text": "75-year-old female admitted with acute chest pain. History of Primary osteoarthritis right knee, Atrial fibrillation on Warfarin, Major depressive disorder. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Clopidogrel 75mg, Furosemide 40mg, Atorvastatin 40mg, Gabapentin 300mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-64",
+        "task": "clinical-summarization",
+        "text": "65-year-old female admitted with altered mental status. History of Essential hypertension on Lisinopril 10mg, Major depressive disorder, Pneumonia with sepsis. Emergent CT angiogram of chest. Current medications: Atorvastatin 40mg, Levothyroxine 75mcg, Omeprazole 20mg, Prednisone 10mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-65",
+        "task": "clinical-summarization",
+        "text": "63-year-old male admitted with altered mental status. History of Pneumonia with sepsis, Primary osteoarthritis right knee. Emergent CT angiogram of chest. Current medications: Omeprazole 20mg, Levothyroxine 75mcg, Aspirin 81mg, Metformin 500mg, Furosemide 40mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-66",
+        "task": "clinical-summarization",
+        "text": "54-year-old male admitted with shortness of breath. History of Pneumonia with sepsis, Coronary artery disease, Atrial fibrillation on Warfarin, Major depressive disorder. Emergent CT angiogram of chest. Current medications: Clopidogrel 75mg, Levothyroxine 75mcg, Gabapentin 300mg, Furosemide 40mg, Omeprazole 20mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-67",
+        "task": "clinical-summarization",
+        "text": "48-year-old male admitted with altered mental status. History of COPD with acute exacerbation, Chronic kidney disease stage 3, Pneumonia with sepsis. Emergent Cardiac catheterization. Current medications: Omeprazole 20mg, Levothyroxine 75mcg, Lisinopril 10mg, Clopidogrel 75mg, Prednisone 10mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-68",
+        "task": "clinical-summarization",
+        "text": "53-year-old female admitted with fall with hip pain. History of Chronic kidney disease stage 3, Major depressive disorder, Essential hypertension on Lisinopril 10mg, Coronary artery disease. Emergent Total knee arthroplasty. Current medications: Levothyroxine 75mcg, Warfarin 5mg, Prednisone 10mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-69",
+        "task": "clinical-summarization",
+        "text": "85-year-old female admitted with fall with hip pain. History of Chronic kidney disease stage 3, Primary osteoarthritis right knee, Type 2 Diabetes on Metformin 500mg, Congestive heart failure. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Aspirin 81mg, Clopidogrel 75mg, Omeprazole 20mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-70",
+        "task": "clinical-summarization",
+        "text": "85-year-old male admitted with shortness of breath. History of Major depressive disorder, Atrial fibrillation on Warfarin. Emergent CT angiogram of chest. Current medications: Aspirin 81mg, Omeprazole 20mg, Metformin 500mg, Warfarin 5mg, Furosemide 40mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-71",
+        "task": "clinical-summarization",
+        "text": "61-year-old male admitted with acute chest pain. History of Pneumonia with sepsis, Primary osteoarthritis right knee. Emergent PCI to RCA with drug-eluting stent. Current medications: Amlodipine 5mg, Prednisone 10mg, Levothyroxine 75mcg, Furosemide 40mg, Warfarin 5mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-72",
+        "task": "clinical-summarization",
+        "text": "76-year-old female admitted with shortness of breath. History of Atrial fibrillation on Warfarin, Congestive heart failure. Emergent Cardiac catheterization. Current medications: Metformin 500mg, Levothyroxine 75mcg, Prednisone 10mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-73",
+        "task": "clinical-summarization",
+        "text": "49-year-old male admitted with fall with hip pain. History of Primary osteoarthritis right knee, Congestive heart failure. Emergent CT angiogram of chest. Current medications: Atorvastatin 40mg, Aspirin 81mg, Lisinopril 10mg, Metformin 500mg, Prednisone 10mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-74",
+        "task": "clinical-summarization",
+        "text": "57-year-old male admitted with shortness of breath. History of Major depressive disorder, Atrial fibrillation on Warfarin, Coronary artery disease. Emergent Cardiac catheterization. Current medications: Amlodipine 5mg, Metformin 500mg, Clopidogrel 75mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-75",
+        "task": "clinical-summarization",
+        "text": "67-year-old male admitted with acute chest pain. History of Atrial fibrillation on Warfarin, Type 2 Diabetes on Metformin 500mg. Emergent PCI to RCA with drug-eluting stent. Current medications: Levothyroxine 75mcg, Atorvastatin 40mg, Gabapentin 300mg, Metformin 500mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-76",
+        "task": "clinical-summarization",
+        "text": "33-year-old male admitted with fall with hip pain. History of Major depressive disorder, Primary osteoarthritis right knee, Essential hypertension on Lisinopril 10mg. Emergent CT angiogram of chest. Current medications: Atorvastatin 40mg, Furosemide 40mg, Aspirin 81mg, Clopidogrel 75mg, Metformin 500mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-77",
+        "task": "clinical-summarization",
+        "text": "72-year-old female admitted with acute chest pain. History of Pneumonia with sepsis, COPD with acute exacerbation, Primary osteoarthritis right knee, Major depressive disorder. Emergent CT angiogram of chest. Current medications: Gabapentin 300mg, Warfarin 5mg, Lisinopril 10mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-78",
+        "task": "clinical-summarization",
+        "text": "42-year-old male admitted with fall with hip pain. History of Congestive heart failure, Coronary artery disease, Atrial fibrillation on Warfarin. Emergent Cardiac catheterization. Current medications: Amlodipine 5mg, Atorvastatin 40mg, Aspirin 81mg, Metformin 500mg, Furosemide 40mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-79",
+        "task": "clinical-summarization",
+        "text": "30-year-old male admitted with shortness of breath. History of Essential hypertension on Lisinopril 10mg, Pneumonia with sepsis, Major depressive disorder, Congestive heart failure. Emergent CT angiogram of chest. Current medications: Gabapentin 300mg, Lisinopril 10mg, Levothyroxine 75mcg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-80",
+        "task": "clinical-summarization",
+        "text": "46-year-old female admitted with acute chest pain. History of Essential hypertension on Lisinopril 10mg, COPD with acute exacerbation. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Atorvastatin 40mg, Omeprazole 20mg, Levothyroxine 75mcg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-81",
+        "task": "clinical-summarization",
+        "text": "30-year-old male admitted with fall with hip pain. History of COPD with acute exacerbation, Atrial fibrillation on Warfarin, Congestive heart failure, Coronary artery disease. Emergent Total knee arthroplasty. Current medications: Atorvastatin 40mg, Lisinopril 10mg, Omeprazole 20mg, Warfarin 5mg, Aspirin 81mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-82",
+        "task": "clinical-summarization",
+        "text": "47-year-old female admitted with fall with hip pain. History of Major depressive disorder, Primary osteoarthritis right knee, COPD with acute exacerbation, Type 2 Diabetes on Metformin 500mg. Emergent Total knee arthroplasty. Current medications: Prednisone 10mg, Metformin 500mg, Aspirin 81mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-83",
+        "task": "clinical-summarization",
+        "text": "81-year-old female admitted with acute chest pain. History of Pneumonia with sepsis, Primary osteoarthritis right knee. Emergent Lumbar puncture. Current medications: Warfarin 5mg, Metformin 500mg, Aspirin 81mg, Furosemide 40mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-84",
+        "task": "clinical-summarization",
+        "text": "32-year-old male admitted with fall with hip pain. History of Atrial fibrillation on Warfarin, Type 2 Diabetes on Metformin 500mg, Coronary artery disease. Emergent Cardiac catheterization. Current medications: Omeprazole 20mg, Gabapentin 300mg, Levothyroxine 75mcg, Lisinopril 10mg, Amlodipine 5mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-85",
+        "task": "clinical-summarization",
+        "text": "39-year-old male admitted with shortness of breath. History of COPD with acute exacerbation, Congestive heart failure. Emergent MRI brain with contrast. Current medications: Furosemide 40mg, Aspirin 81mg, Lisinopril 10mg, Prednisone 10mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-86",
+        "task": "clinical-summarization",
+        "text": "33-year-old male admitted with fall with hip pain. History of Primary osteoarthritis right knee, Pneumonia with sepsis, Coronary artery disease, Type 2 Diabetes on Metformin 500mg. Emergent Lumbar puncture. Current medications: Furosemide 40mg, Warfarin 5mg, Prednisone 10mg, Lisinopril 10mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-87",
+        "task": "clinical-summarization",
+        "text": "61-year-old male admitted with altered mental status. History of Primary osteoarthritis right knee, Pneumonia with sepsis. Emergent Total knee arthroplasty. Current medications: Gabapentin 300mg, Prednisone 10mg, Metformin 500mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-88",
+        "task": "clinical-summarization",
+        "text": "71-year-old female admitted with fall with hip pain. History of Atrial fibrillation on Warfarin, Type 2 Diabetes on Metformin 500mg, Coronary artery disease. Emergent MRI brain with contrast. Current medications: Omeprazole 20mg, Gabapentin 300mg, Warfarin 5mg, Furosemide 40mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-89",
+        "task": "clinical-summarization",
+        "text": "78-year-old male admitted with shortness of breath. History of Atrial fibrillation on Warfarin, Pneumonia with sepsis. Emergent PCI to RCA with drug-eluting stent. Current medications: Atorvastatin 40mg, Gabapentin 300mg, Levothyroxine 75mcg, Omeprazole 20mg, Lisinopril 10mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-90",
+        "task": "clinical-summarization",
+        "text": "82-year-old female admitted with shortness of breath. History of Chronic kidney disease stage 3, Coronary artery disease. Emergent Lumbar puncture. Current medications: Lisinopril 10mg, Amlodipine 5mg, Clopidogrel 75mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-91",
+        "task": "clinical-summarization",
+        "text": "36-year-old female admitted with fall with hip pain. History of Pneumonia with sepsis, Essential hypertension on Lisinopril 10mg. Emergent Bronchoscopy with BAL. Current medications: Furosemide 40mg, Levothyroxine 75mcg, Warfarin 5mg, Gabapentin 300mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-92",
+        "task": "clinical-summarization",
+        "text": "65-year-old female admitted with fall with hip pain. History of Major depressive disorder, Congestive heart failure, COPD with acute exacerbation, Atrial fibrillation on Warfarin. Emergent Endoscopic retrograde cholangiopancreatography. Current medications: Aspirin 81mg, Prednisone 10mg, Lisinopril 10mg, Amlodipine 5mg, Omeprazole 20mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-93",
+        "task": "clinical-summarization",
+        "text": "47-year-old female admitted with altered mental status. History of Chronic kidney disease stage 3, Major depressive disorder, COPD with acute exacerbation. Emergent CT angiogram of chest. Current medications: Amlodipine 5mg, Warfarin 5mg, Gabapentin 300mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-94",
+        "task": "clinical-summarization",
+        "text": "42-year-old male admitted with fall with hip pain. History of Chronic kidney disease stage 3, Atrial fibrillation on Warfarin, COPD with acute exacerbation, Congestive heart failure. Emergent MRI brain with contrast. Current medications: Aspirin 81mg, Gabapentin 300mg, Levothyroxine 75mcg, Omeprazole 20mg, Lisinopril 10mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-95",
+        "task": "clinical-summarization",
+        "text": "73-year-old female admitted with shortness of breath. History of Type 2 Diabetes on Metformin 500mg, Congestive heart failure, Essential hypertension on Lisinopril 10mg. Emergent PCI to RCA with drug-eluting stent. Current medications: Amlodipine 5mg, Aspirin 81mg, Metformin 500mg. Vitals stable. Plan: transfer to rehab."
+      },
+      {
+        "id": "summary-96",
+        "task": "clinical-summarization",
+        "text": "48-year-old female admitted with acute chest pain. History of Type 2 Diabetes on Metformin 500mg, Chronic kidney disease stage 3. Emergent Lumbar puncture. Current medications: Gabapentin 300mg, Metformin 500mg, Omeprazole 20mg. Vitals stable. Plan: continue monitoring."
+      },
+      {
+        "id": "summary-97",
+        "task": "clinical-summarization",
+        "text": "77-year-old female admitted with acute chest pain. History of Congestive heart failure, Chronic kidney disease stage 3. Emergent MRI brain with contrast. Current medications: Levothyroxine 75mcg, Metformin 500mg, Amlodipine 5mg, Warfarin 5mg, Gabapentin 300mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-98",
+        "task": "clinical-summarization",
+        "text": "42-year-old female admitted with acute chest pain. History of Atrial fibrillation on Warfarin, Congestive heart failure. Emergent Bronchoscopy with BAL. Current medications: Warfarin 5mg, Clopidogrel 75mg, Levothyroxine 75mcg, Atorvastatin 40mg, Furosemide 40mg. Vitals stable. Plan: discharge home."
+      },
+      {
+        "id": "summary-99",
+        "task": "clinical-summarization",
+        "text": "77-year-old male admitted with fall with hip pain. History of Type 2 Diabetes on Metformin 500mg, Primary osteoarthritis right knee, Chronic kidney disease stage 3. Emergent MRI brain with contrast. Current medications: Atorvastatin 40mg, Aspirin 81mg, Levothyroxine 75mcg, Prednisone 10mg, Metformin 500mg. Vitals stable. Plan: continue monitoring."
+      }
+    ]
+  }
+}

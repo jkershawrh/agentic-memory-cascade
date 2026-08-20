@@ -1,0 +1,18 @@
+# Lever: Baseline — out of the box OVMS bfloat16
+# "What you get with RHEL AI + OpenVINO on Xeon, no tuning"
+
+lever: baseline
+description: Default OVMS serving with bfloat16 precision
+backend: ovms
+
+models:
+  - granite-350m
+  - granite-4-0-h-tiny-cpu
+  - granite-2b-cpu
+  - qwen25-3b-cpu
+  - granite-4.1-3b
+  - phi3-mini-cpu
+  - granite-3-2-8b-instruct-cpu
+  - granite-4.1-8b
+
+compare_against: null  # This IS the baseline

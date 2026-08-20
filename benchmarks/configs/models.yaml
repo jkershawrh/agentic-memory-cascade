@@ -1,0 +1,210 @@
+# Model Roster — Maps aliases to Oberon backends
+# Source: triforce/infrastructure/oberon/model_roster.yaml
+# Cluster: Oberon (Intel Xeon 6767P, 128c/256t, 503 GiB, AMX BF16/INT8)
+
+cluster:
+  name: oberon
+  hardware: Intel Xeon 6767P
+  cores: 128
+  threads: 256
+  memory_gib: 503
+  instruction_sets: [AMX-BF16, AMX-INT8, AVX-512, AVX-VNNI]
+
+# LiteLLM proxy provides unified OpenAI-compatible API
+endpoint:
+  env_var: LITELLM_API_BASE
+  auth_env_var: LITELLM_API_KEY
+
+models:
+  baseline:
+    - alias: granite-350m
+      params: 350M
+      backend: ovms
+      dtype: bfloat16
+      role: ultra-fast classification, draft model
+
+    - alias: granite-4-0-h-tiny-cpu
+      params: 1B
+      backend: ovms
+      dtype: bfloat16
+      role: hybrid SSM draft model
+
+    - alias: granite-2b-cpu
+      params: 2B
+      backend: ovms
+      dtype: bfloat16
+      role: NER, fraud scoring, classification
+
+    - alias: qwen25-3b-cpu
+      params: 3B
+      backend: ovms
+      dtype: bfloat16
+      role: classification, summarization
+
+    - alias: granite-4.1-3b
+      params: 3B
+      backend: ovms
+      dtype: bfloat16
+      role: next-gen classification, tool calling
+
+    - alias: phi3-mini-cpu
+      params: 3.8B
+      backend: ovms
+      dtype: bfloat16
+      role: complex reasoning
+
+    - alias: granite-3-2-8b-instruct-cpu
+      params: 8B
+      backend: ovms
+      dtype: bfloat16
+      role: complex reasoning, fusion judge
+
+    - alias: granite-4.1-8b
+      params: 8B
+      backend: ovms
+      dtype: bfloat16
+      role: next-gen reasoning, simulated GPU tier
+
+  optimized:
+    - alias: granite-2b-int8
+      params: 2B
+      backend: ovms
+      dtype: int8
+      optimization: AMX-INT8 quantization
+      baseline_alias: granite-2b-cpu
+
+    - alias: granite-2b-cpu-speculative
+      params: 2B+350M
+      backend: vllm
+      dtype: bfloat16
+      optimization: draft-model speculative decoding (granite-350m, 5 tokens)
+      baseline_alias: granite-2b-cpu
+
+  # GGUF models served via llama.cpp (llama-server)
+  gguf:
+    - alias: bitnet-2b
+      params: 2B
+      backend: llama-cpp
+      dtype: i2_s (1.58-bit ternary)
+      gguf_file: ggml-model-i2_s.gguf
+      huggingface_id: microsoft/bitnet-b1.58-2B-4T-gguf
+
+    - alias: smollm2-360m
+      params: 360M
+      backend: llama-cpp
+      dtype: Q8_0
+      gguf_file: SmolLM2-360M-Instruct-Q8_0.gguf
+      huggingface_id: unsloth/SmolLM2-360M-Instruct-GGUF
+
+    - alias: smollm2-1.7b
+      params: 1.7B
+      backend: llama-cpp
+      dtype: Q4_K_M
+      gguf_file: smollm2-1.7b-instruct-q4_k_m.gguf
+      huggingface_id: HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF
+
+    - alias: phi4-mini
+      params: 3.8B
+      backend: llama-cpp
+      dtype: Q4_K_M
+      gguf_file: microsoft_Phi-4-mini-instruct-Q4_K_M.gguf
+      huggingface_id: bartowski/microsoft_Phi-4-mini-instruct-GGUF
+
+    - alias: gemma2-2b
+      params: 2B
+      backend: llama-cpp
+      dtype: Q8_0
+      gguf_file: gemma-2-2b-it-Q8_0.gguf
+      huggingface_id: bartowski/gemma-2-2b-it-GGUF
+
+    - alias: qwen36-moe-35b-a3b
+      params: 35B total / 3B active (MoE)
+      backend: llama-cpp
+      dtype: Q4_K_M
+      gguf_file: Qwen3.6-35B-A3B-Q4_K_M.gguf
+      huggingface_id: unsloth/Qwen3.6-35B-A3B-GGUF
+
+    - alias: qwen3-0.6b
+      params: 0.6B
+      backend: llama-cpp
+      dtype: Q4_K_M
+      gguf_file: Qwen_Qwen3-0.6B-Q4_K_M.gguf
+      huggingface_id: Qwen/Qwen3-0.6B-GGUF
+      role: FSI classification candidate (60% shootout quality)
+
+    - alias: deepseek-r1-1.5b
+      params: 1.5B
+      backend: llama-cpp
+      dtype: Q4_K_M
+      gguf_file: DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
+      huggingface_id: bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF
+      role: reasoning distillation candidate
+
+    - alias: qwen3-1.7b
+      params: 1.7B
+      backend: llama-cpp
+      dtype: Q4_K_M
+      gguf_file: Qwen_Qwen3-1.7B-Q4_K_M.gguf
+      huggingface_id: Qwen/Qwen3-1.7B-GGUF
+      role: FSI classification candidate (75% shootout quality)
+
+    - alias: smollm3-3b
+      params: 3B
+      backend: llama-cpp
+      dtype: Q4_K_M
+      gguf_file: SmolLM3-Q4_K_M.gguf
+      huggingface_id: HuggingFaceTB/SmolLM3-3B-Instruct-GGUF
+      role: best FSI classification small model (85% shootout quality)
+
+    - alias: qwen3-4b
+      params: 4B
+      backend: llama-cpp
+      dtype: Q4_K_M
+      gguf_file: Qwen_Qwen3-4B-Q4_K_M.gguf
+      huggingface_id: Qwen/Qwen3-4B-GGUF
+      role: FSI classification candidate (70% shootout quality)
+
+    - alias: granite-2b-q4
+      params: 2B
+      backend: llama-cpp
+      dtype: Q4_K_M
+      gguf_file: granite-3.2-2b-instruct-Q4_K_M.gguf
+      huggingface_id: bartowski/granite-3.2-2b-instruct-GGUF
+
+    - alias: granite-2b-q8
+      params: 2B
+      backend: llama-cpp
+      dtype: Q8_0
+      gguf_file: granite-3.2-2b-instruct-Q8_0.gguf
+      huggingface_id: bartowski/granite-3.2-2b-instruct-GGUF
+
+    - alias: granite-8b-q4
+      params: 8B
+      backend: llama-cpp
+      dtype: Q4_K_M
+      gguf_file: granite-3.2-8b-instruct-Q4_K_M.gguf
+      huggingface_id: bartowski/granite-3.2-8b-instruct-GGUF
+
+# Model ladder (ordered by size for Lever 5 benchmarks)
+ladder:
+  - smollm2-360m        # 360M (GGUF Q8)
+  - granite-350m        # 350M (OVMS BF16)
+  - qwen3-0.6b          # 0.6B (GGUF Q4)
+  - granite-4-0-h-tiny-cpu  # 1B
+  - deepseek-r1-1.5b    # 1.5B (GGUF Q4)
+  - smollm2-1.7b        # 1.7B (GGUF Q4)
+  - qwen3-1.7b          # 1.7B (GGUF Q4)
+  - bitnet-2b           # 2B (1-bit ternary)
+  - granite-2b-cpu      # 2B (OVMS BF16)
+  - granite-2b-q4       # 2B (GGUF Q4)
+  - gemma2-2b           # 2B (GGUF Q8)
+  - qwen25-3b-cpu       # 3B (OVMS BF16)
+  - granite-4.1-3b      # 3B (OVMS BF16)
+  - smollm3-3b          # 3B (GGUF Q4)
+  - phi3-mini-cpu       # 3.8B (OVMS BF16)
+  - phi4-mini           # 3.8B (GGUF Q4)
+  - qwen3-4b            # 4B (GGUF Q4)
+  - qwen36-moe-35b-a3b  # 35B/3B active (GGUF Q4 MoE)
+  - granite-3-2-8b-instruct-cpu  # 8B (OVMS BF16)
+  - granite-8b-q4       # 8B (GGUF Q4)
+  - granite-4.1-8b      # 8B (OVMS BF16)

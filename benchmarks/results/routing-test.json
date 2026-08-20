@@ -1,0 +1,165 @@
+{
+  "type": "routing_test",
+  "timestamp": "2026-08-04T19:11:48.906270+00:00",
+  "models": {
+    "classification": "gemma3-4b x2",
+    "generation": "phi4-mini x3",
+    "fallback": "llama32-1b x1"
+  },
+  "tests": 15,
+  "overall_pct": 93.3,
+  "avg_ms": 6278,
+  "wall_clock_ms": 20662,
+  "throughput_rps": 0.73,
+  "by_lane": {
+    "classification": {
+      "pass": 4,
+      "total": 4,
+      "pct": 100,
+      "avg_ms": 1412
+    },
+    "json": {
+      "pass": 2,
+      "total": 2,
+      "pct": 100,
+      "avg_ms": 4556
+    },
+    "extraction": {
+      "pass": 2,
+      "total": 2,
+      "pct": 100,
+      "avg_ms": 8322
+    },
+    "fallback": {
+      "pass": 2,
+      "total": 2,
+      "pct": 100,
+      "avg_ms": 1288
+    },
+    "reasoning": {
+      "pass": 1,
+      "total": 2,
+      "pct": 50,
+      "avg_ms": 8576
+    },
+    "code": {
+      "pass": 1,
+      "total": 1,
+      "pct": 100,
+      "avg_ms": 5835
+    },
+    "generation": {
+      "pass": 2,
+      "total": 2,
+      "pct": 100,
+      "avg_ms": 18600
+    }
+  },
+  "results": [
+    {
+      "lane": "classification",
+      "svc": "llama-gemma3-4b",
+      "passed": true,
+      "elapsed_ms": 1291,
+      "answer": "Critical"
+    },
+    {
+      "lane": "classification",
+      "svc": "llama-gemma3-4b",
+      "passed": true,
+      "elapsed_ms": 1340,
+      "answer": "Network"
+    },
+    {
+      "lane": "classification",
+      "svc": "llama-gemma3-4b",
+      "passed": true,
+      "elapsed_ms": 1448,
+      "answer": "Invoice"
+    },
+    {
+      "lane": "classification",
+      "svc": "llama-gemma3-4b",
+      "passed": true,
+      "elapsed_ms": 1570,
+      "answer": "Suspicious"
+    },
+    {
+      "lane": "json",
+      "svc": "llama-phi4-mini",
+      "passed": true,
+      "elapsed_ms": 3861,
+      "answer": "{\"risk_score\": 95, \"classification\": \"suspicious\"}"
+    },
+    {
+      "lane": "json",
+      "svc": "llama-phi4-mini",
+      "passed": true,
+      "elapsed_ms": 5252,
+      "answer": "{\n  \"sentiment\": \"mixed\",\n  \"score\": 0.0\n}"
+    },
+    {
+      "lane": "extraction",
+      "svc": "llama-phi4-mini",
+      "passed": true,
+      "elapsed_ms": 7708,
+      "answer": "{\n  \"person\": \"John Smith\",\n  \"amount\": 250000,\n  \"bank\": \"F"
+    },
+    {
+      "lane": "extraction",
+      "svc": "llama-phi4-mini",
+      "passed": true,
+      "elapsed_ms": 8936,
+      "answer": "{\n\n  \"medication\": \"metformin\",\n\n  \"dosage\": \"500mg BID\",\n\n "
+    },
+    {
+      "lane": "fallback",
+      "svc": "llama-llama32-1b",
+      "passed": true,
+      "elapsed_ms": 798,
+      "answer": "Legitimate."
+    },
+    {
+      "lane": "reasoning",
+      "svc": "llama-phi4-mini",
+      "passed": false,
+      "elapsed_ms": 4584,
+      "answer": "Denial due to high debt-to-income ratio."
+    },
+    {
+      "lane": "fallback",
+      "svc": "llama-llama32-1b",
+      "passed": true,
+      "elapsed_ms": 1779,
+      "answer": "The server's disk space is at 98%, and multiple alerts are c"
+    },
+    {
+      "lane": "code",
+      "svc": "llama-phi4-mini",
+      "passed": true,
+      "elapsed_ms": 5835,
+      "answer": "kubectl rollout restart deployment --namespace=fraud-scoring"
+    },
+    {
+      "lane": "reasoning",
+      "svc": "llama-phi4-mini",
+      "passed": true,
+      "elapsed_ms": 12568,
+      "answer": "The primary root cause is uncontrolled resource consumption "
+    },
+    {
+      "lane": "generation",
+      "svc": "llama-phi4-mini",
+      "passed": true,
+      "elapsed_ms": 18110,
+      "answer": "A 67-year-old male with Type 2 diabetes, hypertension, and c"
+    },
+    {
+      "lane": "generation",
+      "svc": "llama-phi4-mini",
+      "passed": true,
+      "elapsed_ms": 19091,
+      "answer": "1. Increase disk space: Consider adding additional storage t"
+    }
+  ]
+}

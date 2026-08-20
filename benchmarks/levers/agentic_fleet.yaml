@@ -1,0 +1,39 @@
+# Lever: Agentic Fleet — parallel cheap model instances
+# "What happens when inference is so cheap you can run 60 of them?"
+
+lever: agentic_fleet
+description: Fleet patterns — jury voting, speculative swarm, pipeline, saturation, cross-pollination
+
+models:
+  - bitnet-2b
+  - smollm2-360m
+  - granite-350m
+
+patterns:
+  jury_voting:
+    description: N agents classify same input, majority vote wins
+    agent_counts: [3, 5, 10]
+    measure: [quality_accuracy, wall_latency_ms]
+
+  speculative_swarm:
+    description: N agents with different prompt framings explore parallel reasoning paths, best-of-N selection
+    agent_counts: [3, 5]
+    framings: [direct, chain_of_thought, role_play, adversarial, confidence]
+    measure: [quality_uplift, accuracy_single_vs_swarm]
+
+  pipeline_parallel:
+    description: Multi-step workflow with each step on a dedicated warm agent
+    steps: [classify, extract, summarize]
+    measure: [sequential_vs_parallel_latency, speedup]
+
+  saturation:
+    description: Scale concurrent agents until throughput plateaus
+    agent_counts: [1, 5, 10, 20, 30, 60]
+    measure: [aggregate_tok_s, avg_latency_degradation]
+
+  # Future: cross-pollination / context pre-warming
+  # cross_pollinate:
+  #   description: Agent 1 prefills shared context (KV cache), Agents 2-N inherit cached prefix and skip prefill.
+  #     Pay for prefill once, get N speculative paths for free.
+  #   requires: llm-d or llama.cpp --slot-save-path with shared PVC
+  #   status: design — needs KV cache export/import between llama-server instances

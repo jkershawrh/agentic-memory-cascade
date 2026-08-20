@@ -1,0 +1,24 @@
+# Lever 9: Composition — stacking optimizations
+# "Do these improvements multiply or hit diminishing returns?"
+
+lever: composed
+description: Compound effect of stacking multiple optimization levers
+
+compositions:
+  - name: int8_cached
+    description: INT8 quantization + adaptive caching
+    models: [granite-2b-int8]
+    features: [quantization, adaptive_cache]
+
+  - name: routing_ladder_int8
+    description: Semantic routing + model ladder + INT8
+    models: [granite-350m, granite-2b-int8, granite-3-2-8b-instruct-cpu]
+    features: [routing, model_ladder, quantization]
+
+  - name: full_stack
+    description: Routing + ladder + INT8 + adaptive cache + batching
+    models: [granite-350m, granite-2b-int8, granite-3-2-8b-instruct-cpu]
+    features: [routing, model_ladder, quantization, adaptive_cache, batching]
+    concurrency: 8
+
+measure: [throughput_tok_s, latency_p95_ms, quality_accuracy, optimization_speedup]

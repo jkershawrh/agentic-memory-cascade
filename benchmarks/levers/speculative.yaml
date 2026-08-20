@@ -1,0 +1,22 @@
+# Lever 7: Speculative Decoding — draft model acceleration
+# "Smaller model proposes, larger model verifies — free speedup"
+
+lever: speculative
+description: Draft-model speculative decoding (granite-350m → granite-2b)
+
+pairs:
+  - optimized: granite-2b-cpu-speculative
+    baseline: granite-2b-cpu
+    backend_optimized: vllm
+    backend_baseline: ovms
+    draft_model: granite-350m
+    num_speculative_tokens: 5
+
+# NOTE: baseline is OVMS, speculative is vLLM — not apples-to-apples runtime.
+# For a fair comparison, also measure granite-2b-cpu on vLLM without speculative.
+fair_comparison_note: |
+  The speculative speedup claim should be measured against vLLM bfloat16 baseline,
+  not OVMS baseline, since the runtime difference confounds the result.
+
+target_speedup: 1.5  # Triforce claim threshold
+measure: [throughput_tok_s, latency_p95_ms, quality_preservation]

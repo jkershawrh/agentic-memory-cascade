@@ -1,0 +1,178 @@
+{
+  "metadata": {
+    "timestamp": "2026-07-31T23:24:56.711929+00:00",
+    "model": "smollm2-360m",
+    "pattern": "all",
+    "agent_counts": [
+      3,
+      5,
+      10
+    ],
+    "samples": 20,
+    "endpoint": "http://litellm.triforce.svc:4000"
+  },
+  "benchmarks": [
+    {
+      "pattern": "jury_voting",
+      "model": "smollm2-360m",
+      "trials": [
+        {
+          "n_agents": 3,
+          "samples": 20,
+          "correct": 20,
+          "total_latency_ms": 4372,
+          "accuracy": 1.0,
+          "avg_wall_latency_ms": 218
+        },
+        {
+          "n_agents": 5,
+          "samples": 20,
+          "correct": 20,
+          "total_latency_ms": 6390,
+          "accuracy": 1.0,
+          "avg_wall_latency_ms": 319
+        },
+        {
+          "n_agents": 10,
+          "samples": 20,
+          "correct": 20,
+          "total_latency_ms": 10644,
+          "accuracy": 1.0,
+          "avg_wall_latency_ms": 532
+        }
+      ]
+    },
+    {
+      "pattern": "speculative_swarm",
+      "model": "smollm2-360m",
+      "n_agents": 3,
+      "framings": [
+        "direct",
+        "chain_of_thought",
+        "role_play"
+      ],
+      "samples": 20,
+      "correct_single": 20,
+      "correct_swarm": 20,
+      "correct_per_framing": {
+        "direct": 1.0,
+        "chain_of_thought": 1.0,
+        "role_play": 1.0
+      },
+      "total_wall_latency_ms": 2034,
+      "accuracy_single": 1.0,
+      "accuracy_swarm": 1.0,
+      "quality_uplift": 0.0,
+      "avg_wall_latency_ms": 101
+    },
+    {
+      "pattern": "speculative_swarm",
+      "model": "smollm2-360m",
+      "n_agents": 5,
+      "framings": [
+        "direct",
+        "chain_of_thought",
+        "role_play",
+        "adversarial",
+        "confidence"
+      ],
+      "samples": 20,
+      "correct_single": 20,
+      "correct_swarm": 20,
+      "correct_per_framing": {
+        "direct": 1.0,
+        "chain_of_thought": 1.0,
+        "role_play": 1.0,
+        "adversarial": 0.95,
+        "confidence": 1.0
+      },
+      "total_wall_latency_ms": 2532,
+      "accuracy_single": 1.0,
+      "accuracy_swarm": 1.0,
+      "quality_uplift": 0.0,
+      "avg_wall_latency_ms": 126
+    },
+    {
+      "pattern": "speculative_swarm",
+      "model": "smollm2-360m",
+      "n_agents": 5,
+      "framings": [
+        "direct",
+        "chain_of_thought",
+        "role_play",
+        "adversarial",
+        "confidence"
+      ],
+      "samples": 20,
+      "correct_single": 20,
+      "correct_swarm": 20,
+      "correct_per_framing": {
+        "direct": 1.0,
+        "chain_of_thought": 1.0,
+        "role_play": 1.0,
+        "adversarial": 0.9,
+        "confidence": 1.0
+      },
+      "total_wall_latency_ms": 2020,
+      "accuracy_single": 1.0,
+      "accuracy_swarm": 1.0,
+      "quality_uplift": 0.0,
+      "avg_wall_latency_ms": 101
+    },
+    {
+      "pattern": "pipeline_parallel",
+      "model": "smollm2-360m",
+      "steps": 3,
+      "samples": 20,
+      "sequential_avg_ms": 260,
+      "parallel_avg_ms": 240,
+      "speedup": 1.08
+    },
+    {
+      "pattern": "saturation",
+      "model": "smollm2-360m",
+      "levels": [
+        {
+          "n_agents": 1,
+          "total_calls": 10,
+          "wall_seconds": 0.26,
+          "aggregate_tok_s": 76.86,
+          "avg_latency_ms": 25,
+          "errors": 0
+        },
+        {
+          "n_agents": 5,
+          "total_calls": 50,
+          "wall_seconds": 2.01,
+          "aggregate_tok_s": 49.87,
+          "avg_latency_ms": 197,
+          "errors": 0
+        },
+        {
+          "n_agents": 10,
+          "total_calls": 100,
+          "wall_seconds": 1.52,
+          "aggregate_tok_s": 131.96,
+          "avg_latency_ms": 146,
+          "errors": 0
+        },
+        {
+          "n_agents": 20,
+          "total_calls": 200,
+          "wall_seconds": 3.35,
+          "aggregate_tok_s": 119.51,
+          "avg_latency_ms": 320,
+          "errors": 0
+        },
+        {
+          "n_agents": 30,
+          "total_calls": 300,
+          "wall_seconds": 6.63,
+          "aggregate_tok_s": 90.56,
+          "avg_latency_ms": 635,
+          "errors": 0
+        }
+      ]
+    }
+  ]
+}
