@@ -12,6 +12,7 @@ set -e
 
 DOMAIN="${1:-fsi}"
 SPEED="${2:-normal}"
+MODEL="${CASCADE_LLM_MODEL:-granite3.2:8b-instruct}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 case "$SPEED" in
@@ -35,11 +36,38 @@ echo "========================================"
 echo ""
 echo "  Domain: $DOMAIN"
 echo "  Speed:  $SPEED ($DELAY s between signals)"
+echo "  Model:  $MODEL (via Ollama)"
+echo ""
+
+# -- Check Ollama --
+if ! command -v ollama &>/dev/null; then
+  echo "ERROR: Ollama is required for the demo."
+  echo "  Install: https://ollama.com"
+  echo "  Then:    ollama pull $MODEL"
+  exit 1
+fi
+
+# -- Pull the model if needed --
+if ! ollama list 2>/dev/null | grep -q "${MODEL%%:*}"; then
+  echo "Pulling model $MODEL (this takes a few minutes on first run)..."
+  ollama pull "$MODEL"
+fi
+
+# -- Start Ollama if not running --
+if ! curl -sf http://localhost:11434/api/tags &>/dev/null; then
+  echo "Starting Ollama..."
+  ollama serve &>/dev/null &
+  sleep 2
+fi
+
+echo "Model ready: $MODEL"
 echo ""
 
 # -- Start the FastAPI service --
 echo "Starting cascade service..."
-CASCADE_DOMAIN="$DOMAIN" CASCADE_FORCE_DETERMINISTIC=1 \
+CASCADE_DOMAIN="$DOMAIN" \
+  CASCADE_LLM_URL="http://localhost:11434/v1" \
+  CASCADE_LLM_MODEL="$MODEL" \
   python3 -m uvicorn cascade_compression.service:app \
   --port 8090 --log-level warning &
 SERVICE_PID=$!
