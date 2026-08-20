@@ -1,0 +1,320 @@
+{
+  "type": "smollm_family",
+  "timestamp": "2026-08-03T15:25:58.537637+00:00",
+  "models": [
+    "smollm2-135m",
+    "smollm2-360m",
+    "smollm3-3b",
+    "smollm2-1.7b"
+  ],
+  "summary": {
+    "smollm2-1.7b:basic:classify-short": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-1.7b:basic:extract-medium": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-1.7b:basic:summarize-long": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-1.7b:fsi:dispute-classification": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-1.7b:fsi:fraud-scoring": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-1.7b:healthcare:clinical-classification": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-1.7b:insurance:claims-triage": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-1.7b:retail:product-categorization": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-1.7b:retail:review-sentiment": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-1.7b:telecom:network-anomaly": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-1.7b:telecom:ticket-routing": {
+      "avg_tok_s": 0,
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "ok": 0,
+      "errors": 5
+    },
+    "smollm2-135m:basic:classify-short": {
+      "avg_tok_s": 15.7,
+      "avg_ms": 662,
+      "p95_ms": 829,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-135m:basic:extract-medium": {
+      "avg_tok_s": 71.4,
+      "avg_ms": 705,
+      "p95_ms": 817,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-135m:basic:summarize-long": {
+      "avg_tok_s": 72.1,
+      "avg_ms": 694,
+      "p95_ms": 728,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-135m:fsi:dispute-classification": {
+      "avg_tok_s": 16.8,
+      "avg_ms": 606,
+      "p95_ms": 710,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-135m:fsi:fraud-scoring": {
+      "avg_tok_s": 17.4,
+      "avg_ms": 579,
+      "p95_ms": 656,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-135m:healthcare:clinical-classification": {
+      "avg_tok_s": 17.7,
+      "avg_ms": 570,
+      "p95_ms": 633,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-135m:insurance:claims-triage": {
+      "avg_tok_s": 16.9,
+      "avg_ms": 597,
+      "p95_ms": 662,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-135m:retail:product-categorization": {
+      "avg_tok_s": 16.7,
+      "avg_ms": 613,
+      "p95_ms": 749,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-135m:retail:review-sentiment": {
+      "avg_tok_s": 47.4,
+      "avg_ms": 633,
+      "p95_ms": 657,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-135m:telecom:network-anomaly": {
+      "avg_tok_s": 46.7,
+      "avg_ms": 644,
+      "p95_ms": 707,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-135m:telecom:ticket-routing": {
+      "avg_tok_s": 17.2,
+      "avg_ms": 583,
+      "p95_ms": 619,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:basic:classify-short": {
+      "avg_tok_s": 14.6,
+      "avg_ms": 634,
+      "p95_ms": 736,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:basic:extract-medium": {
+      "avg_tok_s": 32.6,
+      "avg_ms": 986,
+      "p95_ms": 1194,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:basic:summarize-long": {
+      "avg_tok_s": 36.6,
+      "avg_ms": 851,
+      "p95_ms": 1179,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:fsi:dispute-classification": {
+      "avg_tok_s": 17.1,
+      "avg_ms": 587,
+      "p95_ms": 651,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:fsi:fraud-scoring": {
+      "avg_tok_s": 14.8,
+      "avg_ms": 609,
+      "p95_ms": 702,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:healthcare:clinical-classification": {
+      "avg_tok_s": 17.2,
+      "avg_ms": 582,
+      "p95_ms": 613,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:insurance:claims-triage": {
+      "avg_tok_s": 16.7,
+      "avg_ms": 603,
+      "p95_ms": 714,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:retail:product-categorization": {
+      "avg_tok_s": 16.4,
+      "avg_ms": 614,
+      "p95_ms": 699,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:retail:review-sentiment": {
+      "avg_tok_s": 27.0,
+      "avg_ms": 711,
+      "p95_ms": 804,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:telecom:network-anomaly": {
+      "avg_tok_s": 36.9,
+      "avg_ms": 781,
+      "p95_ms": 862,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm2-360m:telecom:ticket-routing": {
+      "avg_tok_s": 16.9,
+      "avg_ms": 592,
+      "p95_ms": 633,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:basic:classify-short": {
+      "avg_tok_s": 8.1,
+      "avg_ms": 1274,
+      "p95_ms": 1588,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:basic:extract-medium": {
+      "avg_tok_s": 11.7,
+      "avg_ms": 4313,
+      "p95_ms": 5084,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:basic:summarize-long": {
+      "avg_tok_s": 13.7,
+      "avg_ms": 3707,
+      "p95_ms": 4476,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:fsi:dispute-classification": {
+      "avg_tok_s": 8.8,
+      "avg_ms": 1136,
+      "p95_ms": 1269,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:fsi:fraud-scoring": {
+      "avg_tok_s": 9.1,
+      "avg_ms": 1101,
+      "p95_ms": 1229,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:healthcare:clinical-classification": {
+      "avg_tok_s": 7.7,
+      "avg_ms": 1322,
+      "p95_ms": 1720,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:insurance:claims-triage": {
+      "avg_tok_s": 6.9,
+      "avg_ms": 1466,
+      "p95_ms": 1660,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:retail:product-categorization": {
+      "avg_tok_s": 9.0,
+      "avg_ms": 1107,
+      "p95_ms": 1189,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:retail:review-sentiment": {
+      "avg_tok_s": 13.6,
+      "avg_ms": 2215,
+      "p95_ms": 2418,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:telecom:network-anomaly": {
+      "avg_tok_s": 10.9,
+      "avg_ms": 2793,
+      "p95_ms": 3285,
+      "ok": 5,
+      "errors": 0
+    },
+    "smollm3-3b:telecom:ticket-routing": {
+      "avg_tok_s": 8.9,
+      "avg_ms": 1123,
+      "p95_ms": 1177,
+      "ok": 5,
+      "errors": 0
+    }
+  }
+}

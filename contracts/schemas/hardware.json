@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hardware-profile",
+  "title": "Hardware Profile",
+  "description": "Hardware specification with cost and throughput data for TCO calculation",
+  "type": "object",
+  "required": ["id", "name", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["cpu", "gpu", "cloud_api"]
+    },
+    "cost_per_unit_usd": {
+      "type": "number",
+      "minimum": 0
+    },
+    "power_watts": {
+      "type": "number",
+      "minimum": 0
+    },
+    "amx_support": {
+      "type": "boolean"
+    },
+    "cost_per_1k_input_tokens": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cost_per_1k_output_tokens": {
+      "type": "number",
+      "minimum": 0
+    },
+    "rate_limit_rpm": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "inference_throughput": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["tokens_per_second", "classification_rps"],
+        "properties": {
+          "tokens_per_second": {
+            "type": "number",
+            "minimum": 0
+          },
+          "classification_rps": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "type": { "const": "cpu" } }
+      },
+      "then": {
+        "required": ["cost_per_unit_usd", "power_watts", "inference_throughput"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "type": { "const": "gpu" } }
+      },
+      "then": {
+        "required": ["cost_per_unit_usd", "power_watts", "inference_throughput"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "type": { "const": "cloud_api" } }
+      },
+      "then": {
+        "required": ["cost_per_1k_input_tokens", "cost_per_1k_output_tokens"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "type": "five_lane_simulation",
+  "timestamp": "20260803-050026",
+  "rounds": 5,
+  "summary": {
+    "fsi:classification:granite-350m": {
+      "avg_ms": 1642.8339499999997,
+      "p95_ms": 2039.1480840000006,
+      "tok_s": 26.877683445946115,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "RED"
+    },
+    "fsi:classification:smollm2-360m": {
+      "avg_ms": 1467.2455836000001,
+      "p95_ms": 1621.875334,
+      "tok_s": 55.23428047634643,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "RED"
+    },
+    "fsi:extraction:granite-2b-cpu": {
+      "avg_ms": 1111.229508399999,
+      "p95_ms": 1339.4376659999984,
+      "tok_s": 4.5564935344667745,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "GREEN"
+    },
+    "healthcare:classification:smollm2-360m": {
+      "avg_ms": 1160.6792747999862,
+      "p95_ms": 1487.729040999966,
+      "tok_s": 54.61631479849483,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "RED"
+    },
+    "healthcare:extraction:qwen25-3b-cpu": {
+      "avg_ms": 6222.9201584000075,
+      "p95_ms": 7148.5234169999785,
+      "tok_s": 19.56451435051398,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "RED"
+    },
+    "healthcare:generation:phi3-mini-cpu": {
+      "avg_ms": 5888.845966799988,
+      "p95_ms": 7293.6632909999735,
+      "tok_s": 20.983081645329822,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "YELLOW"
+    },
+    "insurance:classification:granite-4-0-h-tiny-cpu": {
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "tok_s": 0,
+      "ok": 0,
+      "errors": 5,
+      "standard_compliance_pct": 0,
+      "grade": "GREEN"
+    },
+    "insurance:extraction:granite-2b-cpu": {
+      "avg_ms": 8128.5996168,
+      "p95_ms": 8556.702666999996,
+      "tok_s": 14.791012851304647,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "RED"
+    },
+    "insurance:reasoning:phi3-mini-cpu": {
+      "avg_ms": 5580.513475200007,
+      "p95_ms": 6563.354625000016,
+      "tok_s": 18.068430205953227,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "YELLOW"
+    },
+    "retail:classification:granite-4-0-h-tiny-cpu": {
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "tok_s": 0,
+      "ok": 0,
+      "errors": 5,
+      "standard_compliance_pct": 0,
+      "grade": "GREEN"
+    },
+    "retail:classification:smollm2-360m": {
+      "avg_ms": 1285.0091499999992,
+      "p95_ms": 1620.7984159999996,
+      "tok_s": 63.29243661216111,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "RED"
+    },
+    "retail:extraction:qwen25-3b-cpu": {
+      "avg_ms": 4593.691783200002,
+      "p95_ms": 5353.567791000003,
+      "tok_s": 22.138763275263546,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "YELLOW"
+    },
+    "telecom:classification:granite-350m": {
+      "avg_ms": 2406.4448166,
+      "p95_ms": 2661.6879169999947,
+      "tok_s": 29.286601016728742,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "RED"
+    },
+    "telecom:extraction:granite-4.1-3b": {
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "tok_s": 0,
+      "ok": 0,
+      "errors": 5,
+      "standard_compliance_pct": 0,
+      "grade": "GREEN"
+    },
+    "telecom:reasoning:qwen36-moe-35b-a3b": {
+      "avg_ms": 10806.571599800005,
+      "p95_ms": 12583.722083000011,
+      "tok_s": 9.324295368295115,
+      "ok": 5,
+      "errors": 0,
+      "standard_compliance_pct": 0.0,
+      "grade": "YELLOW"
+    }
+  }
+}

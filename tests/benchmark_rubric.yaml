@@ -1,0 +1,67 @@
+# Benchmark Rubric — cascade compression performance validation
+# Governs Stage 4 of the validation matrix.
+
+benchmark_rubric:
+  version: "1.0"
+  description: "Performance and safety validation for cascade compression"
+
+  verification_policy:
+    verified_means: "Measured on a live deployment with real signal streams"
+    public_claim_rules:
+      - "Do not publish compression rates unless measured on real or validated synthetic data"
+      - "Latency claims are hardware-specific — always state the CPU model"
+      - "False-negative rates must be measured with the zero-FN gate active"
+
+  run_modes:
+    local:
+      description: "Unit tests, contract validation, synthetic benchmarks"
+      no_cluster_required: true
+    compose:
+      description: "Full service with LLM endpoint"
+      requires: ["podman", "LLM endpoint"]
+    openshift:
+      description: "Federated deployment with collectors and aggregator"
+      requires: ["oc", "LLM endpoint"]
+
+  benchmarks:
+    compression_rate_k8s:
+      description: "Kubernetes signal compression rate on production replay"
+      test_method: "Replay 100K+ production signals through the cascade"
+      min_compression_pct: 95
+      required: true
+
+    compression_rate_synthetic:
+      description: "Synthetic domain compression rate (cold start)"
+      test_method: "Run synthetic domain corpus through cascade with no learned agents"
+      min_compression_pct: 50
+      required: true
+
+    false_negative_rate:
+      description: "Zero false-negative tolerance on activated agents"
+      test_method: "Shadow validation of 5% of suppressed signals"
+      max_false_negative_pct: 0
+      required: true
+
+    agent_promotion_safety:
+      description: "Agent requires 200+ samples with 0% FN to activate"
+      test_method: "Attempt promotion with insufficient or failing samples"
+      pass_criteria: "Promotion rejected when FN > 0 or samples < 200"
+      required: true
+
+    model_latency_cpu:
+      description: "Micro-tier model classification latency on CPU"
+      test_method: "Single signal classification on target CPU"
+      max_ms: 2000
+      required: false
+
+    shadow_demotion:
+      description: "Shadow validation triggers demotion on false negative"
+      test_method: "Inject known-positive signal into suppressed stream"
+      pass_criteria: "Agent demoted, evidence written to ledger"
+      required: true
+
+    ttl_expiry:
+      description: "Activated agents expire after TTL"
+      test_method: "Wait for 72h TTL (or configured shorter TTL in test)"
+      pass_criteria: "Agent status reverts to draft, must re-qualify"
+      required: false

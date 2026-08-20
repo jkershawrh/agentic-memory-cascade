@@ -1,0 +1,1519 @@
+{
+  "evaluated": [
+    {
+      "model": "granite-350m",
+      "task": "classify-short",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 29.55,
+          "grade": "yellow"
+        },
+        "latency_p50_ms": {
+          "value": 75.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 84.0,
+          "grade": "green"
+        },
+        "latency_p99_ms": {
+          "value": 84.0,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 79,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 1.05,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4-0-h-tiny-cpu",
+      "task": "classify-short",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 12.72,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 154.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 180.0499999999999,
+          "grade": "green"
+        },
+        "latency_p99_ms": {
+          "value": 218.85000000000002,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 151,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.98,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-2b-cpu",
+      "task": "classify-short",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 11.14,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 166.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 314.6999999999996,
+          "grade": "green"
+        },
+        "latency_p99_ms": {
+          "value": 490.02000000000015,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 120,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.72,
+          "grade": "red"
+        },
+        "variance_flagged": {
+          "value": 0.4632,
+          "grade": "green"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "qwen25-3b-cpu",
+      "task": "classify-short",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 21.04,
+          "grade": "yellow"
+        },
+        "latency_p50_ms": {
+          "value": 88.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 141.79999999999995,
+          "grade": "green"
+        },
+        "latency_p99_ms": {
+          "value": 161.07000000000002,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 93,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 1.06,
+          "grade": "red"
+        },
+        "variance_flagged": {
+          "value": 0.2107,
+          "grade": "green"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4.1-3b",
+      "task": "classify-short",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 7.45,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 265.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 295.99999999999994,
+          "grade": "green"
+        },
+        "latency_p99_ms": {
+          "value": 322.75,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 281,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 1.06,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "phi3-mini-cpu",
+      "task": "classify-short",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 8.47,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 245.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 314.29999999999995,
+          "grade": "green"
+        },
+        "latency_p99_ms": {
+          "value": 319.13,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 252,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 1.03,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-3-2-8b-instruct-cpu",
+      "task": "classify-short",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 13.96,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 142.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 152.55,
+          "grade": "green"
+        },
+        "latency_p99_ms": {
+          "value": 154.42000000000002,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 155,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 1.09,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4.1-8b",
+      "task": "classify-short",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 6.02,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 332.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 382.59999999999997,
+          "grade": "green"
+        },
+        "latency_p99_ms": {
+          "value": 420.66,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 266,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.8,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-350m",
+      "task": "extract-medium",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 41.66,
+          "grade": "green"
+        },
+        "latency_p50_ms": {
+          "value": 708.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 2823.65,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 3029.0200000000004,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 505,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.71,
+          "grade": "red"
+        },
+        "variance_flagged": {
+          "value": 0.7548,
+          "grade": "green"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4-0-h-tiny-cpu",
+      "task": "extract-medium",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 21.39,
+          "grade": "yellow"
+        },
+        "latency_p50_ms": {
+          "value": 3552.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 4228.5,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 4604.35,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 3475,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.98,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-2b-cpu",
+      "task": "extract-medium",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 14.36,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 8555.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 9305.099999999999,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 9551.78,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 8489,
+          "grade": "yellow"
+        },
+        "warm_cache_speedup": {
+          "value": 0.99,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "qwen25-3b-cpu",
+      "task": "extract-medium",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 23.15,
+          "grade": "yellow"
+        },
+        "latency_p50_ms": {
+          "value": 3509.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 6038.699999999998,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 6699.13,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 0.6364,
+          "grade": "red"
+        },
+        "cold_start_ms": {
+          "value": 6061,
+          "grade": "yellow"
+        },
+        "warm_cache_speedup": {
+          "value": 1.73,
+          "grade": "red"
+        },
+        "variance_flagged": {
+          "value": 0.3093,
+          "grade": "green"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4.1-3b",
+      "task": "extract-medium",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 18.86,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 5380.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 6976.0999999999985,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 7401.47,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 6442,
+          "grade": "yellow"
+        },
+        "warm_cache_speedup": {
+          "value": 1.2,
+          "grade": "red"
+        },
+        "variance_flagged": {
+          "value": 0.2221,
+          "grade": "green"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "phi3-mini-cpu",
+      "task": "extract-medium",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 23.4,
+          "grade": "yellow"
+        },
+        "latency_p50_ms": {
+          "value": 5396.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 6403.15,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 6620.35,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 6577,
+          "grade": "yellow"
+        },
+        "warm_cache_speedup": {
+          "value": 1.22,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-3-2-8b-instruct-cpu",
+      "task": "extract-medium",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 17.13,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 5781.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 6838.199999999999,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 8090.160000000002,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 5668,
+          "grade": "yellow"
+        },
+        "warm_cache_speedup": {
+          "value": 0.98,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4.1-8b",
+      "task": "extract-medium",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 17.93,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 5266.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 6740.699999999999,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 7069.46,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 5107,
+          "grade": "yellow"
+        },
+        "warm_cache_speedup": {
+          "value": 0.97,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-2b-cpu",
+      "task": "summarize-long",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 15.62,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 7416.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 8112.549999999999,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 8634.2,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 7456,
+          "grade": "yellow"
+        },
+        "warm_cache_speedup": {
+          "value": 1.01,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "qwen25-3b-cpu",
+      "task": "summarize-long",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 21.96,
+          "grade": "yellow"
+        },
+        "latency_p50_ms": {
+          "value": 4431.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 5650.95,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 6347.750000000001,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 3201,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.72,
+          "grade": "red"
+        },
+        "variance_flagged": {
+          "value": 0.209,
+          "grade": "green"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4.1-3b",
+      "task": "summarize-long",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 21.49,
+          "grade": "yellow"
+        },
+        "latency_p50_ms": {
+          "value": 3797.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 6424.05,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 6603.91,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 5456,
+          "grade": "yellow"
+        },
+        "warm_cache_speedup": {
+          "value": 1.44,
+          "grade": "red"
+        },
+        "variance_flagged": {
+          "value": 0.2628,
+          "grade": "green"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "phi3-mini-cpu",
+      "task": "summarize-long",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 21.39,
+          "grade": "yellow"
+        },
+        "latency_p50_ms": {
+          "value": 4712.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 5807.85,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 6286.47,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 4676,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.99,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-3-2-8b-instruct-cpu",
+      "task": "summarize-long",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 17.6,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 5893.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 7241.099999999999,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 7758.000000000001,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 5697,
+          "grade": "yellow"
+        },
+        "warm_cache_speedup": {
+          "value": 0.97,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4.1-8b",
+      "task": "summarize-long",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 17.84,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 4969.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 6538.649999999998,
+          "grade": "red"
+        },
+        "latency_p99_ms": {
+          "value": 7078.21,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 1.0,
+          "grade": "green"
+        },
+        "cold_start_ms": {
+          "value": 5044,
+          "grade": "yellow"
+        },
+        "warm_cache_speedup": {
+          "value": 1.02,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-350m",
+      "task": "generate-qa",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 36.02,
+          "grade": "yellow"
+        },
+        "latency_p50_ms": {
+          "value": 214.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 267.5,
+          "grade": "green"
+        },
+        "latency_p99_ms": {
+          "value": 345.8400000000001,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 0.0,
+          "grade": "red"
+        },
+        "cold_start_ms": {
+          "value": 212,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.99,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4-0-h-tiny-cpu",
+      "task": "generate-qa",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 18.7,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 424.0,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 529.6999999999998,
+          "grade": "yellow"
+        },
+        "latency_p99_ms": {
+          "value": 572.46,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 0.0,
+          "grade": "red"
+        },
+        "cold_start_ms": {
+          "value": 377,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.89,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-2b-cpu",
+      "task": "generate-qa",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 12.82,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 691.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 839.1499999999997,
+          "grade": "yellow"
+        },
+        "latency_p99_ms": {
+          "value": 1082.1600000000003,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 0.0,
+          "grade": "red"
+        },
+        "cold_start_ms": {
+          "value": 512,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.74,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "qwen25-3b-cpu",
+      "task": "generate-qa",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 17.6,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 447.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 522.2,
+          "grade": "yellow"
+        },
+        "latency_p99_ms": {
+          "value": 531.8100000000001,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 0.0,
+          "grade": "red"
+        },
+        "cold_start_ms": {
+          "value": 460,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 1.03,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4.1-3b",
+      "task": "generate-qa",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 14.85,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 534.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 640.1499999999999,
+          "grade": "yellow"
+        },
+        "latency_p99_ms": {
+          "value": 672.75,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 0.0,
+          "grade": "red"
+        },
+        "cold_start_ms": {
+          "value": 647,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 1.21,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "phi3-mini-cpu",
+      "task": "generate-qa",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 14.64,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 529.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 693.55,
+          "grade": "yellow"
+        },
+        "latency_p99_ms": {
+          "value": 732.34,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 0.0,
+          "grade": "red"
+        },
+        "cold_start_ms": {
+          "value": 486,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 0.92,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-3-2-8b-instruct-cpu",
+      "task": "generate-qa",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 11.21,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 744.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 1041.3,
+          "grade": "yellow"
+        },
+        "latency_p99_ms": {
+          "value": 1339.1300000000003,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 0.0,
+          "grade": "red"
+        },
+        "cold_start_ms": {
+          "value": 754,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 1.01,
+          "grade": "red"
+        }
+      },
+      "overall": "red"
+    },
+    {
+      "model": "granite-4.1-8b",
+      "task": "generate-qa",
+      "industry": "basic",
+      "lever": "baseline",
+      "concurrency": 1,
+      "samples": 33,
+      "grades": {
+        "throughput_tok_s": {
+          "value": 11.42,
+          "grade": "red"
+        },
+        "latency_p50_ms": {
+          "value": 650.5,
+          "grade": "green"
+        },
+        "latency_p95_ms": {
+          "value": 1039.849999999999,
+          "grade": "yellow"
+        },
+        "latency_p99_ms": {
+          "value": 1272.93,
+          "grade": "green"
+        },
+        "ttft_p50_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "ttft_p95_ms": {
+          "value": 0,
+          "grade": "green"
+        },
+        "quality_accuracy": {
+          "value": 0.0,
+          "grade": "red"
+        },
+        "cold_start_ms": {
+          "value": 710,
+          "grade": "green"
+        },
+        "warm_cache_speedup": {
+          "value": 1.09,
+          "grade": "red"
+        },
+        "variance_flagged": {
+          "value": 0.2277,
+          "grade": "green"
+        }
+      },
+      "overall": "red"
+    }
+  ],
+  "metadata": {
+    "run_id": "20260731-055337",
+    "timestamp": "2026-07-31T06:49:10.792730+00:00",
+    "mode": "single",
+    "lever": "baseline",
+    "industries": [
+      "basic"
+    ],
+    "samples_per_combination": 30,
+    "corpus_size": 100,
+    "stream": false,
+    "endpoint": "http://litellm.triforce.svc:4000",
+    "cluster": "oberon",
+    "total_combinations": 30,
+    "total_api_calls": 990,
+    "total_errors": 0
+  },
+  "summary": {
+    "total": 30,
+    "green": 0,
+    "yellow": 0,
+    "red": 30,
+    "pass_rate": 0.0,
+    "by_industry": {
+      "basic": {
+        "green": 0,
+        "yellow": 0,
+        "red": 30
+      }
+    },
+    "by_model": {
+      "granite-350m": {
+        "green": 0,
+        "yellow": 0,
+        "red": 3
+      },
+      "granite-4-0-h-tiny-cpu": {
+        "green": 0,
+        "yellow": 0,
+        "red": 3
+      },
+      "granite-2b-cpu": {
+        "green": 0,
+        "yellow": 0,
+        "red": 4
+      },
+      "qwen25-3b-cpu": {
+        "green": 0,
+        "yellow": 0,
+        "red": 4
+      },
+      "granite-4.1-3b": {
+        "green": 0,
+        "yellow": 0,
+        "red": 4
+      },
+      "phi3-mini-cpu": {
+        "green": 0,
+        "yellow": 0,
+        "red": 4
+      },
+      "granite-3-2-8b-instruct-cpu": {
+        "green": 0,
+        "yellow": 0,
+        "red": 4
+      },
+      "granite-4.1-8b": {
+        "green": 0,
+        "yellow": 0,
+        "red": 4
+      }
+    }
+  }
+}

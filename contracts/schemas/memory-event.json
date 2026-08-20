@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "memory-event.json",
+  "title": "Memory Event",
+  "description": "Audit trail for memory lifecycle transitions — formation, recall, consolidation, eviction, federation.",
+  "type": "object",
+  "required": ["memory_id", "event_type", "timestamp"],
+  "properties": {
+    "memory_id": {
+      "type": "string",
+      "description": "Memory this event applies to"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": ["formed", "recalled", "consolidated", "evicted", "federated", "rejected"],
+      "description": "Type of lifecycle event"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "ISO timestamp of the event"
+    },
+    "details": {
+      "type": "object",
+      "description": "Event-specific details (strength change, eviction reason, etc.)"
+    }
+  }
+}

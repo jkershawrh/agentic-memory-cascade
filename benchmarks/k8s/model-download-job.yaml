@@ -1,0 +1,99 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: download-gguf-models
+  namespace: triforce
+  labels:
+    app: benchmark-harness
+    bench-phase: setup
+spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 3600
+  template:
+    metadata:
+      labels:
+        app: benchmark-harness
+    spec:
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - name: downloader
+          image: registry.access.redhat.com/ubi9/python-311:latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              set -e
+              pip install -q huggingface-hub
+              mkdir -p /models/gguf
+
+              echo "=== Downloading GGUF models ==="
+
+              # SmolLM2-360M Q8_0
+              echo "[1/8] SmolLM2-360M..."
+              hf download unsloth/SmolLM2-360M-Instruct-GGUF \
+                SmolLM2-360M-Instruct-Q8_0.gguf \
+                --local-dir /models/gguf/smollm2-360m
+
+              # SmolLM2-1.7B Q4_K_M
+              echo "[2/8] SmolLM2-1.7B..."
+              hf download HuggingFaceTB/SmolLM2-1.7B-Instruct-GGUF \
+                smollm2-1.7b-instruct-q4_k_m.gguf \
+                --local-dir /models/gguf/smollm2-1.7b
+
+              # Phi-4-mini Q4_K_M
+              echo "[3/8] Phi-4-mini..."
+              hf download bartowski/microsoft_Phi-4-mini-instruct-GGUF \
+                microsoft_Phi-4-mini-instruct-Q4_K_M.gguf \
+                --local-dir /models/gguf/phi4-mini
+
+              # Gemma 2 2B Q8_0
+              echo "[4/8] Gemma 2 2B..."
+              hf download bartowski/gemma-2-2b-it-GGUF \
+                gemma-2-2b-it-Q8_0.gguf \
+                --local-dir /models/gguf/gemma2-2b
+
+              # Qwen3.6-35B-A3B Q4_K_M (MoE — larger download)
+              echo "[5/8] Qwen3.6-35B-A3B MoE..."
+              hf download unsloth/Qwen3.6-35B-A3B-GGUF \
+                Qwen3.6-35B-A3B-Q4_K_M.gguf \
+                --local-dir /models/gguf/qwen36-moe
+
+              # granite-2b Q4_K_M
+              echo "[6/8] granite-2b Q4_K_M..."
+              hf download bartowski/granite-3.2-2b-instruct-GGUF \
+                granite-3.2-2b-instruct-Q4_K_M.gguf \
+                --local-dir /models/gguf/granite-2b-q4
+
+              # granite-2b Q8_0
+              echo "[7/8] granite-2b Q8_0..."
+              hf download bartowski/granite-3.2-2b-instruct-GGUF \
+                granite-3.2-2b-instruct-Q8_0.gguf \
+                --local-dir /models/gguf/granite-2b-q8
+
+              # granite-8b Q4_K_M
+              echo "[8/8] granite-8b Q4_K_M..."
+              hf download bartowski/granite-3.2-8b-instruct-GGUF \
+                granite-3.2-8b-instruct-Q4_K_M.gguf \
+                --local-dir /models/gguf/granite-8b-q4
+
+              echo "=== All downloads complete ==="
+              ls -lhR /models/gguf/
+          volumeMounts:
+            - name: model-cache
+              mountPath: /models
+          resources:
+            requests:
+              cpu: "2"
+              memory: 4Gi
+            limits:
+              cpu: "4"
+              memory: 8Gi
+      volumes:
+        - name: model-cache
+          persistentVolumeClaim:
+            claimName: huggingface-model-cache
+      restartPolicy: Never

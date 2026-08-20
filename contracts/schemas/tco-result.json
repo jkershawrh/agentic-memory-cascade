@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tco-result",
+  "title": "TCO Result",
+  "description": "Full TCO comparison result across hardware options",
+  "type": "object",
+  "required": [
+    "workload_id",
+    "workload_name",
+    "daily_volume",
+    "cascade_summary",
+    "comparisons"
+  ],
+  "properties": {
+    "workload_id": {
+      "type": "string"
+    },
+    "workload_name": {
+      "type": "string"
+    },
+    "daily_volume": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "cascade_summary": {
+      "type": "object",
+      "required": [
+        "total_signals_per_day",
+        "nano_signals_per_day",
+        "micro_signals_per_day",
+        "macro_signals_per_day",
+        "inference_signals_per_day",
+        "compression_ratio"
+      ],
+      "properties": {
+        "total_signals_per_day": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "nano_signals_per_day": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "micro_signals_per_day": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "macro_signals_per_day": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "inference_signals_per_day": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "compression_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "comparisons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "hardware_id",
+          "hardware_name",
+          "hardware_type",
+          "units_required",
+          "hardware_cost_usd",
+          "annual_power_cost_usd",
+          "annual_inference_cost_usd",
+          "three_year_tco_usd",
+          "cost_per_signal_usd"
+        ],
+        "properties": {
+          "hardware_id": {
+            "type": "string"
+          },
+          "hardware_name": {
+            "type": "string"
+          },
+          "hardware_type": {
+            "type": "string",
+            "enum": ["cpu", "gpu", "cloud_api"]
+          },
+          "units_required": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "hardware_cost_usd": {
+            "type": "number",
+            "minimum": 0
+          },
+          "annual_power_cost_usd": {
+            "type": "number",
+            "minimum": 0
+          },
+          "annual_inference_cost_usd": {
+            "type": "number",
+            "minimum": 0
+          },
+          "three_year_tco_usd": {
+            "type": "number",
+            "minimum": 0
+          },
+          "cost_per_signal_usd": {
+            "type": "number",
+            "minimum": 0
+          },
+          "idle_hardware_tco_usd": {
+            "type": "number",
+            "minimum": 0
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "unsupported_options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["hardware_id", "hardware_name", "reason"],
+        "properties": {
+          "hardware_id": {"type": "string"},
+          "hardware_name": {"type": "string"},
+          "reason": {"type": "string"}
+        }
+      }
+    }
+  }
+}

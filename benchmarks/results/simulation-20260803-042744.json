@@ -1,0 +1,63 @@
+{
+  "type": "five_lane_simulation",
+  "timestamp": "20260803-042744",
+  "rounds": 5,
+  "summary": {
+    "fsi:classification:granite-350m": {
+      "avg_ms": 770.3974501,
+      "p95_ms": 904.9399169999999,
+      "tok_s": 13.036956037540625,
+      "ok": 10,
+      "errors": 0,
+      "grade": "RED"
+    },
+    "fsi:extraction:granite-2b-cpu": {
+      "avg_ms": 3806.5515584,
+      "p95_ms": 4109.877541999999,
+      "tok_s": 13.216392219750038,
+      "ok": 5,
+      "errors": 0,
+      "grade": "YELLOW"
+    },
+    "retail:classification:granite-350m": {
+      "avg_ms": 780.5175667999993,
+      "p95_ms": 879.3089999999993,
+      "tok_s": 12.743841742434492,
+      "ok": 10,
+      "errors": 0,
+      "grade": "RED"
+    },
+    "retail:extraction:granite-2b-cpu": {
+      "avg_ms": 2357.0270919999994,
+      "p95_ms": 2531.207459000001,
+      "tok_s": 12.239778879793839,
+      "ok": 5,
+      "errors": 0,
+      "grade": "YELLOW"
+    },
+    "telecom:classification:granite-350m": {
+      "avg_ms": 810.876291999999,
+      "p95_ms": 882.791042000001,
+      "tok_s": 12.380670707938673,
+      "ok": 5,
+      "errors": 0,
+      "grade": "RED"
+    },
+    "telecom:extraction:granite-2b-cpu": {
+      "avg_ms": 3073.8138413999995,
+      "p95_ms": 3420.0021249999963,
+      "tok_s": 9.849036374956972,
+      "ok": 5,
+      "errors": 0,
+      "grade": "YELLOW"
+    },
+    "telecom:reasoning:qwen36-moe-35b-a3b": {
+      "avg_ms": 0,
+      "p95_ms": 0,
+      "tok_s": 0,
+      "ok": 0,
+      "errors": 5,
+      "grade": "GREEN"
+    }
+  }
+}

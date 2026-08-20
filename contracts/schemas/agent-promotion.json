@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-promotion.json",
+  "title": "Agent Promotion Event",
+  "description": "Records agent tier transitions (promotions and demotions) with full evidence chain. Written to the immutable ledger for externally auditable provenance.",
+  "type": "object",
+  "required": ["agent_name", "event_type", "from_tier", "to_tier", "evidence", "reason"],
+  "properties": {
+    "agent_name": {
+      "type": "string",
+      "description": "Name of the agent whose tier changed"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": ["promotion", "demotion"],
+      "description": "Whether the agent was promoted or demoted"
+    },
+    "from_tier": {
+      "type": "string",
+      "description": "Tier before the transition"
+    },
+    "to_tier": {
+      "type": "string",
+      "description": "Tier after the transition"
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["samples_tested", "accuracy", "false_positive_rate", "false_negative_rate", "false_negative_count"],
+      "properties": {
+        "samples_tested": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total signals evaluated at time of transition"
+        },
+        "accuracy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "false_positive_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "false_negative_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "false_negative_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "FN count in the batch that triggered this event"
+        },
+        "human_approved": {
+          "type": "boolean",
+          "description": "Whether a human approved this transition"
+        },
+        "batch_id": {
+          "type": ["string", "null"],
+          "description": "Correlation ID of the validation batch"
+        }
+      }
+    },
+    "reason": {
+      "type": "string",
+      "description": "Human-readable explanation of why the transition occurred"
+    }
+  }
+}

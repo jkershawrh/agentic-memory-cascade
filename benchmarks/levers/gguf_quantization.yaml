@@ -1,0 +1,40 @@
+# Lever: GGUF Quantization — compare runtimes and bit-widths
+# "Same model, different quantization and runtime — which combo wins on Xeon?"
+
+lever: gguf_quantization
+description: Compare GGUF Q4_K_M / Q8_0 (llama.cpp) vs OVMS INT8 / BF16
+
+comparisons:
+  - name: granite-2b-runtime-sweep
+    description: "granite-2b across 4 configurations: OVMS BF16, OVMS INT8, llama.cpp Q8, llama.cpp Q4"
+    variants:
+      - alias: granite-2b-cpu
+        runtime: ovms
+        dtype: bfloat16
+        bits: 16
+      - alias: granite-2b-int8
+        runtime: ovms
+        dtype: int8
+        bits: 8
+      - alias: granite-2b-q8
+        runtime: llama-cpp
+        dtype: Q8_0
+        bits: 8
+      - alias: granite-2b-q4
+        runtime: llama-cpp
+        dtype: Q4_K_M
+        bits: 4
+
+  - name: granite-8b-quantization
+    description: "granite-8b: OVMS BF16 vs llama.cpp Q4 — can 4-bit 8B beat BF16 2B?"
+    variants:
+      - alias: granite-3-2-8b-instruct-cpu
+        runtime: ovms
+        dtype: bfloat16
+        bits: 16
+      - alias: granite-8b-q4
+        runtime: llama-cpp
+        dtype: Q4_K_M
+        bits: 4
+
+measure: [throughput_tok_s, latency_p95_ms, quality_preservation]

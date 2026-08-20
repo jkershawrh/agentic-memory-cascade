@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "memory-record.json",
+  "title": "Memory Record",
+  "description": "A survivor signal persisted as institutional memory. Wraps the original signal with lifecycle metadata — strength, recall count, consolidation history.",
+  "type": "object",
+  "required": ["memory_id", "signal_type", "severity", "formed_at", "strength", "content_hash"],
+  "properties": {
+    "memory_id": {
+      "type": "string",
+      "description": "Unique identifier for this memory"
+    },
+    "signal_type": {
+      "type": "string",
+      "description": "Type of the original signal"
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "low", "medium", "high", "critical"]
+    },
+    "formed_at": {
+      "type": "string",
+      "description": "ISO timestamp of initial memory formation"
+    },
+    "strength": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Memory strength — decays over time, reinforced by recall hits"
+    },
+    "recall_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "How many times this memory was matched by recall"
+    },
+    "last_recalled_at": {
+      "type": ["string", "null"],
+      "description": "ISO timestamp of last recall match"
+    },
+    "consolidation_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "How many consolidation cycles this memory has survived"
+    },
+    "source_instance": {
+      "type": "string",
+      "description": "Cascade instance ID that formed this memory"
+    },
+    "classification": {
+      "type": "string",
+      "description": "Signal classification from cascade or LLM"
+    },
+    "content_hash": {
+      "type": "string",
+      "description": "SHA256 of normalized signal content for dedup"
+    },
+    "content": {
+      "type": "object",
+      "description": "Original signal content payload"
+    },
+    "labels": {
+      "type": "object",
+      "description": "Original signal labels"
+    },
+    "feature_vector": {
+      "type": "object",
+      "description": "Extracted numeric features for similarity matching",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "source": {
+      "type": "string",
+      "description": "Original signal source"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Original signal namespace"
+    },
+    "cluster": {
+      "type": "string",
+      "description": "Original signal cluster"
+    }
+  }
+}

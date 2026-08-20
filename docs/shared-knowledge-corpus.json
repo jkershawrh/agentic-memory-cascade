@@ -1,0 +1,1812 @@
+{
+  "version": "0.1.0",
+  "sources": {
+    "claude-code": 1365,
+    "claude-md": 895,
+    "session": 217
+  },
+  "stats": {
+    "total_claims": 2477,
+    "projects_scanned": 63,
+    "institutional_topics": 22,
+    "institutional_claims": 851,
+    "rules": 270,
+    "facts": 2147,
+    "preferences": 31,
+    "decisions": 7,
+    "caveats": 22
+  },
+  "topics": {
+    "openshift_deploy": {
+      "reach": 37,
+      "total_claims": 155,
+      "unique_claims": 154,
+      "rules": [
+        {
+          "text": "The system is still being validated. User is building toward auto-remediation but is not there yet. Read-only diagnostics (oc get/describe/logs) are fine. Any mutation (oc rollout restart, oc delete, oc patch, oc scale) is not allowed.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "no-autoremediation"
+        },
+        {
+          "text": "Requires namespace-specific claims naming the sandbox and failure cause",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "geolux-governance"
+        },
+        {
+          "text": "Show trust boundaries (TDX enclave, namespace isolation, policy gates)",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-architecture-diagram"
+        },
+        {
+          "text": "Before any deploy to infra01:\n1. Verify the deployment has an oauth-proxy sidecar container\n2. Verify the route targets the oauth-proxy port (8080/8443/4180), not the backend directly\n3. Test with `curl -sk https://<route>/` \u2014 must return 403, not 200\n4. Service-to-service API routes that bypass OAuth must have API key validation on the backend\n5. Health and webhook endpoints can bypass via `-skip-auth-regex`\n\nPattern: registry.redhat.io/openshift4/ose-oauth-proxy-rhel9:latest as sidecar, with OAuthClient + ServiceAccount + cookie/client secrets. See [[security-network-policies]] for related requirements.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "deepfield",
+          "source_file": "oauth-requirement"
+        },
+        {
+          "text": "1. **No work during European hours** \u2014 cluster is shared with European teams. Only use outside EU business hours.\n2. **Always verify nothing is running before starting** \u2014 check `oc get pods --all-namespaces` and confirm no active workloads from other users before deploying anything.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "fleet-llm-d",
+          "source_file": "arena-cluster"
+        }
+      ],
+      "facts": [
+        {
+          "text": "granite-2b-cpu \u2192 `granite-2b-cpu-external-llm-hosting.apps.ocp-rac-maas.rs-dfw3.infra.demo.redhat.com`",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        },
+        {
+          "text": "phi3-mini-cpu \u2192 `phi3-mini-cpu-external-llm-hosting.apps.ocp-rac-maas.rs-dfw3.infra.demo.redhat.com`",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        },
+        {
+          "text": "qwen25-3b-cpu \u2192 `qwen25-3b-cpu-external-llm-hosting.apps.ocp-rac-maas.rs-dfw3.infra.demo.redhat.com`",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        },
+        {
+          "text": "deepseek-r1-distill-qwen-14b \u2192 `deepseek-...-direct-llm-hosting.apps.ocp-rac-maas...`",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        },
+        {
+          "text": "microsoft-phi-4 \u2192 `microsoft-phi-4-direct-llm-hosting.apps.ocp-rac-maas...`",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        }
+      ],
+      "decisions": [],
+      "preferences": [
+        {
+          "text": "Senior engineer at Red Hat working on the Red Hat Demo Platform (RHDP). Builds partner enablement demos that deploy on OpenShift. Deep experience with the Intel partnership demo (FastAPI + React + PostgreSQL + MAAS/LiteLLM). Comfortable with polyglot architectures (Python, Go, Java/Quarkus). Strong opinions on development methodology \u2014 TDD with validation matrix rubrics, Event-Driven Development, Contract-Driven Development. Prefers building backend first, frontend separately. Uses podman/podman-compose for local dev.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "triforce",
+          "source_file": "user-kershaw"
+        }
+      ]
+    },
+    "maas_inference": {
+      "reach": 36,
+      "total_claims": 158,
+      "unique_claims": 158,
+      "rules": [
+        {
+          "text": "phi-4 via LiteLLM (maas-rhdp) is the right backend for Gate 2 classification. The zero-shot encoder (distilbert-mnli) guesses at 30-46% confidence. phi-4 classifies decisively at 270-314ms with the right system prompt.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "feedback-phi4-gate2"
+        },
+        {
+          "text": "LiteLLM endpoint: `LITELLM_API_BASE=https://maas-rhdp.apps.maas.redhatworkshops.io`",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "feedback-phi4-gate2"
+        },
+        {
+          "text": "Replace the encoder-service HTTP calls in `_run_gate2()` with LiteLLM calls to phi-4. The domain pack YAML provides the system prompt context. The encoder pod can be scaled down or repurposed.\n\n[[project-cascade-overnight-results]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "feedback-phi4-gate2"
+        },
+        {
+          "text": "In all showroom labs, demo frontends, READMEs, and presentation materials: use \"Powered by Intel\" or \"Intel Xeon\" / \"Intel Xeon 6\". The MaaS model map may reference `gpt-oss-120b-gaudi` as a technical model name, but the user-facing branding should never say \"Intel Gaudi.\"",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "intel-branding"
+        },
+        {
+          "text": "Explain the WHY before the HOW (why vLLM on CPU, why this architecture pattern)",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "showroom-lab-pedagogy"
+        }
+      ],
+      "facts": [
+        {
+          "text": "Focus is CPU-only (Xeon 6) for now. Gaudi 3 GPU support is future scope. Changes to the planner are data-driven (gpu_catalog.json, slo_templates.json, benchmark data) rather than code changes. A standalone benchmark collector tool (InferencePlan/intel-benchmark-collector/) collects data from MAAS endpoints.\n\nRelated projects: [[reference-maas-access]], Red Hat Intel demo (~/Documents/red_hat_intel_partner_demo/), LiftOff pipeline (~/Documents/liftoff/) \u2014 Phase 4-5 integration planned after proof of concept.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "project-inference-plan"
+        },
+        {
+          "text": "Hardware detection method: LiteLLM `/v1/model/info` shows backend `api_base` URLs.\n- `-external-` route + `-cpu` suffix = Xeon 6 (OpenVINO runtime)\n- `-direct-` route (no `-cpu`) = Gaudi 3 (vLLM runtime)\n- `svc.cluster.local` predictor = Gaudi 3 (KServe/vLLM)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        },
+        {
+          "text": "granite-2b-cpu \u2192 `granite-2b-cpu-external-llm-hosting.apps.ocp-rac-maas.rs-dfw3.infra.demo.redhat.com`",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        },
+        {
+          "text": "phi3-mini-cpu \u2192 `phi3-mini-cpu-external-llm-hosting.apps.ocp-rac-maas.rs-dfw3.infra.demo.redhat.com`",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        },
+        {
+          "text": "qwen25-3b-cpu \u2192 `qwen25-3b-cpu-external-llm-hosting.apps.ocp-rac-maas.rs-dfw3.infra.demo.redhat.com`",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        }
+      ],
+      "decisions": [
+        {
+          "text": "The entire \"one model, one silicon\" narrative assumed granite-3-2-8b ran on Xeon 6. It doesn't. Need to either get it onto rac-maas Xeon CPU or pivot to existing CPU models (granite-2b-cpu is the closest Granite option).",
+          "type": "decision",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-maas-hardware-reality"
+        },
+        {
+          "text": "redhat-et/semantic_router (archived Aug 2025) \u2192 migrated to vllm-project/semantic-router",
+          "type": "decision",
+          "source": "claude-code",
+          "project": "triforce",
+          "source_file": "vllm-semantic-router"
+        }
+      ],
+      "preferences": [
+        {
+          "text": "Jonathan has many active projects under ~/Documents/. His repos: StarGate, stargate-platform, stargate-mock-cluster, stargate-synthetic-client-emulator, launchpad, GeoLux, geolux-agentic-signature-compromise-drift, deepfield, triforce, red_hat_intel_partner_demo, intel-partnership-pm, darkscope, novascan, are-foundation, liftoff, platform-dashboard. NOT his: hivemind (sborenst), agnosticv, rhdp-ops-tools, sandbox-api-configs, tarsy-compare, rhdp-skills-marketplace, troshka, guardian. Prefers Python for tooling, LLM-powered analysis via team's shared MAAS LiteLLM endpoint.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "dev-audit",
+          "source_file": "user-role"
+        },
+        {
+          "text": "Intel wants to prove enterprise AI inference runs on Xeon CPUs with zero GPU. Red Hat wants Intel-branded demos on RHDP for Summit Connect (~10-15 events, Aug-Sep 2026). Prior Summit had MAAS capacity issues from model sprawl \u2014 consolidation solves this.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        },
+        {
+          "text": "Senior engineer at Red Hat working on the Red Hat Demo Platform (RHDP). Builds partner enablement demos that deploy on OpenShift. Deep experience with the Intel partnership demo (FastAPI + React + PostgreSQL + MAAS/LiteLLM). Comfortable with polyglot architectures (Python, Go, Java/Quarkus). Strong opinions on development methodology \u2014 TDD with validation matrix rubrics, Event-Driven Development, Contract-Driven Development. Prefers building backend first, frontend separately. Uses podman/podman-compose for local dev.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "triforce",
+          "source_file": "user-kershaw"
+        }
+      ]
+    },
+    "granite_xeon": {
+      "reach": 35,
+      "total_claims": 155,
+      "unique_claims": 152,
+      "rules": [
+        {
+          "text": "All work should reinforce \"one model, one silicon\" \u2014 granite-3-2-8b-instruct on Xeon 6 only. No Gaudi references in new work. Branding must be Intel + Red Hat co-branded.\n\nRelated: [[reference-repos]], [[project-phase6-governance]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        },
+        {
+          "text": "Use \"Powered by Intel\" as the brand message. Do NOT reference \"Intel Gaudi\" in branding. \"Intel Xeon 6\" is acceptable.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "intel-branding"
+        },
+        {
+          "text": "In all showroom labs, demo frontends, READMEs, and presentation materials: use \"Powered by Intel\" or \"Intel Xeon\" / \"Intel Xeon 6\". The MaaS model map may reference `gpt-oss-120b-gaudi` as a technical model name, but the user-facing branding should never say \"Intel Gaudi.\"",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "intel-branding"
+        },
+        {
+          "text": "Intel Hardware section on the index page (component \u2192 Intel Xeon table)",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "showroom-branding-scope"
+        },
+        {
+          "text": "Don't fold RACM infrastructure optimization into the porting work. The two tracks are: (1) port quickstarts to showroom + benchmark MaaS models (our pipeline), (2) optimize how RACM serves models on Xeon (jkershaw's review with RACM team).",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "racm-vllm-optimization"
+        }
+      ],
+      "facts": [
+        {
+          "text": "Focus is CPU-only (Xeon 6) for now. Gaudi 3 GPU support is future scope. Changes to the planner are data-driven (gpu_catalog.json, slo_templates.json, benchmark data) rather than code changes. A standalone benchmark collector tool (InferencePlan/intel-benchmark-collector/) collects data from MAAS endpoints.\n\nRelated projects: [[reference-maas-access]], Red Hat Intel demo (~/Documents/red_hat_intel_partner_demo/), LiftOff pipeline (~/Documents/liftoff/) \u2014 Phase 4-5 integration planned after proof of concept.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "project-inference-plan"
+        },
+        {
+          "text": "Hardware detection method: LiteLLM `/v1/model/info` shows backend `api_base` URLs.\n- `-external-` route + `-cpu` suffix = Xeon 6 (OpenVINO runtime)\n- `-direct-` route (no `-cpu`) = Gaudi 3 (vLLM runtime)\n- `svc.cluster.local` predictor = Gaudi 3 (KServe/vLLM)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        },
+        {
+          "text": "granite-2b-cpu \u2192 `granite-2b-cpu-external-llm-hosting.apps.ocp-rac-maas.rs-dfw3.infra.demo.redhat.com`",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "reference-maas-access"
+        },
+        {
+          "text": "**Deepfield** (namespace: deepfield) \u2014 real-time signal processing\n- 5 clusters configured via CLUSTER_N_* env vars (infra/AWS clusters removed 2026-08-04)\n- Signal funnel: ~200K raw/hr \u2192 reasoning tasks \u2192 findings \u2192 inferences \u2192 incidents\n- Compression: ~2-5:1 raw\u2192task, ~18K:1 raw\u2192incident\n- 6 LLM models active (3 Xeon CPU + 3 Gaudi GPU), 0 errors\n- 119+ incidents persisted (datetime bug fixed 2026-08-04)\n- Pushes incidents to StarGate via POST /integration/deepfield-incident",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "deepfield-stargate-integration"
+        },
+        {
+          "text": "Multi-agent orchestration system to be deployed on OpenShift AI (Red Hat AI 3.4+). Inference on Intel Xeon 6 and Gaudi accelerators. Will use Red Hat's AgentOps stack: OpenTelemetry distributed tracing, MLflow for agent traceability, Tempo as tracing backend, and MCP gateway for tool governance. Cluster not yet provisioned as of 2026-05-13.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "agentobs",
+          "source_file": "project-agentobs"
+        }
+      ],
+      "decisions": [
+        {
+          "text": "Red Hat\u2013Intel AI inference partnership. Strategic direction pivoted on 2026-06-15 from \"Xeon-first dual-path\" to **\"One model, one silicon, every lab\"** \u2014 consolidating ALL Summit Connect labs to granite-3-2-8b-instruct on Intel Xeon 6 CPU. No Gaudi/GPU needed. Eliminates model sprawl from prior Summit where too many models overwhelmed GPU worker nodes.",
+          "type": "decision",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        },
+        {
+          "text": "The entire \"one model, one silicon\" narrative assumed granite-3-2-8b ran on Xeon 6. It doesn't. Need to either get it onto rac-maas Xeon CPU or pivot to existing CPU models (granite-2b-cpu is the closest Granite option).",
+          "type": "decision",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-maas-hardware-reality"
+        },
+        {
+          "text": "Consolidating all Summit Connect labs to granite-3-2-8b-instruct on Intel Xeon 6. Validated across 25 repos, 135 quality probes, all pass.",
+          "type": "decision",
+          "source": "claude-code",
+          "project": "liftoff",
+          "source_file": "granite-consolidation-strategy"
+        }
+      ],
+      "preferences": [
+        {
+          "text": "Intel wants to prove enterprise AI inference runs on Xeon CPUs with zero GPU. Red Hat wants Intel-branded demos on RHDP for Summit Connect (~10-15 events, Aug-Sep 2026). Prior Summit had MAAS capacity issues from model sprawl \u2014 consolidation solves this.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        },
+        {
+          "text": "Intel does NOT want Gaudi in demos \u2014 Xeon 6 only is the hard constraint.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "liftoff",
+          "source_file": "liftoff-trial-run-001"
+        },
+        {
+          "text": "Intel wants to showcase Xeon 6 CPU inference capabilities at Summit Connect events. All demo labs must run entirely on Xeon 6.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "liftoff",
+          "source_file": "liftoff-trial-run-001"
+        }
+      ]
+    },
+    "methodology": {
+      "reach": 34,
+      "total_claims": 74,
+      "unique_claims": 72,
+      "rules": [
+        {
+          "text": "Follow the CDD then TDD then BDD then EDD methodology with red/green rubric grids for all milestones.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "agent-promotion",
+          "source_file": "feedback-methodology"
+        },
+        {
+          "text": "Every milestone must have contracts defined before logic, tests written before implementation (red first), BDD Given/When/Then scenarios, and an EDD rubric grid. verify.sh must exit 0 before a milestone is considered done. No em-dashes anywhere in generated text (use commas, colons, periods, and parentheses instead). Reuse patterns from deepfield-fleet rather than reinventing. [[user-role]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "agent-promotion",
+          "source_file": "feedback-methodology"
+        },
+        {
+          "text": "Don't just write code and move on \u2014 follow a TDD/EDD red/green cycle. Run the verification tests first to see what's RED, then work to make each check GREEN.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-tdd-edd-approach"
+        },
+        {
+          "text": "For each document phase:\n1. Write the tests/verification first (or use the ones already specified in the docs)\n2. Run them \u2014 see the red/green matrix\n3. Fix what's red, one check at a time\n4. Report the matrix state after each iteration\n5. Don't declare a phase \"done\" until the full matrix is green (or explicitly accepted as simulated on Mac)",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-tdd-edd-approach"
+        },
+        {
+          "text": "Always include a multi-stage gated validation matrix (CDD \u2192 TDD \u2192 EDD \u2192 BDD \u2192 CBT \u2192 Publication) with claim registries for provenance tracking.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "feedback-validation-framework"
+        }
+      ],
+      "facts": [
+        {
+          "text": "All work for the multimodal agent pack targets the `deepfield-multimodal` repo. The original `deepfield` repo is read-only reference for architectural patterns. The spec lives at `/Users/jkershaw/Documents/Multimodal DeepField/prompt.txt`.\n\nCurrent state (2026-07-01): M1-M3 complete. 146 tests passing. All 8 EDD rubric dimensions green. Backend only. M4-M6 (agent loop, frontend, polish) are next.\n\nDevelopment methodology: CDD \u2192 TDD \u2192 BDD \u2192 EDD red/green matrix.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "Multimodal-DeepField",
+          "source_file": "project-deepfield-multimodal"
+        },
+        {
+          "text": "**Deepfield EDD rubrics still show some FAILING** \u2014 routing_quality and fleet_health need the inference router subsystem (not installed) or more sophisticated fallback",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "proof-system-status"
+        },
+        {
+          "text": "The red/green verification matrix has \"Local\" (Mac, simulated) and \"Target\" (Folsome, real) columns",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "reference-folsome-lab"
+        },
+        {
+          "text": "`analysis/evaluator.py` \u2014 `score_routing()` added as 6th EDD rubric dimension (workload_detection, strategy_grade, model_quality/latency/throughput, corpora_coverage, fallback_rate)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-deepfield-routing-integration"
+        },
+        {
+          "text": "/Users/jkershaw/.claude/plans/how-does-that-apply-imperative-donut.md has the full design with Options 1/2/3, rubric additions, and phased implementation.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-gpu-escalation-plan"
+        }
+      ],
+      "decisions": [],
+      "preferences": [
+        {
+          "text": "This is the user's established development pattern from deepfield-fleet and fleet-llm-d. Contracts first, tests red-first, BDD scenarios for user-visible behavior, EDD rubric for quality gates.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "agent-promotion",
+          "source_file": "feedback-methodology"
+        },
+        {
+          "text": "Jonathan Kershaw is the author of the fleet-llm-d whitepaper and builds fleet-level inference orchestration systems. He works with Go, Rust, Python, and TypeScript across the fleet-llm-d and deepfield-fleet projects. His work involves Kubernetes operators, ARE Immutable Ledger integration, and agent promotion pipelines. He prefers a disciplined build methodology: CDD then TDD then BDD then EDD with red/green rubric grids, milestone-based delivery, and verify.sh as the definition of done. No em-dashes in generated text.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "agent-promotion",
+          "source_file": "user-role"
+        },
+        {
+          "text": "Prefers comprehensive, enterprise-grade architecture with TDD/BDD/CDD/EDD testing methodology, production gates, and rubric-based scoring. Wants the system to \"earn the right to production\" through measurable gates.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "fleet-llm-d",
+          "source_file": "user-jkershaw"
+        }
+      ]
+    },
+    "demo_platform": {
+      "reach": 31,
+      "total_claims": 192,
+      "unique_claims": 192,
+      "rules": [
+        {
+          "text": "Don't create the agnosticv config manually. Run the liftoff onboard pipeline first to right-size the deployment \u2014 it scans the repo, classifies it, generates the agnosticv config, and validates readiness.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-liftoff-before-agnosticv"
+        },
+        {
+          "text": "The liftoff pipeline (at /Users/jkershaw/Documents/liftoff) is the standard path from repo \u2192 RHDPS-ready. It runs NovaScan (capacity), DarkScope (security), and LLM classification to generate the correct agnosticv YAML. Writing the agnosticv config by hand skips the right-sizing step and may produce incorrect resource quotas, missing workloads, or misclassified catalog items.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-liftoff-before-agnosticv"
+        },
+        {
+          "text": "1. Finish the Antora showroom content (content/ directory with lab pages)\n2. Run `liftoff onboard` against the sovereign-ai-lab repo\n3. Review the generated agnosticv config\n4. Adjust if needed, then commit\n5. AgnosticV config is the LAST artifact, not the first\n\nRelated: [[reference-deploy-environments]], [[project-sovereign-ai-lab]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-liftoff-before-agnosticv"
+        },
+        {
+          "text": "phi-4 via LiteLLM (maas-rhdp) is the right backend for Gate 2 classification. The zero-shot encoder (distilbert-mnli) guesses at 30-46% confidence. phi-4 classifies decisively at 270-314ms with the right system prompt.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "feedback-phi4-gate2"
+        },
+        {
+          "text": "LiteLLM endpoint: `LITELLM_API_BASE=https://maas-rhdp.apps.maas.redhatworkshops.io`",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "feedback-phi4-gate2"
+        }
+      ],
+      "facts": [
+        {
+          "text": "llm-d-planner (cloned to InferencePlan/llm-d-planner/) is being adapted as a CPU inference capacity planner for the Intel Red Hat partner demo platform.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "project-inference-plan"
+        },
+        {
+          "text": "The demo platform has no capacity planning \u2014 replicas, concurrency, and rate limits are all hardcoded. The planner provides SLO-driven sizing backed by real benchmark data.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "project-inference-plan"
+        },
+        {
+          "text": "**StarGate** (namespace: stargate) \u2014 batch readiness scanner + remediation pipeline\n- API: 2 replicas + oauth-proxy, Frontend: nginx + oauth-proxy, Scanner: scheduler + babylon-worker, Postgres\n- Scans sandbox-*/showroom-* namespaces across 5 clusters\n- Shadow mode: every 5 min, processes 100 sandbox failures per batch, feeds to GeoLux\n- Evidence filtering: only sandbox namespaces with real failure_class reach GeoLux (3 paths filtered: HTTP consumer, shadow mode, Kafka)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "deepfield-stargate-integration"
+        },
+        {
+          "text": "LLM: llama-scout-17b via LiteLLM at maas-rhdp.apps.maas.redhatworkshops.io",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "infra01-deployment"
+        },
+        {
+          "text": "Works at Red Hat on the demo platform. Building a multi-agent orchestration system on OpenShift AI. Has access to Intel Xeon 6 and Gaudi accelerator servers for inference. May be able to provision OpenShift AI via the demo platform. Interested in leveraging Red Hat's AgentOps observability stack (OpenTelemetry, MLflow, Tempo).",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "agentobs",
+          "source_file": "user-profile"
+        }
+      ],
+      "decisions": [],
+      "preferences": [
+        {
+          "text": "User wants clear separation \u2014 the multimodal agent pack is for demo, labs, and showroom content, not an in-place extension of production DeepField.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "Multimodal-DeepField",
+          "source_file": "project-deepfield-multimodal"
+        },
+        {
+          "text": "Jonathan has many active projects under ~/Documents/. His repos: StarGate, stargate-platform, stargate-mock-cluster, stargate-synthetic-client-emulator, launchpad, GeoLux, geolux-agentic-signature-compromise-drift, deepfield, triforce, red_hat_intel_partner_demo, intel-partnership-pm, darkscope, novascan, are-foundation, liftoff, platform-dashboard. NOT his: hivemind (sborenst), agnosticv, rhdp-ops-tools, sandbox-api-configs, tarsy-compare, rhdp-skills-marketplace, troshka, guardian. Prefers Python for tooling, LLM-powered analysis via team's shared MAAS LiteLLM endpoint.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "dev-audit",
+          "source_file": "user-role"
+        },
+        {
+          "text": "Intel wants to prove enterprise AI inference runs on Xeon CPUs with zero GPU. Red Hat wants Intel-branded demos on RHDP for Summit Connect (~10-15 events, Aug-Sep 2026). Prior Summit had MAAS capacity issues from model sprawl \u2014 consolidation solves this.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        }
+      ]
+    },
+    "testing_coverage": {
+      "reach": 22,
+      "total_claims": 39,
+      "unique_claims": 39,
+      "rules": [
+        {
+          "text": "Save for next phase. Requires careful extraction to avoid breaking deepfield's 231 tests. The nanoagents need a standalone signal model (dict-based, no Pydantic deepfield imports) similar to how the bootstrapper already accepts plain dicts.\n\n[[project-intel-inference-router]] [[project-deepfield-routing-integration]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-extraction-plan"
+        }
+      ],
+      "facts": [
+        {
+          "text": "All work for the multimodal agent pack targets the `deepfield-multimodal` repo. The original `deepfield` repo is read-only reference for architectural patterns. The spec lives at `/Users/jkershaw/Documents/Multimodal DeepField/prompt.txt`.\n\nCurrent state (2026-07-01): M1-M3 complete. 146 tests passing. All 8 EDD rubric dimensions green. Backend only. M4-M6 (agent loop, frontend, polish) are next.\n\nDevelopment methodology: CDD \u2192 TDD \u2192 BDD \u2192 EDD red/green matrix.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "Multimodal-DeepField",
+          "source_file": "project-deepfield-multimodal"
+        },
+        {
+          "text": "Four major workstreams (equal priority):\n1. **AI Quickstarts** \u2014 Intel quickstart factory, showroom ports, RHDP pipeline, XDD test suites\n2. **Triforce** \u2014 episodic labs (6 episodes, 59 pages), Intel Xeon learning path, multi-agent demo (pivoted to breakout labs Aug 2026)\n3. **Cascade Compression** \u2014 three-tier signal compression engine (nano/micro/macro), 401 tests, whitepaper + deck complete\n4. **Fleet-llm-d** \u2014 multi-cluster LLM lifecycle management, Go, multi-cluster deployment",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "command-center",
+          "source_file": "user-workstreams"
+        },
+        {
+          "text": "**intel-inference-router**: cascade/, 248 tests, Helm chart",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-final-state"
+        },
+        {
+          "text": "Agent promotion engine: draft\u2192candidate\u2192nano\u2192micro\u2192macro with empirical validation (24 tests)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-framework"
+        },
+        {
+          "text": "248 tests in intel-inference-router, 231 in deepfield",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-overnight-results"
+        }
+      ],
+      "decisions": [],
+      "preferences": [
+        {
+          "text": "Jonathan wants confidence that each component actually works, not just that the files exist. The verification scripts (preflight-infra.sh, verify-infra.py, verify-gateway.py, verify-experience.py) ARE the test suite \u2014 run them early and often.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-tdd-edd-approach"
+        }
+      ]
+    },
+    "self_serve_quickstart": {
+      "reach": 21,
+      "total_claims": 68,
+      "unique_claims": 68,
+      "rules": [
+        {
+          "text": "Don't create the agnosticv config manually. Run the liftoff onboard pipeline first to right-size the deployment \u2014 it scans the repo, classifies it, generates the agnosticv config, and validates readiness.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-liftoff-before-agnosticv"
+        },
+        {
+          "text": "The liftoff pipeline (at /Users/jkershaw/Documents/liftoff) is the standard path from repo \u2192 RHDPS-ready. It runs NovaScan (capacity), DarkScope (security), and LLM classification to generate the correct agnosticv YAML. Writing the agnosticv config by hand skips the right-sizing step and may produce incorrect resource quotas, missing workloads, or misclassified catalog items.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-liftoff-before-agnosticv"
+        },
+        {
+          "text": "1. Finish the Antora showroom content (content/ directory with lab pages)\n2. Run `liftoff onboard` against the sovereign-ai-lab repo\n3. Review the generated agnosticv config\n4. Adjust if needed, then commit\n5. AgnosticV config is the LAST artifact, not the first\n\nRelated: [[reference-deploy-environments]], [[project-sovereign-ai-lab]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-liftoff-before-agnosticv"
+        },
+        {
+          "text": "When building a new project or quickstart, create `tests/validation_matrix.yaml`, `tests/claim_registry.yaml`, and `tests/benchmark_rubric.yaml` following the pattern in edge-ai-cpu-inference. Structure tests into `contracts/`, `unit/`, `integration/`, `benchmarks/`, and `publication/` directories. [[user-jkershaw]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "feedback-validation-framework"
+        },
+        {
+          "text": "Explicit direction from the user regarding Intel partner branding requirements for RHDP showrooms and quickstart materials.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "intel-branding"
+        }
+      ],
+      "facts": [
+        {
+          "text": "Focus is CPU-only (Xeon 6) for now. Gaudi 3 GPU support is future scope. Changes to the planner are data-driven (gpu_catalog.json, slo_templates.json, benchmark data) rather than code changes. A standalone benchmark collector tool (InferencePlan/intel-benchmark-collector/) collects data from MAAS endpoints.\n\nRelated projects: [[reference-maas-access]], Red Hat Intel demo (~/Documents/red_hat_intel_partner_demo/), LiftOff pipeline (~/Documents/liftoff/) \u2014 Phase 4-5 integration planned after proof of concept.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "InferencePlan",
+          "source_file": "project-inference-plan"
+        },
+        {
+          "text": "Application repo: `rh-ai-quickstart/multi-agent-loan-origination` (Python agents, LangGraph)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "agentops-in-prod-automation",
+          "source_file": "project-gpt-oss-120b-benchmark"
+        },
+        {
+          "text": "Four major workstreams (equal priority):\n1. **AI Quickstarts** \u2014 Intel quickstart factory, showroom ports, RHDP pipeline, XDD test suites\n2. **Triforce** \u2014 episodic labs (6 episodes, 59 pages), Intel Xeon learning path, multi-agent demo (pivoted to breakout labs Aug 2026)\n3. **Cascade Compression** \u2014 three-tier signal compression engine (nano/micro/macro), 401 tests, whitepaper + deck complete\n4. **Fleet-llm-d** \u2014 multi-cluster LLM lifecycle management, Go, multi-cluster deployment",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "command-center",
+          "source_file": "user-workstreams"
+        },
+        {
+          "text": "Created the EVY platform (srex-dev/EVY) and the edge-ai-cpu-inference quickstart (jkershawrh/edge-ai-cpu-inference, published to quay.io/rh-ai-quickstart/).",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "user-jkershaw"
+        },
+        {
+          "text": "Works with Red Hat + Intel partnerships. Familiar with OpenShift, UBI9, Helm charts, BitNet models, llama.cpp, and the rh-ai-quickstart GitHub org. Uses a CDD\u2192TDD\u2192EDD\u2192BDD validation framework with claim registries for provenance tracking.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "user-jkershaw"
+        }
+      ],
+      "decisions": [],
+      "preferences": [
+        {
+          "text": "Jonathan has many active projects under ~/Documents/. His repos: StarGate, stargate-platform, stargate-mock-cluster, stargate-synthetic-client-emulator, launchpad, GeoLux, geolux-agentic-signature-compromise-drift, deepfield, triforce, red_hat_intel_partner_demo, intel-partnership-pm, darkscope, novascan, are-foundation, liftoff, platform-dashboard. NOT his: hivemind (sborenst), agnosticv, rhdp-ops-tools, sandbox-api-configs, tarsy-compare, rhdp-skills-marketplace, troshka, guardian. Prefers Python for tooling, LLM-powered analysis via team's shared MAAS LiteLLM endpoint.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "dev-audit",
+          "source_file": "user-role"
+        },
+        {
+          "text": "The user explicitly corrected the approach. \"Run the quickstart as a lab\" means show how to build what it is, understand the technology within the quickstart, in lab format. Not a deployment walkthrough.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "showroom-lab-pedagogy"
+        }
+      ]
+    },
+    "governance": {
+      "reach": 18,
+      "total_claims": 67,
+      "unique_claims": 67,
+      "rules": [
+        {
+          "text": "Executives and government stakeholders need to see how the pieces connect visually. A schematic shows trust boundaries, data flow direction, which components talk to which, and where governance checkpoints sit. Text cards don't communicate topology.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-architecture-diagram"
+        },
+        {
+          "text": "Lead with sovereignty, not governance mechanics",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-sovereignty-not-ledger"
+        },
+        {
+          "text": "The ecosystem whitepaper must be strategically framed: fleet-llm-d is the Red Hat product being showcased. deepfield-fleet, governed-cognitive-loop, and are-immutable-ledger are Kersh's creations that demonstrate what fleet-llm-d enables, but fleet-llm-d is the headline.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "fleet-llm-d",
+          "source_file": "whitepaper-framing"
+        },
+        {
+          "text": "Lead every section with what fleet-llm-d does. Frame the other systems as \"what fleet-llm-d's architecture enables\" rather than equal peers. The narrative is: fleet-llm-d provides the fleet orchestration layer, and the ecosystem (governance, prediction, evidence) validates its design.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "fleet-llm-d",
+          "source_file": "whitepaper-framing"
+        },
+        {
+          "text": "All work should reinforce \"one model, one silicon\" \u2014 granite-3-2-8b-instruct on Xeon 6 only. No Gaudi references in new work. Branding must be Intel + Red Hat co-branded.\n\nRelated: [[reference-repos]], [[project-phase6-governance]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        }
+      ],
+      "facts": [
+        {
+          "text": "The user decided to fully open-source the ledger (no commercial holdback) to maximize AAIF credibility. ARE Foundation passports, scope, policy, and the full governance stack remain as-is.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "OpenShell",
+          "source_file": "project-are-ledger-aaif"
+        },
+        {
+          "text": "`srex-dev/are-foundation` \u2014 the full ARE Foundation (S0/S1 governance)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "OpenShell",
+          "source_file": "project-are-ledger-aaif"
+        },
+        {
+          "text": "**GeoLux** (namespace: geolux) \u2014 governance brain\n- Receives evidence from StarGate (HTTP + Kafka), generates hypotheses, classifies, runs MPC\n- Hypothesis dedup: in-memory cache (1h TTL) + DB check prevents duplicates\n- MPC: 5-min cooldown per cluster, failure-class-specific objectives\n- Learning loop: aggregates every 30 min, 27 patterns from 191K+ hypotheses\n- Kafka consumer filters: sandbox-only + requires failure_class",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "deepfield-stargate-integration"
+        },
+        {
+          "text": "GeoLux is the governance brain connecting Deepfield (detection) and StarGate (execution). Deployed on infra01 namespace `geolux`.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "geolux-governance"
+        },
+        {
+          "text": "Multi-agent orchestration system to be deployed on OpenShift AI (Red Hat AI 3.4+). Inference on Intel Xeon 6 and Gaudi accelerators. Will use Red Hat's AgentOps stack: OpenTelemetry distributed tracing, MLflow for agent traceability, Tempo as tracing backend, and MCP gateway for tool governance. Cluster not yet provisioned as of 2026-05-13.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "agentobs",
+          "source_file": "project-agentobs"
+        }
+      ],
+      "decisions": [],
+      "preferences": []
+    },
+    "infra01_only": {
+      "reach": 14,
+      "total_claims": 52,
+      "unique_claims": 52,
+      "rules": [
+        {
+          "text": "Every application deployed to infra01 (ocpv-infra01) MUST have Red Hat OAuth proxy (ose-oauth-proxy-rhel9 sidecar) on all externally-routed frontend and API deployments.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "deepfield",
+          "source_file": "oauth-requirement"
+        },
+        {
+          "text": "Before any deploy to infra01:\n1. Verify the deployment has an oauth-proxy sidecar container\n2. Verify the route targets the oauth-proxy port (8080/8443/4180), not the backend directly\n3. Test with `curl -sk https://<route>/` \u2014 must return 403, not 200\n4. Service-to-service API routes that bypass OAuth must have API key validation on the backend\n5. Health and webhook endpoints can bypass via `-skip-auth-regex`\n\nPattern: registry.redhat.io/openshift4/ose-oauth-proxy-rhel9:latest as sidecar, with OAuthClient + ServiceAccount + cookie/client secrets. See [[security-network-policies]] for related requirements.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "deepfield",
+          "source_file": "oauth-requirement"
+        },
+        {
+          "text": "When rebasing agnosticv PR branches, the context keeps switching back to infra01. Always `oc config use-context` explicitly before running oc commands on integration or prod clusters.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "stuck-catalogitem-finalizers"
+        },
+        {
+          "text": "This project deploys to infra01 ONLY. Before any oc command, verify context:",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-tco-calculator",
+          "source_file": "feedback-cluster-context"
+        },
+        {
+          "text": "Multiple sessions have accidentally run commands against Oberon (default/api-oberon-fm2aihpcsed-com:6443/kube:admin) instead of infra01, causing \"namespace not found\" errors, stale data reads, and gateway confusion. The oc context drifts silently when other sessions or background tasks switch it.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-tco-calculator",
+          "source_file": "feedback-cluster-context"
+        }
+      ],
+      "facts": [
+        {
+          "text": "Three systems deployed on infra01 (ocpv-infra01.dal12.infra.demo.redhat.com), all scoped to 5 sandbox clusters: ocpv05, ocpv06, ocpv07, ocpv08, ocpv09.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "deepfield-stargate-integration"
+        },
+        {
+          "text": "GeoLux is the governance brain connecting Deepfield (detection) and StarGate (execution). Deployed on infra01 namespace `geolux`.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "geolux-governance"
+        },
+        {
+          "text": "Scanner clusters reduced to ocpv05-09 only (removed infra01, infra02, ocp-us-east-1)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "proof-system-status"
+        },
+        {
+          "text": "Intel Lab OpenShift cluster. This IS Folsome Lab (same cluster). DEV environment in the pipeline: Oberon \u2192 Infra01 \u2192 Integration \u2192 Demo. Related to .",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "reference-oberon-cluster"
+        },
+        {
+          "text": "## Live Metrics (infra01 demo platform, 48K+ signals)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-final-state"
+        }
+      ],
+      "decisions": [],
+      "preferences": []
+    },
+    "branding": {
+      "reach": 14,
+      "total_claims": 27,
+      "unique_claims": 27,
+      "rules": [
+        {
+          "text": "Red Hat logo SVGs loaded via `<img>` tags MUST use inline `fill` attributes, not `<style>` CSS classes \u2014 browsers ignore internal stylesheets in SVGs loaded as images.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "deepfield",
+          "source_file": "redhat-logo"
+        },
+        {
+          "text": "Download official SVGs from `static.redhat.com/libs/redhat/brand-assets/2/corp/`",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "deepfield",
+          "source_file": "redhat-logo"
+        },
+        {
+          "text": "`logo.svg` \u2014 standard (black wordmark, for light backgrounds)",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "deepfield",
+          "source_file": "redhat-logo"
+        },
+        {
+          "text": "On dark mastheads: use white pill container (`background: white, padding: 6px 14px, borderRadius: 6px`) with the standard (black text) logo inside \u2014 per brand guidelines",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "deepfield",
+          "source_file": "redhat-logo"
+        },
+        {
+          "text": "All work should reinforce \"one model, one silicon\" \u2014 granite-3-2-8b-instruct on Xeon 6 only. No Gaudi references in new work. Branding must be Intel + Red Hat co-branded.\n\nRelated: [[reference-repos]], [[project-phase6-governance]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        }
+      ],
+      "facts": [
+        {
+          "text": "Multi-agent orchestration system to be deployed on OpenShift AI (Red Hat AI 3.4+). Inference on Intel Xeon 6 and Gaudi accelerators. Will use Red Hat's AgentOps stack: OpenTelemetry distributed tracing, MLflow for agent traceability, Tempo as tracing backend, and MCP gateway for tool governance. Cluster not yet provisioned as of 2026-05-13.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "agentobs",
+          "source_file": "project-agentobs"
+        },
+        {
+          "text": "Works at Red Hat on the demo platform. Building a multi-agent orchestration system on OpenShift AI. Has access to Intel Xeon 6 and Gaudi accelerator servers for inference. May be able to provision OpenShift AI via the demo platform. Interested in leveraging Red Hat's AgentOps observability stack (OpenTelemetry, MLflow, Tempo).",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "agentobs",
+          "source_file": "user-profile"
+        },
+        {
+          "text": "Critical correction from Ashok Jammula on 2026-06-16. The demo narrative assumed granite-3-2-8b-instruct runs on Intel Xeon 6 \u2014 it does NOT.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-maas-hardware-reality"
+        },
+        {
+          "text": "Do NOT claim Intel Xeon 6 inferencing for granite-3-2-8b-instruct until confirmed on rac-maas. The 426-532ms latency numbers from LiftOff trial runs were hitting NVIDIA L40S, not Xeon.\n\nRelated: [[project-intel-partnership]]",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-maas-hardware-reality"
+        },
+        {
+          "text": "TCO comparison tool for Financial Services sales conversations, comparing AI inference on Intel Xeon 6 CPUs vs NVIDIA H100 GPUs vs cloud API pricing.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "intel-tco-calculator",
+          "source_file": "project-tco-calculator"
+        }
+      ],
+      "decisions": [
+        {
+          "text": "Red Hat\u2013Intel AI inference partnership. Strategic direction pivoted on 2026-06-15 from \"Xeon-first dual-path\" to **\"One model, one silicon, every lab\"** \u2014 consolidating ALL Summit Connect labs to granite-3-2-8b-instruct on Intel Xeon 6 CPU. No Gaudi/GPU needed. Eliminates model sprawl from prior Summit where too many models overwhelmed GPU worker nodes.",
+          "type": "decision",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        },
+        {
+          "text": "Consolidating all Summit Connect labs to granite-3-2-8b-instruct on Intel Xeon 6. Validated across 25 repos, 135 quality probes, all pass.",
+          "type": "decision",
+          "source": "claude-code",
+          "project": "liftoff",
+          "source_file": "granite-consolidation-strategy"
+        }
+      ],
+      "preferences": [
+        {
+          "text": "Fast iteration, builds end-to-end before showing. Prefers \"Powered by Intel\" branding only. Uses XDD red/green rubric methodology on everything. Wants suggest+confirm for auto-filing work items. Checks in at gates, doesn't want autonomous push to external systems.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "kershaw-profile"
+        }
+      ]
+    },
+    "summit_connect": {
+      "reach": 14,
+      "total_claims": 57,
+      "unique_claims": 57,
+      "rules": [
+        {
+          "text": "When building a new project or quickstart, create `tests/validation_matrix.yaml`, `tests/claim_registry.yaml`, and `tests/benchmark_rubric.yaml` following the pattern in edge-ai-cpu-inference. Structure tests into `contracts/`, `unit/`, `integration/`, `benchmarks/`, and `publication/` directories. [[user-jkershaw]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "feedback-validation-framework"
+        },
+        {
+          "text": "Explicit direction from the user regarding Intel partner branding requirements for RHDP showrooms and quickstart materials.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "intel-branding"
+        },
+        {
+          "text": "Kelkhund (org gatekeeper) explicitly stated this when granting org access. The quickstart catalog was originally ranked by Intel tech story + originality, but the org cares most about the business problem being solved.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "quickstart-approval-criteria"
+        },
+        {
+          "text": "Showroom labs are NOT \"deploy the quickstart and explore the UI.\" They teach the user how to BUILD what the quickstart builds, step by step, so they understand the technology contextually.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "showroom-lab-pedagogy"
+        },
+        {
+          "text": "Package Launchpad as AgnosticV config + AgnosticD roles. Don't change core Launchpad architecture (namespace-per-demo). The RHDP integration is about deployment packaging, not internal restructuring.\n\nRelated: [[project-demo-migration]], [[project-quickstart-catalog]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "launchpad",
+          "source_file": "rhdp-cluster-pool"
+        }
+      ],
+      "facts": [
+        {
+          "text": "Application repo: `rh-ai-quickstart/multi-agent-loan-origination` (Python agents, LangGraph)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "agentops-in-prod-automation",
+          "source_file": "project-gpt-oss-120b-benchmark"
+        },
+        {
+          "text": "Four major workstreams (equal priority):\n1. **AI Quickstarts** \u2014 Intel quickstart factory, showroom ports, RHDP pipeline, XDD test suites\n2. **Triforce** \u2014 episodic labs (6 episodes, 59 pages), Intel Xeon learning path, multi-agent demo (pivoted to breakout labs Aug 2026)\n3. **Cascade Compression** \u2014 three-tier signal compression engine (nano/micro/macro), 401 tests, whitepaper + deck complete\n4. **Fleet-llm-d** \u2014 multi-cluster LLM lifecycle management, Go, multi-cluster deployment",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "command-center",
+          "source_file": "user-workstreams"
+        },
+        {
+          "text": "Demonstrate that even with 2G connectivity and minimal hardware (no GPU), you can deploy useful AI inference at edge sites \u2014 disaster zones, warzones, underserved communities. Summit Connect conference is the demo scenario.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "project-edge-inference"
+        },
+        {
+          "text": "Created the EVY platform (srex-dev/EVY) and the edge-ai-cpu-inference quickstart (jkershawrh/edge-ai-cpu-inference, published to quay.io/rh-ai-quickstart/).",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "user-jkershaw"
+        },
+        {
+          "text": "Works with Red Hat + Intel partnerships. Familiar with OpenShift, UBI9, Helm charts, BitNet models, llama.cpp, and the rh-ai-quickstart GitHub org. Uses a CDD\u2192TDD\u2192EDD\u2192BDD validation framework with claim registries for provenance tracking.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "user-jkershaw"
+        }
+      ],
+      "decisions": [
+        {
+          "text": "Red Hat\u2013Intel AI inference partnership. Strategic direction pivoted on 2026-06-15 from \"Xeon-first dual-path\" to **\"One model, one silicon, every lab\"** \u2014 consolidating ALL Summit Connect labs to granite-3-2-8b-instruct on Intel Xeon 6 CPU. No Gaudi/GPU needed. Eliminates model sprawl from prior Summit where too many models overwhelmed GPU worker nodes.",
+          "type": "decision",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        },
+        {
+          "text": "Consolidating all Summit Connect labs to granite-3-2-8b-instruct on Intel Xeon 6. Validated across 25 repos, 135 quality probes, all pass.",
+          "type": "decision",
+          "source": "claude-code",
+          "project": "liftoff",
+          "source_file": "granite-consolidation-strategy"
+        }
+      ],
+      "preferences": [
+        {
+          "text": "Intel wants to prove enterprise AI inference runs on Xeon CPUs with zero GPU. Red Hat wants Intel-branded demos on RHDP for Summit Connect (~10-15 events, Aug-Sep 2026). Prior Summit had MAAS capacity issues from model sprawl \u2014 consolidation solves this.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        },
+        {
+          "text": "The user explicitly corrected the approach. \"Run the quickstart as a lab\" means show how to build what it is, understand the technology within the quickstart, in lab format. Not a deployment walkthrough.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "showroom-lab-pedagogy"
+        },
+        {
+          "text": "Intel wants to showcase Xeon 6 CPU inference capabilities at Summit Connect events. All demo labs must run entirely on Xeon 6.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "liftoff",
+          "source_file": "liftoff-trial-run-001"
+        }
+      ]
+    },
+    "immutable_ledger": {
+      "reach": 13,
+      "total_claims": 45,
+      "unique_claims": 45,
+      "rules": [
+        {
+          "text": "The sovereign AI lab demo story is about **national/organizational AI sovereignty** \u2014 the ability to possess, control, adapt, govern, and prove your AI infrastructure is truly yours. The immutable ledger is an important piece of proof infrastructure, but it is NOT the story.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-sovereignty-not-ledger"
+        },
+        {
+          "text": "Show that sovereign AI means more than local deployment \u2014 it requires provable control recorded in a tamper-evident immutable ledger (are-immutable-ledger).",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "project-sovereign-ai-lab"
+        },
+        {
+          "text": "The ecosystem whitepaper must be strategically framed: fleet-llm-d is the Red Hat product being showcased. deepfield-fleet, governed-cognitive-loop, and are-immutable-ledger are Kersh's creations that demonstrate what fleet-llm-d enables, but fleet-llm-d is the headline.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "fleet-llm-d",
+          "source_file": "whitepaper-framing"
+        },
+        {
+          "text": "DeepField owns observations, findings, and forecasts. GCL owns signed and falsified proposals. fleet-llm-d owns admission, authorization, operation state, desired/observed state, and actuation. The standalone immutable ledger owns tamper-evident evidence and proof verification; its receipts never authorize execution.",
+          "type": "rule",
+          "source": "claude-md",
+          "project": "fleet-llm-d",
+          "source_file": "fleet-llm-d/CLAUDE.md/Architecture"
+        },
+        {
+          "text": "**are-immutable-ledger**: independent evidence infrastructure with its own database and compute. The ledger-owned gRPC service is canonical. `pkg/ledger/` currently supports memory/disabled modes and the optional authenticated REST compatibility gateway. A configured ledger error must fail closed, never fall back to fabricated memory evidence.",
+          "type": "rule",
+          "source": "claude-md",
+          "project": "fleet-llm-d",
+          "source_file": "fleet-llm-d/CLAUDE.md/Architecture"
+        }
+      ],
+      "facts": [
+        {
+          "text": "ARE Foundation's immutable ledger has been extracted into a standalone repo at jkershawrh/are-immutable-ledger (GitHub). Positioned as neutral infrastructure for cross-system agentic proof chains.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "OpenShell",
+          "source_file": "project-are-ledger-aaif"
+        },
+        {
+          "text": "`jkershawrh/are-immutable-ledger` \u2014 the standalone ledger + demo",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "OpenShell",
+          "source_file": "project-are-ledger-aaif"
+        },
+        {
+          "text": "Key changes deployed:\n- GCL prompt governance adapter replaced regex semantic router (evidence\u2192classify\u2192falsify\u2192sign\u2192commit)\n- OPA decisions now bridge to the immutable ledger via demo-api\n- Periodic TDX re-attestation CronJob (every 5m)\n- Real training pipeline (Docling ingest, vLLM QA synth, PEFT/LoRA SFT)\n- Agent-lifecycle policy relaxed from SPIFFE-only to any non-empty identity",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "project-sov-ai-validation"
+        },
+        {
+          "text": "Ledger API: update doc code to match actual are-immutable-ledger API (no adapter shim)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "project-sovereign-ai-lab"
+        },
+        {
+          "text": "1. **Identity** \u2014 SPIFFE vs Passports. Compare KAGENTI's SPIFFE identity model with ARE's passport model. Document gaps.\n2. **Enforcement** \u2014 OPA vs Coprocessor. Review KAGENTI's OPA setup. Identify what's missing for ARE's strict enforcement guarantees. \"You might find some of it is already there.\"\n3. **Evidence / Ledger** \u2014 Sabath tagged to confirm nobody is working on a ledger. Kersh to propose how/where an immutable ledger fits in KAGENTI architecture. **This is the clearest gap.**\n4. **Integrity / Posture** \u2014 Break down what's missing for ARE's posture checks (governance system self-monitoring).",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "are-foundation",
+          "source_file": "kagenti-gap-analysis-assignment"
+        }
+      ],
+      "decisions": [],
+      "preferences": [
+        {
+          "text": "Jonathan Kershaw is the author of the fleet-llm-d whitepaper and builds fleet-level inference orchestration systems. He works with Go, Rust, Python, and TypeScript across the fleet-llm-d and deepfield-fleet projects. His work involves Kubernetes operators, ARE Immutable Ledger integration, and agent promotion pipelines. He prefers a disciplined build methodology: CDD then TDD then BDD then EDD with red/green rubric grids, milestone-based delivery, and verify.sh as the definition of done. No em-dashes in generated text.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "agent-promotion",
+          "source_file": "user-role"
+        }
+      ]
+    },
+    "deterministic": {
+      "reach": 13,
+      "total_claims": 21,
+      "unique_claims": 20,
+      "rules": [
+        {
+          "text": "The LLM never computes the committed action. A deterministic controller owns optimization.",
+          "type": "rule",
+          "source": "claude-md",
+          "project": "governed-cognitive-loop",
+          "source_file": "governed-cognitive-loop/CLAUDE.md/Conventions"
+        },
+        {
+          "text": "Every LLM call site must have a deterministic fallback.",
+          "type": "rule",
+          "source": "claude-md",
+          "project": "governed-cognitive-loop",
+          "source_file": "governed-cognitive-loop/CLAUDE.md/Conventions"
+        }
+      ],
+      "facts": [
+        {
+          "text": "**Constraint Classification** \u2014 32 constraints, deterministic assertions",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "geolux-governance"
+        },
+        {
+          "text": "Extract the 19 deterministic nanoagents from deepfield into intel-inference-router so any consumer gets cascade + routing + scaling in one pip install.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-extraction-plan"
+        },
+        {
+          "text": "100% deterministic FAILS (severity check flags medium+ drops) \u2014 LLM adversary probe not yet wired into standalone sampler",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "intel-tco-calculator",
+          "source_file": "project-cascade-compression"
+        },
+        {
+          "text": "```\nCascade drops signal \u2192 decision.record \u2192 Ledger\n                                           \u2193\nGCL sampler polls (from_ts watermark) \u2192 audits 5% sample \u2192 deterministic checks\n                                           \u2193\n                                audit.verdict \u2192 Ledger\n```\nContracts: decision-record.json + audit-verdict.json \u2014 domain-agnostic.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "intel-tco-calculator",
+          "source_file": "project-cascade-compression"
+        },
+        {
+          "text": "All 100% deterministic at temp=0",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "intel-tco-calculator",
+          "source_file": "project-cascade-compression"
+        }
+      ],
+      "decisions": [],
+      "preferences": []
+    },
+    "agent_architecture": {
+      "reach": 10,
+      "total_claims": 16,
+      "unique_claims": 16,
+      "rules": [],
+      "facts": [
+        {
+          "text": "Multi-agent orchestration system to be deployed on OpenShift AI (Red Hat AI 3.4+). Inference on Intel Xeon 6 and Gaudi accelerators. Will use Red Hat's AgentOps stack: OpenTelemetry distributed tracing, MLflow for agent traceability, Tempo as tracing backend, and MCP gateway for tool governance. Cluster not yet provisioned as of 2026-05-13.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "agentobs",
+          "source_file": "project-agentobs"
+        },
+        {
+          "text": "Works at Red Hat on the demo platform. Building a multi-agent orchestration system on OpenShift AI. Has access to Intel Xeon 6 and Gaudi accelerator servers for inference. May be able to provision OpenShift AI via the demo platform. Interested in leveraging Red Hat's AgentOps observability stack (OpenTelemetry, MLflow, Tempo).",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "agentobs",
+          "source_file": "user-profile"
+        },
+        {
+          "text": "Application repo: `rh-ai-quickstart/multi-agent-loan-origination` (Python agents, LangGraph)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "agentops-in-prod-automation",
+          "source_file": "project-gpt-oss-120b-benchmark"
+        },
+        {
+          "text": "Four major workstreams (equal priority):\n1. **AI Quickstarts** \u2014 Intel quickstart factory, showroom ports, RHDP pipeline, XDD test suites\n2. **Triforce** \u2014 episodic labs (6 episodes, 59 pages), Intel Xeon learning path, multi-agent demo (pivoted to breakout labs Aug 2026)\n3. **Cascade Compression** \u2014 three-tier signal compression engine (nano/micro/macro), 401 tests, whitepaper + deck complete\n4. **Fleet-llm-d** \u2014 multi-cluster LLM lifecycle management, Go, multi-cluster deployment",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "command-center",
+          "source_file": "user-workstreams"
+        },
+        {
+          "text": "1. Intel Inference Platform \u2014 Xeon 6 inferencing, semantic routing, RAG chat, 1,437 tests, live on RHDP integration\n2. Triforce \u2014 multi-agent on Xeon 6 only (zero GPU), 246 tests, PR #26789 to agnosticv (dev)\n3. LiftOff \u2014 5-gate pipeline (security, model alignment, branding, quality probe, capacity), 248+ tests, local",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "intel-partnership-pm",
+          "source_file": "project-intel-partnership"
+        }
+      ],
+      "decisions": [],
+      "preferences": [
+        {
+          "text": "Intel wants to demonstrate that their open-source model (gpt-oss-120b) can power the multi-agent mortgage loan origination lab, proving non-frontier models are viable for enterprise AI workflows.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "agentops-in-prod-automation",
+          "source_file": "project-gpt-oss-120b-benchmark"
+        }
+      ]
+    },
+    "oauth_security": {
+      "reach": 9,
+      "total_claims": 16,
+      "unique_claims": 15,
+      "rules": [
+        {
+          "text": "Every application deployed to infra01 (ocpv-infra01) MUST have Red Hat OAuth proxy (ose-oauth-proxy-rhel9 sidecar) on all externally-routed frontend and API deployments.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "deepfield",
+          "source_file": "oauth-requirement"
+        },
+        {
+          "text": "The user has flagged this repeatedly \u2014 OAuth keeps getting dropped during redeploys. This is a security compliance requirement, not optional.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "deepfield",
+          "source_file": "oauth-requirement"
+        },
+        {
+          "text": "Before any deploy to infra01:\n1. Verify the deployment has an oauth-proxy sidecar container\n2. Verify the route targets the oauth-proxy port (8080/8443/4180), not the backend directly\n3. Test with `curl -sk https://<route>/` \u2014 must return 403, not 200\n4. Service-to-service API routes that bypass OAuth must have API key validation on the backend\n5. Health and webhook endpoints can bypass via `-skip-auth-regex`\n\nPattern: registry.redhat.io/openshift4/ose-oauth-proxy-rhel9:latest as sidecar, with OAuthClient + ServiceAccount + cookie/client secrets. See [[security-network-policies]] for related requirements.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "deepfield",
+          "source_file": "oauth-requirement"
+        },
+        {
+          "text": "### Troshkad (Host Agent Daemon)\n- Single-file Python daemon at `src/troshkad/troshkad.py` \u2014 stdlib only, no pip\n- Backend client: `src/backend/app/services/troshkad_client.py` \u2014 urllib3 connection pooling with cert fingerprint pinning\n- HTTPS on port 31337, bearer token auth\n- All host operations go through troshkad \u2014 SSH only for initial install\n- **troshka-vncd**: separate daemon (`src/troshka-vncd/troshka-vncd.py`) for VNC console relay \u2014 port 443, `websockets` library, systemd-managed\n- vncd updates pushed via `/admin/update-vncd` endpoint on troshkad, also handled by `update-agent.sh`\n- **Qemu hook** (`/etc/libvirt/hooks/qemu`): lives ONLY in agent install script (`agent_deployer.py`), must NOT call `virsh` (deadlocks virtqemud), parses XML from stdin\n- **Python string escaping**: backslashes in install script heredocs must be doubled (`\\\\(`, `\\\\1`, `\\\\K`)\n- **Shared ISOs**: hard-linked into VM dirs (not symlinked) \u2014 prevents qemu permission denied and survives `virsh undefine --remove-all-storage`\n- **File ownership**: chown to `qemu:qemu` after creating disks, seeds, and hard links\n- **Download locking**: `fcntl.flock()` prevents concurrent downloads of same file\n- **Wipe preserves cache**: never deletes `/var/lib/troshka/images/` or `/var/lib/troshka/cache/`\n- **Job cancellation**: `DELETE /jobs/{job_id}` sets `_cancelled` flag and kills active subprocess; handlers check `_cancelled` between steps\n- **Version**: `VERSION = \"dev\"` in source, stamped with SHA-256 content hash at push time\n- **NIC models**: `virtio`, `e1000`, `e1000e`, `igb` (Intel 82576 SR-IOV emulation), `rtl8139` \u2014 set via `model` field in topology NIC data and template YAML\n- **powerOnAtDeploy**: per-VM flag in topology \u2014 when `false`, VM is defined but not started during deploy (used for blank target VMs like SNOs that boot via BMC/ACM later)\n- Agent install restarts `virtqemud` so hook changes take effect",
+          "type": "rule",
+          "source": "claude-md",
+          "project": "troshka",
+          "source_file": "troshka/CLAUDE.md/Important Conventions"
+        }
+      ],
+      "facts": [
+        {
+          "text": "**StarGate** (namespace: stargate) \u2014 batch readiness scanner + remediation pipeline\n- API: 2 replicas + oauth-proxy, Frontend: nginx + oauth-proxy, Scanner: scheduler + babylon-worker, Postgres\n- Scans sandbox-*/showroom-* namespaces across 5 clusters\n- Shadow mode: every 5 min, processes 100 sandbox failures per batch, feeds to GeoLux\n- Evidence filtering: only sandbox namespaces with real failure_class reach GeoLux (3 paths filtered: HTTP consumer, shadow mode, Kafka)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "deepfield-stargate-integration"
+        },
+        {
+          "text": "API: 2 replicas, oauth-proxy sidecar",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "infra01-deployment"
+        },
+        {
+          "text": "Frontend: nginx reverse proxy, oauth-proxy",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "infra01-deployment"
+        },
+        {
+          "text": "Backend: 1 replica + oauth-proxy, Postgres",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "infra01-deployment"
+        },
+        {
+          "text": "1 replica + oauth-proxy",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "StarGate",
+          "source_file": "infra01-deployment"
+        }
+      ],
+      "decisions": [],
+      "preferences": []
+    },
+    "claim_registry": {
+      "reach": 9,
+      "total_claims": 15,
+      "unique_claims": 15,
+      "rules": [
+        {
+          "text": "Always include a multi-stage gated validation matrix (CDD \u2192 TDD \u2192 EDD \u2192 BDD \u2192 CBT \u2192 Publication) with claim registries for provenance tracking.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "feedback-validation-framework"
+        },
+        {
+          "text": "This is a core quality practice \u2014 every factual claim (model size, memory footprint, latency, architecture specs) must be tracked with source and verification status. The user designed this framework in edge-ai-cpu-inference and expects it in all projects.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "feedback-validation-framework"
+        },
+        {
+          "text": "When building a new project or quickstart, create `tests/validation_matrix.yaml`, `tests/claim_registry.yaml`, and `tests/benchmark_rubric.yaml` following the pattern in edge-ai-cpu-inference. Structure tests into `contracts/`, `unit/`, `integration/`, `benchmarks/`, and `publication/` directories. [[user-jkershaw]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "edge-inference-at-scale",
+          "source_file": "feedback-validation-framework"
+        },
+        {
+          "text": "Once Ashok deploys optimized models, re-run the validation matrix and compare against these targets. Update Act 06 punchline with real before/after. Don't show projected numbers as measured \u2014 only show what we've proven.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "triforce",
+          "source_file": "performance-targets"
+        }
+      ],
+      "facts": [
+        {
+          "text": "Validation matrix expanded to stages 8-10 (modules, benchmarks, workflows)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "triforce",
+          "source_file": "pivot-heterogeneous-compute"
+        },
+        {
+          "text": "Whitepaper with benchmark proof points",
+          "type": "fact",
+          "source": "claude-md",
+          "project": "cascade-compression",
+          "source_file": "cascade-compression/CLAUDE.md/Next Steps"
+        },
+        {
+          "text": "72 tests, 9 stages. Validation matrix at `tests/validation_matrix.yaml`.",
+          "type": "fact",
+          "source": "claude-md",
+          "project": "darkscope",
+          "source_file": "darkscope/CLAUDE.md/Testing"
+        },
+        {
+          "text": "1. Create `src/darkscope/analyzers/new_analyzer.py`\n2. Implement `def scan(files: list) -> list[Finding]`\n3. Wire into `scanner.py` orchestrator\n4. Add tests in `tests/test_new_analyzer.py`\n5. Add stage to `tests/validation_matrix.yaml`",
+          "type": "fact",
+          "source": "claude-md",
+          "project": "darkscope",
+          "source_file": "darkscope/CLAUDE.md/Adding a New Analyzer"
+        },
+        {
+          "text": "`tests/` | Gated validation matrix (contracts, unit, integration, benchmarks, publication)",
+          "type": "fact",
+          "source": "claude-md",
+          "project": "edge-inference-at-scale",
+          "source_file": "edge-inference-at-scale/CLAUDE.md/File Structure"
+        }
+      ],
+      "decisions": [],
+      "preferences": [
+        {
+          "text": "Senior engineer at Red Hat working on the Red Hat Demo Platform (RHDP). Builds partner enablement demos that deploy on OpenShift. Deep experience with the Intel partnership demo (FastAPI + React + PostgreSQL + MAAS/LiteLLM). Comfortable with polyglot architectures (Python, Go, Java/Quarkus). Strong opinions on development methodology \u2014 TDD with validation matrix rubrics, Event-Driven Development, Contract-Driven Development. Prefers building backend first, frontend separately. Uses podman/podman-compose for local dev.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "triforce",
+          "source_file": "user-kershaw"
+        }
+      ]
+    },
+    "pipeline_routing": {
+      "reach": 8,
+      "total_claims": 28,
+      "unique_claims": 28,
+      "rules": [
+        {
+          "text": "Three-tier cascade compression engine for CPU inference at scale.\nConsolidates the cascade pipeline, routing engine, TCO calculator, and benchmark harness\ninto a single repo. Built for Intel FSI engagements \u2014 proves that most AI signals\ndon't need a GPU.",
+          "type": "rule",
+          "source": "claude-md",
+          "project": "cascade-compression",
+          "source_file": "cascade-compression/CLAUDE.md/What This Is"
+        }
+      ],
+      "facts": [
+        {
+          "text": "intel-inference-router has routing/corpora/bootstrapper/scaler/fleet_manager",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-extraction-plan"
+        },
+        {
+          "text": "Any new consumer gets the full 85% compression + five-lane routing in one package",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-extraction-plan"
+        },
+        {
+          "text": "```\ndeepfield (monolith)\n  nanoagents/ (19 agents) \u2192 FilterDecision\n  routing/signal_router.py \u2192 imports intel-inference-router\n  \nintel-inference-router (package)\n  corpora, lanes, bootstrapper, scaler, fleet_manager\n```",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-extraction-plan"
+        },
+        {
+          "text": "```\nintel-inference-router (complete CPU inference stack)\n  cascade/           \u2190 extracted from deepfield\n    pipeline.py      \u2190 runs 19 nanoagents in sequence\n    agents/          \u2190 dedupe, transient, infra_noise, failure_classifier, etc.\n    failure_classes/  \u2190 k8s-events.yaml (22 regex patterns)\n  corpora.py         \u2190 existing\n  strategy_router.py \u2190 existing  \n  bootstrapper.py    \u2190 existing\n  scaler.py          \u2190 existing\n  fleet_manager.py   \u2190 existing\n\ndeepfield (consumer)\n  imports: from intel_inference_router.cascade import run_pipeline\n  imports: from intel_inference_router import resolve_lane_model, WorkloadBootstrapper\n  owns: correlation engine, incident manager, dashboard, postgres, K8s watch\n```",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-extraction-plan"
+        },
+        {
+          "text": "cascade/router.py \u2014 post-cascade lane routing",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-final-state"
+        }
+      ],
+      "decisions": [],
+      "preferences": []
+    },
+    "intel_partnership": {
+      "reach": 7,
+      "total_claims": 12,
+      "unique_claims": 12,
+      "rules": [
+        {
+          "text": "Explicit direction from the user regarding Intel partner branding requirements for RHDP showrooms and quickstart materials.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-quickstarts-triforce",
+          "source_file": "intel-branding"
+        },
+        {
+          "text": "The cascade framework (`cascade_compression/`) must never be modified for domain-specific work. Domain packs are the adapter layer. Related: [[people-ron-haberman]], [[project-tco-calculator]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-tco-calculator",
+          "source_file": "project-cascade-compression"
+        },
+        {
+          "text": "Ron Haberman (AI Incubation, Red Hat) needs dollar-per-business-process TCO numbers for customer conversations with Amex. The story: cascade compression means most signals don't need a model, so cheap CPU servers beat expensive GPUs on total cost.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "intel-tco-calculator",
+          "source_file": "project-tco-calculator"
+        },
+        {
+          "text": "Three-tier cascade compression engine for CPU inference at scale.\nConsolidates the cascade pipeline, routing engine, TCO calculator, and benchmark harness\ninto a single repo. Built for Intel FSI engagements \u2014 proves that most AI signals\ndon't need a GPU.",
+          "type": "rule",
+          "source": "claude-md",
+          "project": "cascade-compression",
+          "source_file": "cascade-compression/CLAUDE.md/What This Is"
+        },
+        {
+          "text": "The key insight for FSI sales: most signals do NOT need a model.",
+          "type": "rule",
+          "source": "claude-md",
+          "project": "intel-tco-calculator",
+          "source_file": "intel-tco-calculator/CLAUDE.md/Three-Tier Cascade Impact on TCO"
+        }
+      ],
+      "facts": [
+        {
+          "text": "**Corpora compiled from real benchmarks**: 216 entries from 16 benchmark files \u2192 19 routing entries across 6 industries, 21 quality gaps. Key picks: granite-350m for classification, smollm2-360m for basic shapes, granite-2b-int8 for FSI.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-intel-inference-router"
+        },
+        {
+          "text": "Every feature/fix should reinforce the cascade compression narrative. Throughput numbers are placeholders until mtahhan delivers RHAIIS 3.5 benchmarks.\n\nKey people: [[people-ron-haberman]], [[people-stephen-watt]], [[people-mtahhan]]",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "intel-tco-calculator",
+          "source_file": "project-tco-calculator"
+        },
+        {
+          "text": "The Intel partner demo needs to be packaged as a Catalog Item (CI) using agnosticd/agnosticv \u2014 the standard Red Hat demo delivery pipeline. Workflow: devel branch \u2192 integration environment \u2192 prod branch \u2192 production.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "red-hat-intel-partner-demo",
+          "source_file": "agnosticd-packaging"
+        },
+        {
+          "text": "# Lookup best model\ntask = resolve_benchmark_task(\"classify_signal\", industry=\"fsi\")\nentry = corpora.lookup(\"fsi\", task, tier=\"micro\", strategy=strategy)\n```",
+          "type": "fact",
+          "source": "claude-md",
+          "project": "intel-inference-router",
+          "source_file": "intel-inference-router/CLAUDE.md/Usage"
+        },
+        {
+          "text": "Intel vs GPU vs Cloud API Total Cost of Ownership calculator for Financial Services sales conversations.\nCompares running AI inference workloads on Intel Xeon 6 CPUs vs NVIDIA H100 GPUs vs cloud API token pricing.\nBuilt for Intel FSI (Financial Services Industry) engagements with Ron Haberman.",
+          "type": "fact",
+          "source": "claude-md",
+          "project": "intel-tco-calculator",
+          "source_file": "intel-tco-calculator/CLAUDE.md/What This Is"
+        }
+      ],
+      "decisions": [],
+      "preferences": [
+        {
+          "text": "Ron Haberman \u2014 AI Incubation at Red Hat. Wants TCO expressed in dollars per business process (not raw hardware comparisons). Has the Amex customer relationship. Rule of thumb: \"A single H100 will edge it at 6 servers on power and 3 servers for cost alone.\"",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "intel-tco-calculator",
+          "source_file": "people-ron-haberman"
+        }
+      ]
+    },
+    "self_contained": {
+      "reach": 6,
+      "total_claims": 8,
+      "unique_claims": 8,
+      "rules": [
+        {
+          "text": "Keep everything internal to the repo for research work \u2014 no external applications.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "geolux-agentic-signature-compromise-drift",
+          "source_file": "feedback-self-contained-repo"
+        },
+        {
+          "text": "Pure Python, no external services needed. Read-only \u2014 never modifies the scanned repo.",
+          "type": "rule",
+          "source": "claude-md",
+          "project": "novascan",
+          "source_file": "novascan/CLAUDE.md/Architecture"
+        }
+      ],
+      "facts": [
+        {
+          "text": "Everything stays internal to the repo \u2014 no Docker, no separate frontend, no external services (except Claude API for inferencing)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "geolux-agentic-signature-compromise-drift",
+          "source_file": "project-geolux-research"
+        },
+        {
+          "text": "\"A token is just OCP access\" \u2014 no external API key provisioning needed",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "stargate-platform",
+          "source_file": "ref-babylon-sa-setup"
+        },
+        {
+          "text": "Unit tests use mocks (no external services). Conftest provides mock BitNet server (httpx.MockTransport), mock Redis, mock ChromaDB.",
+          "type": "fact",
+          "source": "claude-md",
+          "project": "edge-inference-at-scale",
+          "source_file": "edge-inference-at-scale/CLAUDE.md/Testing"
+        },
+        {
+          "text": "**Self-contained**: Everything runs from this repo. No Docker, no external services (except Claude API for inferencing).",
+          "type": "fact",
+          "source": "claude-md",
+          "project": "geolux-agentic-signature-compromise-drift",
+          "source_file": "geolux-agentic-signature-compromise-drift/CLAUDE.md/Architecture"
+        },
+        {
+          "text": "### Azure Provider Setup\n- Provider type `azure` \u2014 creates nested-virt RHEL VMs on Azure\n- **Driver**: `src/backend/app/services/providers/azure.py` (~880 lines, self-contained)\n- **Prerequisites**: create service principal in Azure subscription, assign Contributor role on resource group\n- **Credentials**: `{\"tenant_id\": \"...\", \"client_id\": \"...\", \"client_secret\": \"...\", \"subscription_id\": \"...\"}`\n- **Instance types**: Esv5 series (8 GiB/vCPU, Intel, nested virt supported). Default: `Standard_E32s_v5` (32 vCPU / 256 GiB)\n- **Nested virt**: supported natively on Esv5 series (no extra flag)\n- **Images**: RHEL BYOS from `redhat` publisher, `rhel-byos` offer (marketplace terms acceptance required on first use), PAYG fallback from `RHEL` offer. Same BYOS repos issue as GCP \u2014 future: Red Hat Image Builder for custom images.\n- **Network setup**: \"Setup Network\" creates Resource Group, VNet (`10.100.0.0/16`), subnet, NSG with rules\n- **Console**: Azure DNS zone + `certbot-dns-azure` plugin for Let's Encrypt TLS\n- **EIPs**: Azure public IPs (Standard SKU, static), associated via NIC IP config\n- **Shared storage**: Azure Files NFS Premium v2 (`shared-azure-files` pool mode), ~$0.10/GiB/month, online resize, network ACL deny-all + mandatory private endpoint\n- **SSH user**: `troshka` (set via `admin_username`)\n- **Data disk**: `/dev/disk/azure/scsi1/lun0` (stable symlink for LUN 0)\n- **Terminate cleanup**: must delete VM \u2192 OS disk \u2192 data disk \u2192 NIC \u2192 public IP in order (Azure doesn't auto-delete dependents)\n- **Stop vs deallocate**: always use `begin_deallocate()` not `begin_power_off()` \u2014 deallocate releases compute billing",
+          "type": "fact",
+          "source": "claude-md",
+          "project": "troshka",
+          "source_file": "troshka/CLAUDE.md/Important Conventions"
+        }
+      ],
+      "decisions": [],
+      "preferences": []
+    },
+    "story_first": {
+      "reach": 3,
+      "total_claims": 8,
+      "unique_claims": 8,
+      "rules": [
+        {
+          "text": "Don't build dashboards with tabs/panels. Build guided story experiences using the act-based pattern from Triforce and DeepField Multimodal.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-frontend-storytelling"
+        },
+        {
+          "text": "Jonathan's demos are presented on large projection screens to executive audiences. A dashboard with tiny text and tabs doesn't tell a story. The hero's journey arc (ordinary world \u2192 call \u2192 ordeal \u2192 reward \u2192 return) gives the demo a narrative structure that builds to a climax.",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-frontend-storytelling"
+        },
+        {
+          "text": "Projection-scale fonts: 56-80px headlines, 20-28px body, min 14px for anything",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-frontend-storytelling"
+        },
+        {
+          "text": "Progressive disclosure: one thought per click, never a wall of text",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-frontend-storytelling"
+        },
+        {
+          "text": "Reference: Triforce App.tsx (act engine), DeepField App.tsx (hero's journey mapping)",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "feedback-frontend-storytelling"
+        }
+      ],
+      "facts": [
+        {
+          "text": "**Navigation:** Act-based linear progression with progress dots and keyboard nav.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "ai-sovereignty",
+          "source_file": "triforce-template"
+        },
+        {
+          "text": "Hero's Journey stays but the punchline changes: \"80% CPU at $0, 20% GPU at $/token, system routes for you\"",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "triforce",
+          "source_file": "pivot-heterogeneous-compute"
+        }
+      ],
+      "decisions": [],
+      "preferences": []
+    },
+    "cascade_framework": {
+      "reach": 3,
+      "total_claims": 12,
+      "unique_claims": 12,
+      "rules": [
+        {
+          "text": "System prompt must include domain context from the domain pack",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "feedback-phi4-gate2"
+        },
+        {
+          "text": "Replace the encoder-service HTTP calls in `_run_gate2()` with LiteLLM calls to phi-4. The domain pack YAML provides the system prompt context. The encoder pod can be scaled down or repurposed.\n\n[[project-cascade-overnight-results]]",
+          "type": "rule",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "feedback-phi4-gate2"
+        }
+      ],
+      "facts": [
+        {
+          "text": "AAP cascade validated 2026-08-06. Domain-agnostic proven with zero code changes to cascade framework.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-aap-validated"
+        },
+        {
+          "text": "1. **AAP signal source** \u2014 prove domain-agnostic on Ansible job signals (infra01 has AAP namespace)\n2. **Historical replay** \u2014 feed 140M Postgres signals through cascade offline\n3. **Action layer** \u2014 what happens to signals that pass through (tickets, alerts, routing)\n4. **Domain pack export** \u2014 export learned patterns as reusable YAML\n5. **GCL + immutable ledger** \u2014 governance layer for compliance\n6. **Whitepaper** \u2014 document the architecture, benchmarks, and findings",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-final-state"
+        },
+        {
+          "text": "1. Historical replay \u2014 feed 140M Postgres signals through cascade offline\n2. Lower Gate 2 threshold or let replay boost compression\n3. Action layer \u2014 what happens to signals that pass through (tickets, alerts, routing)\n4. GCL + immutable ledger for governance\n5. Second signal source (AAP/Ansible on infra01) to prove domain-agnostic\n6. IoT application exploration",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-overnight-results"
+        },
+        {
+          "text": "Wire AAP signal source as second domain to prove domain-agnostic.\n\n[[project-cascade-final-state]]",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-cascade-replay-results"
+        },
+        {
+          "text": "deepfield-multimodal becomes the engine. deepfield's K8s agents become a domain pack. Repos align to tiers.",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "crawler",
+          "source_file": "project-ecosystem-reorganization"
+        }
+      ],
+      "decisions": [],
+      "preferences": []
+    },
+    "production_gates": {
+      "reach": 3,
+      "total_claims": 3,
+      "unique_claims": 3,
+      "rules": [],
+      "facts": [
+        {
+          "text": "`make test-platform` is the full green light gate (all 11 stages)",
+          "type": "fact",
+          "source": "claude-code",
+          "project": "triforce",
+          "source_file": "pivot-heterogeneous-compute"
+        },
+        {
+          "text": "# Tests by stage (11 stages total)\nmake test-contracts              # Stage 0: schema validation (120 tests)\nmake test-infra                  # Stage 1: containers + health\nmake test-unit                   # Stage 2: per-service logic (49+13+3+29 tests)\nmake test-contracts-compliance   # Stage 3: response schema compliance\nmake test-integration            # Stage 4: cross-service workflows\nmake test-scale                  # Stage 5: synthetic load\nmake test-frontend               # Stage 6: live numbers accuracy\nmake test-multinode              # Stage 7: horizontal scaling\nmake test-modules                # Stage 8: module manifest + Helm validation (11 tests)\nmake test-benchmarks             # Stage 9: benchmark rubric validation (20 tests)\nmake test-workflows              # Stage 10: end-to-end workflows (8 tests)\nmake test-platform               # ALL stages \u2014 platform green light",
+          "type": "fact",
+          "source": "claude-md",
+          "project": "triforce",
+          "source_file": "triforce/CLAUDE.md/Development"
+        }
+      ],
+      "decisions": [],
+      "preferences": [
+        {
+          "text": "Prefers comprehensive, enterprise-grade architecture with TDD/BDD/CDD/EDD testing methodology, production gates, and rubric-based scoring. Wants the system to \"earn the right to production\" through measurable gates.",
+          "type": "preference",
+          "source": "claude-code",
+          "project": "fleet-llm-d",
+          "source_file": "user-jkershaw"
+        }
+      ]
+    }
+  }
+}

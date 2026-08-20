@@ -1,0 +1,36 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg
+
+# Secrets
+.env
+.env.*
+*.secrets*
+credentials*
+*secret*
+!cascade_compression/collectors/*.py
+
+# State
+*.state.json
+cascade-state-*.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+docs/memory-visualization.md
+docs/rhdp-biography.md
+docs/rhdp-platform-memory.md

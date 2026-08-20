@@ -1,0 +1,460 @@
+# llama-server Deployments for GGUF models on Oberon
+# Each model gets a Deployment + Service, fronted by LiteLLM
+# Models loaded from shared huggingface-model-cache PVC
+---
+# SmolLM2-360M Q8_0
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-smollm2-360m
+  namespace: triforce
+  labels:
+    app: llama-server
+    model: smollm2-360m
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama-smollm2-360m
+  template:
+    metadata:
+      labels:
+        app: llama-smollm2-360m
+        runtime: llama-cpp
+    spec:
+      containers:
+        - name: llama
+          image: ghcr.io/ggml-org/llama.cpp:server
+          securityContext:
+            allowPrivilegeEscalation: false
+          args: ["--model", "/models/gguf/smollm2-360m/SmolLM2-360M-Instruct-Q8_0.gguf",
+                 "--host", "0.0.0.0", "--port", "8080", "--ctx-size", "2048",
+                 "--threads", "4", "--alias", "smollm2-360m"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          resources:
+            requests: {cpu: "2", memory: 1Gi}
+            limits: {cpu: "4", memory: 2Gi}
+          readinessProbe:
+            httpGet: {path: /health, port: 8080}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: huggingface-model-cache
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llama-smollm2-360m
+  namespace: triforce
+spec:
+  selector:
+    app: llama-smollm2-360m
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+# SmolLM2-1.7B Q4_K_M
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-smollm2-1.7b
+  namespace: triforce
+  labels:
+    app: llama-server
+    model: smollm2-1.7b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama-smollm2-1.7b
+  template:
+    metadata:
+      labels:
+        app: llama-smollm2-1.7b
+        runtime: llama-cpp
+    spec:
+      containers:
+        - name: llama
+          image: ghcr.io/ggml-org/llama.cpp:server
+          securityContext:
+            allowPrivilegeEscalation: false
+          args: ["--model", "/models/gguf/smollm2-1.7b/smollm2-1.7b-instruct-q4_k_m.gguf",
+                 "--host", "0.0.0.0", "--port", "8080", "--ctx-size", "2048",
+                 "--threads", "8", "--alias", "smollm2-1.7b"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          resources:
+            requests: {cpu: "4", memory: 2Gi}
+            limits: {cpu: "8", memory: 4Gi}
+          readinessProbe:
+            httpGet: {path: /health, port: 8080}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: huggingface-model-cache
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llama-smollm2-1.7b
+  namespace: triforce
+spec:
+  selector:
+    app: llama-smollm2-1.7b
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+# Phi-4-mini Q4_K_M
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-phi4-mini
+  namespace: triforce
+  labels:
+    app: llama-server
+    model: phi4-mini
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama-phi4-mini
+  template:
+    metadata:
+      labels:
+        app: llama-phi4-mini
+        runtime: llama-cpp
+    spec:
+      containers:
+        - name: llama
+          image: ghcr.io/ggml-org/llama.cpp:server
+          securityContext:
+            allowPrivilegeEscalation: false
+          args: ["--model", "/models/gguf/phi4-mini/microsoft_Phi-4-mini-instruct-Q4_K_M.gguf",
+                 "--host", "0.0.0.0", "--port", "8080", "--ctx-size", "2048",
+                 "--threads", "12", "--alias", "phi4-mini"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          resources:
+            requests: {cpu: "6", memory: 4Gi}
+            limits: {cpu: "12", memory: 6Gi}
+          readinessProbe:
+            httpGet: {path: /health, port: 8080}
+            initialDelaySeconds: 60
+            periodSeconds: 10
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: huggingface-model-cache
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llama-phi4-mini
+  namespace: triforce
+spec:
+  selector:
+    app: llama-phi4-mini
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+# Gemma 2 2B Q8_0
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-gemma2-2b
+  namespace: triforce
+  labels:
+    app: llama-server
+    model: gemma2-2b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama-gemma2-2b
+  template:
+    metadata:
+      labels:
+        app: llama-gemma2-2b
+        runtime: llama-cpp
+    spec:
+      containers:
+        - name: llama
+          image: ghcr.io/ggml-org/llama.cpp:server
+          securityContext:
+            allowPrivilegeEscalation: false
+          args: ["--model", "/models/gguf/gemma2-2b/gemma-2-2b-it-Q8_0.gguf",
+                 "--host", "0.0.0.0", "--port", "8080", "--ctx-size", "2048",
+                 "--threads", "8", "--alias", "gemma2-2b"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          resources:
+            requests: {cpu: "4", memory: 4Gi}
+            limits: {cpu: "8", memory: 6Gi}
+          readinessProbe:
+            httpGet: {path: /health, port: 8080}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: huggingface-model-cache
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llama-gemma2-2b
+  namespace: triforce
+spec:
+  selector:
+    app: llama-gemma2-2b
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+# Qwen3.6-35B-A3B MoE Q4_K_M
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-qwen36-moe
+  namespace: triforce
+  labels:
+    app: llama-server
+    model: qwen36-moe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama-qwen36-moe
+  template:
+    metadata:
+      labels:
+        app: llama-qwen36-moe
+        runtime: llama-cpp
+    spec:
+      containers:
+        - name: llama
+          image: ghcr.io/ggml-org/llama.cpp:server
+          securityContext:
+            allowPrivilegeEscalation: false
+          args: ["--model", "/models/gguf/qwen36-moe/Qwen3.6-35B-A3B-Q4_K_M.gguf",
+                 "--host", "0.0.0.0", "--port", "8080", "--ctx-size", "2048",
+                 "--threads", "16", "--alias", "qwen36-moe-35b-a3b"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          resources:
+            requests: {cpu: "8", memory: 12Gi}
+            limits: {cpu: "16", memory: 16Gi}
+          readinessProbe:
+            httpGet: {path: /health, port: 8080}
+            initialDelaySeconds: 120
+            periodSeconds: 15
+            failureThreshold: 12
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: huggingface-model-cache
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llama-qwen36-moe
+  namespace: triforce
+spec:
+  selector:
+    app: llama-qwen36-moe
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+# granite-2b Q4_K_M (GGUF via llama.cpp — compare vs OVMS BF16/INT8)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-granite-2b-q4
+  namespace: triforce
+  labels:
+    app: llama-server
+    model: granite-2b-q4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama-granite-2b-q4
+  template:
+    metadata:
+      labels:
+        app: llama-granite-2b-q4
+        runtime: llama-cpp
+    spec:
+      containers:
+        - name: llama
+          image: ghcr.io/ggml-org/llama.cpp:server
+          securityContext:
+            allowPrivilegeEscalation: false
+          args: ["--model", "/models/gguf/granite-2b-q4/ibm-granite_granite-3.2-2b-instruct-Q4_K_M.gguf",
+                 "--host", "0.0.0.0", "--port", "8080", "--ctx-size", "2048",
+                 "--threads", "8", "--alias", "granite-2b-q4"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          resources:
+            requests: {cpu: "4", memory: 2Gi}
+            limits: {cpu: "8", memory: 4Gi}
+          readinessProbe:
+            httpGet: {path: /health, port: 8080}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: huggingface-model-cache
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llama-granite-2b-q4
+  namespace: triforce
+spec:
+  selector:
+    app: llama-granite-2b-q4
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+# granite-2b Q8_0
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-granite-2b-q8
+  namespace: triforce
+  labels:
+    app: llama-server
+    model: granite-2b-q8
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama-granite-2b-q8
+  template:
+    metadata:
+      labels:
+        app: llama-granite-2b-q8
+        runtime: llama-cpp
+    spec:
+      containers:
+        - name: llama
+          image: ghcr.io/ggml-org/llama.cpp:server
+          securityContext:
+            allowPrivilegeEscalation: false
+          args: ["--model", "/models/gguf/granite-2b-q8/ibm-granite_granite-3.2-2b-instruct-Q8_0.gguf",
+                 "--host", "0.0.0.0", "--port", "8080", "--ctx-size", "2048",
+                 "--threads", "8", "--alias", "granite-2b-q8"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          resources:
+            requests: {cpu: "4", memory: 4Gi}
+            limits: {cpu: "8", memory: 6Gi}
+          readinessProbe:
+            httpGet: {path: /health, port: 8080}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: huggingface-model-cache
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llama-granite-2b-q8
+  namespace: triforce
+spec:
+  selector:
+    app: llama-granite-2b-q8
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+# granite-8b Q4_K_M
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-granite-8b-q4
+  namespace: triforce
+  labels:
+    app: llama-server
+    model: granite-8b-q4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llama-granite-8b-q4
+  template:
+    metadata:
+      labels:
+        app: llama-granite-8b-q4
+        runtime: llama-cpp
+    spec:
+      containers:
+        - name: llama
+          image: ghcr.io/ggml-org/llama.cpp:server
+          securityContext:
+            allowPrivilegeEscalation: false
+          args: ["--model", "/models/gguf/granite-8b-q4/ibm-granite_granite-3.2-8b-instruct-Q4_K_M.gguf",
+                 "--host", "0.0.0.0", "--port", "8080", "--ctx-size", "2048",
+                 "--threads", "16", "--alias", "granite-8b-q4"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          resources:
+            requests: {cpu: "8", memory: 6Gi}
+            limits: {cpu: "16", memory: 10Gi}
+          readinessProbe:
+            httpGet: {path: /health, port: 8080}
+            initialDelaySeconds: 60
+            periodSeconds: 10
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: huggingface-model-cache
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llama-granite-8b-q4
+  namespace: triforce
+spec:
+  selector:
+    app: llama-granite-8b-q4
+  ports:
+    - port: 8080
+      targetPort: 8080

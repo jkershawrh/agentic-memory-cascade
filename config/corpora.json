@@ -1,0 +1,1336 @@
+{
+  "version": "1.0.0",
+  "compiled_at": "2026-08-01T06:10:20.180898+00:00",
+  "cluster": "oberon",
+  "hardware": "Intel Xeon 6767P",
+  "instruction_sets": [
+    "AMX-BF16",
+    "AMX-INT8",
+    "AVX-512",
+    "AVX-VNNI"
+  ],
+  "model_roster": [
+    "bitnet-2b",
+    "gemma2-2b",
+    "granite-2b-cpu",
+    "granite-2b-cpu-speculative",
+    "granite-2b-int8",
+    "granite-2b-q4",
+    "granite-2b-q8",
+    "granite-3-2-8b-instruct-cpu",
+    "granite-350m",
+    "granite-4-0-h-tiny-cpu",
+    "granite-4.1-3b",
+    "granite-4.1-8b",
+    "granite-8b-q4",
+    "phi3-mini-cpu",
+    "phi4-mini",
+    "qwen25-3b-cpu",
+    "qwen36-moe-35b-a3b",
+    "smollm2-1.7b",
+    "smollm2-360m"
+  ],
+  "entries": {
+    "basic": {
+      "classify-short": {
+        "micro": {
+          "config": {
+            "model": "smollm2-360m",
+            "params": 0.36,
+            "serving_layer": "llama-cpp",
+            "dtype": "Q8_0",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 24.0,
+            "latency_p95_grade": "green",
+            "throughput_tok_s": 85.59,
+            "throughput_tok_s_grade": "green",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-350m",
+            "params": 0.35,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-350m",
+              "params": 0.35,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-2b-q8",
+              "params": 2.0,
+              "serving_layer": "llama-cpp",
+              "dtype": "Q8_0",
+              "optimization": ""
+            },
+            {
+              "model": "qwen25-3b-cpu",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        },
+        "macro": {
+          "config": {
+            "model": "granite-3-2-8b-instruct-cpu",
+            "params": 8.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "macro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 152.55,
+            "latency_p95_grade": "green",
+            "throughput_tok_s": 13.96,
+            "throughput_tok_s_grade": "red",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-3-2-8b-instruct-cpu",
+            "params": 8.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "phi3-mini-cpu",
+              "params": 3.8,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "phi3-mini-cpu",
+              "params": 3.8,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-4.1-8b",
+              "params": 8.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      },
+      "extract-medium": {
+        "micro": {
+          "config": {
+            "model": "smollm2-360m",
+            "params": 0.36,
+            "serving_layer": "llama-cpp",
+            "dtype": "Q8_0",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 492.79999999999876,
+            "latency_p95_grade": "green",
+            "throughput_tok_s": 104.79,
+            "throughput_tok_s_grade": "green",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": true,
+            "variance_grade": "red",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-350m",
+            "params": 0.35,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-350m",
+              "params": 0.35,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "bitnet-2b",
+              "params": 2.0,
+              "serving_layer": "llama-cpp",
+              "dtype": "i2_s",
+              "optimization": ""
+            },
+            {
+              "model": "granite-4-0-h-tiny-cpu",
+              "params": 1.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        },
+        "macro": {
+          "config": {
+            "model": "phi3-mini-cpu",
+            "params": 3.8,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "macro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 6403.15,
+            "latency_p95_grade": "red",
+            "throughput_tok_s": 23.4,
+            "throughput_tok_s_grade": "yellow",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-4.1-8b",
+            "params": 8.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-4.1-8b",
+              "params": 8.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-3-2-8b-instruct-cpu",
+              "params": 8.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-3-2-8b-instruct-cpu",
+              "params": 8.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      },
+      "summarize-long": {
+        "micro": {
+          "config": {
+            "model": "smollm2-360m",
+            "params": 0.36,
+            "serving_layer": "llama-cpp",
+            "dtype": "Q8_0",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 605.4499999999998,
+            "latency_p95_grade": "yellow",
+            "throughput_tok_s": 139.67,
+            "throughput_tok_s_grade": "green",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-4.1-3b",
+            "params": 3.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "bitnet-2b",
+              "params": 2.0,
+              "serving_layer": "llama-cpp",
+              "dtype": "i2_s",
+              "optimization": ""
+            },
+            {
+              "model": "qwen25-3b-cpu",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-2b-q8",
+              "params": 2.0,
+              "serving_layer": "llama-cpp",
+              "dtype": "Q8_0",
+              "optimization": ""
+            }
+          ]
+        },
+        "macro": {
+          "config": {
+            "model": "phi3-mini-cpu",
+            "params": 3.8,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "macro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 5271.499999999999,
+            "latency_p95_grade": "red",
+            "throughput_tok_s": 24.82,
+            "throughput_tok_s_grade": "yellow",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "phi3-mini-cpu",
+            "params": 3.8,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-4.1-8b",
+              "params": 8.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-3-2-8b-instruct-cpu",
+              "params": 8.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-3-2-8b-instruct-cpu",
+              "params": 8.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      }
+    },
+    "fsi": {
+      "dispute-classification": {
+        "micro": {
+          "config": {
+            "model": "granite-350m",
+            "params": 0.35,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 451.0000000000002,
+            "latency_p95_grade": "green",
+            "throughput_tok_s": 84.57,
+            "throughput_tok_s_grade": "green",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": true,
+            "variance_grade": "red",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-2b-cpu",
+            "params": 2.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-4.1-3b",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-2b-cpu",
+              "params": 2.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      },
+      "fraud-scoring": {
+        "micro": {
+          "config": {
+            "model": "granite-4.1-3b",
+            "params": 3.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 3627.4500000000007,
+            "latency_p95_grade": "red",
+            "throughput_tok_s": 25.95,
+            "throughput_tok_s_grade": "yellow",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": true,
+            "variance_grade": "red",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "qwen25-3b-cpu",
+            "params": 3.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-2b-cpu",
+              "params": 2.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-2b-cpu",
+              "params": 2.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      },
+      "loan-document-extraction": {
+        "micro": {
+          "config": {
+            "model": "granite-2b-cpu",
+            "params": 2.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 4581.3,
+            "latency_p95_grade": "red",
+            "throughput_tok_s": 28.91,
+            "throughput_tok_s_grade": "yellow",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-4.1-3b",
+            "params": 3.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "qwen25-3b-cpu",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "qwen25-3b-cpu",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      }
+    },
+    "healthcare": {
+      "clinical-summarization": {
+        "macro": {
+          "config": {
+            "model": "granite-3-2-8b-instruct-cpu",
+            "params": 8.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "macro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 8227.35,
+            "latency_p95_grade": "red",
+            "throughput_tok_s": 17.53,
+            "throughput_tok_s_grade": "red",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-4.1-8b",
+            "params": 8.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "phi3-mini-cpu",
+              "params": 3.8,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "phi3-mini-cpu",
+              "params": 3.8,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      }
+    },
+    "insurance": {
+      "claims-triage": {
+        "micro": {
+          "config": {
+            "model": "granite-350m",
+            "params": 0.35,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 941.8,
+            "latency_p95_grade": "yellow",
+            "throughput_tok_s": 66.5,
+            "throughput_tok_s_grade": "green",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": true,
+            "variance_grade": "red",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-4.1-3b",
+            "params": 3.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-2b-cpu",
+              "params": 2.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-2b-cpu",
+              "params": 2.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      },
+      "policy-extraction": {
+        "micro": {
+          "config": {
+            "model": "granite-2b-cpu",
+            "params": 2.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 11688.3,
+            "latency_p95_grade": "red",
+            "throughput_tok_s": 13.98,
+            "throughput_tok_s_grade": "red",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "qwen25-3b-cpu",
+            "params": 3.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "qwen25-3b-cpu",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-4.1-3b",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      },
+      "underwriting-risk": {
+        "macro": {
+          "config": {
+            "model": "granite-4.1-8b",
+            "params": 8.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "macro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 17966.9,
+            "latency_p95_grade": "red",
+            "throughput_tok_s": 18.13,
+            "throughput_tok_s_grade": "red",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-3-2-8b-instruct-cpu",
+            "params": 8.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "phi3-mini-cpu",
+              "params": 3.8,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "phi3-mini-cpu",
+              "params": 3.8,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      }
+    },
+    "retail": {
+      "demand-classification": {
+        "micro": {
+          "config": {
+            "model": "granite-350m",
+            "params": 0.35,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 823.0500000000002,
+            "latency_p95_grade": "yellow",
+            "throughput_tok_s": 43.91,
+            "throughput_tok_s_grade": "green",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-2b-cpu",
+            "params": 2.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-2b-cpu",
+              "params": 2.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "qwen25-3b-cpu",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      },
+      "product-categorization": {
+        "micro": {
+          "config": {
+            "model": "granite-350m",
+            "params": 0.35,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 1364.0000000000002,
+            "latency_p95_grade": "yellow",
+            "throughput_tok_s": 46.99,
+            "throughput_tok_s_grade": "green",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-2b-cpu",
+            "params": 2.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-4.1-3b",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-2b-cpu",
+              "params": 2.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      },
+      "review-sentiment": {
+        "micro": {
+          "config": {
+            "model": "granite-2b-cpu",
+            "params": 2.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 2383.0999999999995,
+            "latency_p95_grade": "red",
+            "throughput_tok_s": 30.78,
+            "throughput_tok_s_grade": "yellow",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-2b-cpu",
+            "params": 2.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "qwen25-3b-cpu",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-4.1-3b",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      }
+    },
+    "telecom": {
+      "churn-prediction": {
+        "macro": {
+          "config": {
+            "model": "phi3-mini-cpu",
+            "params": 3.8,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "macro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 7294.849999999999,
+            "latency_p95_grade": "red",
+            "throughput_tok_s": 27.56,
+            "throughput_tok_s_grade": "yellow",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "phi3-mini-cpu",
+            "params": 3.8,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-4.1-8b",
+              "params": 8.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-3-2-8b-instruct-cpu",
+              "params": 8.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      },
+      "network-anomaly": {
+        "micro": {
+          "config": {
+            "model": "granite-2b-cpu",
+            "params": 2.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 5896.65,
+            "latency_p95_grade": "red",
+            "throughput_tok_s": 28.83,
+            "throughput_tok_s_grade": "yellow",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": true,
+            "variance_grade": "red",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-2b-cpu",
+            "params": 2.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-4.1-3b",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "qwen25-3b-cpu",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      },
+      "ticket-routing": {
+        "micro": {
+          "config": {
+            "model": "granite-350m",
+            "params": 0.35,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "tier": "micro",
+          "scorecard": {
+            "quality_accuracy": 1.0,
+            "quality_accuracy_grade": "green",
+            "quality_coherence": 0.0,
+            "quality_coherence_grade": "green",
+            "quality_faithfulness": 0.0,
+            "quality_faithfulness_grade": "green",
+            "latency_ttft_ms": 0.0,
+            "latency_ttft_grade": "green",
+            "latency_p95_ms": 1143.6000000000001,
+            "latency_p95_grade": "yellow",
+            "throughput_tok_s": 43.02,
+            "throughput_tok_s_grade": "green",
+            "throughput_batch": 0.0,
+            "throughput_batch_grade": "green",
+            "variance_flagged": false,
+            "variance_grade": "green",
+            "memory_gb": 0.0,
+            "memory_grade": "green",
+            "composite_score": 0.0,
+            "composite_grade": "green"
+          },
+          "fallback": {
+            "model": "granite-2b-cpu",
+            "params": 2.0,
+            "serving_layer": "ovms",
+            "dtype": "bfloat16",
+            "optimization": ""
+          },
+          "alternatives": [
+            {
+              "model": "granite-2b-cpu",
+              "params": 2.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            },
+            {
+              "model": "granite-4.1-3b",
+              "params": 3.0,
+              "serving_layer": "ovms",
+              "dtype": "bfloat16",
+              "optimization": ""
+            }
+          ]
+        }
+      }
+    }
+  },
+  "gaps": [
+    {
+      "industry": "basic",
+      "task": "generate-qa",
+      "tier": "micro",
+      "best_quality": 0.0,
+      "models_tested": 29,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "basic",
+      "task": "generate-qa",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 10,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "fsi",
+      "task": "compliance-screening",
+      "tier": "micro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "fsi",
+      "task": "compliance-screening",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 4,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "fsi",
+      "task": "dispute-classification",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "fsi",
+      "task": "fraud-scoring",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "fsi",
+      "task": "loan-document-extraction",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "healthcare",
+      "task": "clinical-classification",
+      "tier": "micro",
+      "best_quality": 0.367,
+      "models_tested": 4,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "healthcare",
+      "task": "clinical-classification",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "healthcare",
+      "task": "clinical-summarization",
+      "tier": "micro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "healthcare",
+      "task": "medical-ner",
+      "tier": "micro",
+      "best_quality": 0.565,
+      "models_tested": 3,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "healthcare",
+      "task": "medical-ner",
+      "tier": "macro",
+      "best_quality": 0.565,
+      "models_tested": 1,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "insurance",
+      "task": "claims-triage",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "insurance",
+      "task": "policy-extraction",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "insurance",
+      "task": "underwriting-risk",
+      "tier": "micro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "retail",
+      "task": "demand-classification",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "retail",
+      "task": "product-categorization",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "retail",
+      "task": "review-sentiment",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "telecom",
+      "task": "churn-prediction",
+      "tier": "micro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "telecom",
+      "task": "network-anomaly",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    },
+    {
+      "industry": "telecom",
+      "task": "ticket-routing",
+      "tier": "macro",
+      "best_quality": 0.0,
+      "models_tested": 0,
+      "reason": "no model passed quality gate"
+    }
+  ]
+}
