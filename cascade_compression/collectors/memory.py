@@ -74,7 +74,7 @@ _TOPIC_PATTERNS = {
     "infra01_only": re.compile(r"\b(infra01|never.oberon|context.drift|use.context)\b", re.IGNORECASE),
     "openshift_deploy": re.compile(r"\b(openshift|ocp|deploy.to|deployed.on|namespace|oc\s+(?:get|exec|apply|login))\b", re.IGNORECASE),
     "immutable_ledger": re.compile(r"\b(immutable.ledger|hash.chain|append.only|decision.record|audit.verdict)\b", re.IGNORECASE),
-    "demo_platform": re.compile(r"\b(demo.platform|rhdp|showroom|catalog.item|sandbox.api|agnosticv)\b", re.IGNORECASE),
+    "demo_platform": re.compile(r"\b(demo.platform|showroom|catalog.item)\b", re.IGNORECASE),
     "summit_connect": re.compile(r"\b(summit.connect|summit.2026|event.lab|quickstart)\b", re.IGNORECASE),
     "pipeline_routing": re.compile(r"\b(routing.engine|inference.routing|model.select|lane.routing|corpora)\b", re.IGNORECASE),
     "agent_architecture": re.compile(r"\b(multi.agent|agent.promot|agent.discover|nano.agent|micro.agent|macro.agent)\b", re.IGNORECASE),

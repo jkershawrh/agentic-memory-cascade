@@ -233,16 +233,10 @@ def _run_generic_collector(collector, target_url: str, interval: int, name: str)
 
 _COLLECTOR_REGISTRY = {
     "prometheus": ("cascade_compression.collectors.prometheus", "PrometheusCollector"),
-    "poolboy": ("cascade_compression.collectors.poolboy", "PoolboyCollector"),
-    "sandbox_conan": ("cascade_compression.collectors.sandbox_conan", "SandboxConanCollector"),
-    "babylon": ("cascade_compression.collectors.babylon", "BabylonCollector"),
     "gitops": ("cascade_compression.collectors.gitops", "GitOpsCollector"),
-    "agnosticv": ("cascade_compression.collectors.agnosticv", "AgnosticVCollector"),
-    "stargate": ("cascade_compression.collectors.stargate", "StargateCollector"),
     "ovn": ("cascade_compression.collectors.ovn", "OVNCollector"),
     "ceph": ("cascade_compression.collectors.ceph", "CephCollector"),
     "governor": ("cascade_compression.collectors.governor", "GovernorCollector"),
-    "labagator": ("cascade_compression.collectors.labagator", "LabagatorCollector"),
     "jira": ("cascade_compression.collectors.jira", "JiraCollector"),
     "git": ("cascade_compression.collectors.git", "GitCollector"),
     "confluence": ("cascade_compression.collectors.confluence", "ConfluenceCollector"),

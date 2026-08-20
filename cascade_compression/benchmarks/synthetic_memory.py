@@ -26,10 +26,10 @@ class SyntheticMemoryClaim:
 
 
 PROJECTS = [
-    "fleet-llm-d", "cascade-compression", "deepfield", "geolux",
-    "stargate", "are-immutable-ledger", "intel-quickstarts", "triforce",
-    "governed-cognitive-loop", "novascan", "launchpad", "command-center",
-    "agentobs", "slo-sli-automation", "edge-inference-at-scale",
+    "fleet-controller", "cascade-compression", "signal-processor", "geo-analyzer",
+    "validation-engine", "evidence-ledger", "ai-quickstarts", "platform-core",
+    "cognitive-loop", "capacity-scanner", "orchestrator", "control-plane",
+    "observability-agent", "slo-automation", "edge-inference",
     "ai-on-xeon",
 ]
 
