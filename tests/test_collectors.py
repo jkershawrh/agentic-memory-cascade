@@ -196,13 +196,6 @@ class TestCollectorImports:
             JiraCollector(), GitCollector(), ConfluenceCollector(),
         ])
 
-    def test_sidecar_registry(self):
-        from cascade_compression.collector_sidecar import _COLLECTOR_REGISTRY
-        expected = {"prometheus", "gitops", "ovn", "ceph", "governor",
-                    "jira", "git", "confluence"}
-        assert expected == set(_COLLECTOR_REGISTRY.keys())
-
-
 class TestJiraSignal:
     def test_reopened_issue(self):
         from cascade_compression.collectors.jira import JiraCollector

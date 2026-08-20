@@ -42,17 +42,18 @@ from .cascade.memory import MemoryArchive
 from .cascade.inverse import SuppressionArchive, inverse_analysis, export_learned_agents
 from .cascade.memory_intelligence import MemoryIntelligence
 from .cascade.recall import RecallEngine
-from .memory_search import (
-    MemorySearchEngine, _available as _search_available,
-    _unavailable_reason as _search_unavailable_reason,
-)
+def _search_available():
+    return False
+
+def _search_unavailable_reason():
+    return "Semantic search module not included in this quickstart"
 
 log = logging.getLogger(__name__)
 
 _bridge: CascadeBridge = None
 _memory_archive: MemoryArchive = None
 _memory_intel: MemoryIntelligence = None
-_search_engine: MemorySearchEngine = None
+_search_engine = None
 
 
 def _load_prompt(domain: str) -> str:
