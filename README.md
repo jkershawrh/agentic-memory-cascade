@@ -206,7 +206,9 @@ The macro tier handles the rarest, most complex signals — deep root cause anal
 
 **The result:** You don't need GPU infrastructure for 99%+ of your signal processing. The cascade runs the volume on Intel Xeon CPU and escalates to GPU only for the signals that genuinely need deep reasoning.
 
-> **Powered by Intel** -- Validated on Intel Xeon 6 (128 cores). CPU handles the volume. GPU handles the depth. No signal left behind.
+**Tested on Intel hardware end-to-end.** All production benchmarks (5.5M+ live signals, 142.4M replay, 19,000+ GPU analyses) ran on Intel Xeon 6 (128-core Xeon 6767P) for CPU inference and Intel accelerators for the GPU macro tier. The numbers in this README come from Intel silicon, not theoretical projections.
+
+> **Powered by Intel** -- Validated on Intel Xeon 6 and Intel accelerators. CPU handles the volume. GPU handles the depth.
 
 ## Requirements
 
