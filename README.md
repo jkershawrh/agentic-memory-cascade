@@ -27,22 +27,22 @@ _Self-curating institutional memory for agentic systems, with zero tolerance for
 
 ## Overview
 
-An ad operations team asks their AI agent: "Which bid strategies worked for automotive campaigns in the Southeast last quarter, and which placements should we avoid?" The agent should answer from institutional memory, not re-analyze billions of bid events. It should know what strategies won auctions, what click patterns turned out to be fraud, and what placements triggered brand safety incidents, with a proof chain for every conclusion.
+Your AI agent processes millions of signals a day. It classifies transactions, monitors infrastructure, triages alerts, screens content. Ask it tomorrow what it learned today and it has no answer. Its context window overflowed hours ago. The lessons it extracted are gone.
 
-Today's AI agents can't do this. They lose context between interactions, overflow their context windows with raw bid logs, and can't explain what they remember or why. AdTech moves at millions of events per second with sub-100ms latency requirements. You can't call an LLM for every bid request.
+AI agents need institutional memory: a system that decides what matters, retains it, forgets what doesn't, and proves every decision to auditors. Not a data lake that remembers everything with no comprehension. A memory that curates itself.
 
-The agentic memory cascade solves this. It ingests millions of signals per day, compresses 85-99% of noise deterministically, and retains only the survivors as institutional memory. Each memory is validated empirically (200+ samples, zero false negatives), decays naturally (72 hours, because yesterday's high-performing audience segment may not convert today), and is continuously re-verified by independent audit.
+The agentic memory cascade solves this. It ingests millions of signals per day, compresses 85-99% of noise deterministically, and retains only the survivors as institutional memory. Each memory is validated empirically (200+ samples, zero false negatives), decays naturally (72 hours), and is continuously re-verified by independent audit. The LLM only processes what the cascade cannot resolve -- typically 0.007% of signals.
 
 ## Who is this for
 
-- **AdTech platform engineers** building campaign optimization agents that must remember what bid strategies win auctions across millions of daily events without calling an LLM for every bid
-- **Ad fraud investigators** building detection agents that must learn and remember click fraud patterns, bot traffic signatures, and impression fraud markers, and never forget a confirmed fraud pattern
-- **Brand safety teams** building monitoring agents that must ensure an ad never appears next to harmful content, with an auditable memory of every placement decision
-- **Media buying analysts** building programmatic agents that need bounded, relevant context about audience performance across campaigns without overwhelming a 128K context window with raw bid logs
+- **Platform engineers** building AI agents that must remember what happened across millions of daily events without calling an LLM for every signal
+- **Compliance and risk teams** needing auditable proof of what an AI system learned, forgot, and why -- with an immutable ledger trail
+- **SRE and AIOps teams** building observability agents that learn from incidents and carry that knowledge forward, not just the most recent alert
+- **Anyone drowning in signal noise** -- if your agents process more data than fits in a context window, the cascade gives them bounded, relevant, governed memory
 
-## Example: AdTech campaign optimization agent
+## Example: What memory formation looks like
 
-Here's what governed memory looks like for a programmatic advertising agent processing 2 million bid request signals per day:
+Pick any domain -- the pattern is the same. Here's what it looks like for a programmatic advertising agent processing 2 million bid request signals per day:
 
 **Day 1: Cold start.** The cascade has no learned memory. Every bid event goes to the LLM for classification: is this signal worth remembering (winning bid strategy, unusual click pattern, brand safety flag) or is it noise (routine no-bid, below-floor auction, standard impression)? The LLM processes all 2M signals. Slow and expensive.
 
@@ -278,7 +278,7 @@ oc delete all -l app=agentic-memory-cascade
 
 - **Title:** Build governed memory for AI agents that never forgets
 - **Description:** Self-curating institutional memory for agentic systems, with zero tolerance for forgetting critical context
-- **Industry:** Broadcasting and cable
+- **Industry:** Media and IT services
 - **Product:** Red Hat OpenShift AI
 - **Use case:** AI inference
 - **Partner:** Intel
