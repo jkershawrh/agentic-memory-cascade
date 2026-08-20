@@ -149,10 +149,15 @@ Five layers, none trusting each other:
 
 One false negative from any source and the memory is instantly deactivated, samples zeroed, evidence chain written to the immutable ledger.
 
+> **Note:** The GCL (Governed Cognitive Loop) audit layer is a separate application, not included in this quickstart. It provides independent verification of cascade decisions via an immutable ledger. The cascade runs without it -- the GCL adds an additional layer of governance for production deployments. See [governed-cognitive-loop](https://github.com/jkershawrh/governed-cognitive-loop) for more.
+
 ## See it in action
 
+The demo uses [Ollama](https://ollama.com) to run IBM Granite 3.2 8B Instruct locally on CPU. This is the same model validated in production (14/20 classification score, zero dangerous misses).
+
 ```bash
-./demo.sh              # One command — watch memory form on the dashboard
+# Install Ollama first: https://ollama.com
+./demo.sh              # Pulls the model, starts the service, opens the dashboard
 ./demo.sh finance fast  # Financial services domain, fast replay
 ./demo.sh telecom slow  # Telecom domain, slow for presentations
 ```
@@ -163,7 +168,7 @@ The Gradio dashboard at `http://localhost:7860` shows:
 - **Compression** -- real-time gauge climbing as agents learn what is noise
 - **Audit Trail** -- every memory decision with provenance chain
 
-No LLM needed for the demo. Runs on a laptop.
+**Requirements:** [Ollama](https://ollama.com) installed, ~5 GB disk for the model, 16 GB RAM recommended.
 
 ## Industry domain packs
 
@@ -214,19 +219,19 @@ The macro tier handles the rarest, most complex signals — deep root cause anal
 
 ### Minimum hardware requirements
 
-| Component | Minimum |
-|---|---|
-| CPU cores | 4 (Intel Xeon recommended) |
-| Memory | 8 GiB |
-| Storage | 10 GiB |
+| Component | Minimum | Recommended |
+|---|---|---|
+| CPU cores | 4 | 8+ (Intel Xeon recommended) |
+| Memory | 16 GiB (for Granite 8B model) | 32 GiB |
+| Storage | 10 GiB (+ ~5 GiB for model weights) | 20 GiB |
 
 ### Minimum software requirements
 
-| Requirement | Version |
-|---|---|
-| Python | 3.9+ |
-| Red Hat OpenShift | 4.14 or later |
-| LLM endpoint | Any OpenAI-compatible API |
+| Requirement | Version | Purpose |
+|---|---|---|
+| Python | 3.9+ | Cascade engine |
+| [Ollama](https://ollama.com) | Any | Local LLM inference (pulls Granite 3.2 8B) |
+| Red Hat OpenShift | 4.14 or later | For cluster deployment (not required for local demo) |
 
 ### Required user permissions
 
