@@ -28,19 +28,7 @@ from .routing.corpora import (
     resolve_lane_model,
     resolve_lane_response_format,
 )
-from .infra.fleet_manager import FleetManager, FleetPlan, FleetScorecard, ModelAllocation
 from .routing.models import RoutingDecision
-from .infra.scaler import (
-    InferenceScaler,
-    ModelBudget,
-    ModelFootprint,
-    ModelLifecycleManager,
-    PressureObserver,
-    PressureScorecard,
-    PressureSnapshot,
-    ScalerState,
-    estimate_memory_gb,
-)
 from .routing.strategy_router import DEFAULT_STRATEGY, InferenceStrategy, StrategyRouter
 from .routing.task_mapping import (
     DEEPFIELD_TASK_TO_BENCHMARK_SHAPE,
@@ -55,8 +43,4 @@ __all__ = [
     "WorkloadBootstrapper", "WorkloadProfile", "WorkloadFingerprint", "ClassificationScorecard",
     "RoutingDecision",
     "DEEPFIELD_TASK_TO_BENCHMARK_SHAPE", "resolve_benchmark_task",
-    "InferenceScaler", "ScalerState", "PressureSnapshot", "PressureScorecard",
-    "ModelFootprint", "ModelBudget", "PressureObserver", "estimate_memory_gb",
-    "ModelLifecycleManager",
-    "FleetManager", "FleetPlan", "FleetScorecard", "ModelAllocation",
 ]
