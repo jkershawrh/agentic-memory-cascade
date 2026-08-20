@@ -6,7 +6,7 @@ _Self-curating institutional memory for agentic systems, with zero tolerance for
 
 - [Overview](#overview)
 - [Who is this for](#who-is-this-for)
-- [Example: Financial services compliance agent](#example-financial-services-compliance-agent)
+- [Example: AdTech campaign optimization agent](#example-adtech-campaign-optimization-agent)
 - [Detailed description](#detailed-description)
   - [Architecture diagrams](#architecture-diagrams)
   - [How memory forms](#how-memory-forms)
@@ -27,38 +27,38 @@ _Self-curating institutional memory for agentic systems, with zero tolerance for
 
 ## Overview
 
-A compliance officer at a bank asks the AI agent: "What patterns has the system learned about wire transfers from high-risk jurisdictions this quarter?" The agent should answer from institutional memory, not re-analyze every transaction. It should know what it learned, when it learned it, why it still believes it, and what it chose to forget.
+An ad operations team asks their AI agent: "Which bid strategies worked for automotive campaigns in the Southeast last quarter, and which placements should we avoid?" The agent should answer from institutional memory, not re-analyze billions of bid events. It should know what strategies won auctions, what click patterns turned out to be fraud, and what placements triggered brand safety incidents, with a proof chain for every conclusion.
 
-Today's AI agents can't do this. They lose context between interactions, overflow their context windows, and can't explain what they remember or why. Enterprise agents need governed memory: self-curating, auditable, with zero tolerance for forgetting what matters.
+Today's AI agents can't do this. They lose context between interactions, overflow their context windows with raw bid logs, and can't explain what they remember or why. AdTech moves at millions of events per second with sub-100ms latency requirements. You can't call an LLM for every bid request.
 
-The agentic memory cascade solves this. It ingests millions of signals per day from any operational domain, compresses 85-99% of noise deterministically, and retains only the survivors as institutional memory. Each memory is validated empirically (200+ samples, zero false negatives), decays naturally (72 hours), and is continuously re-verified by independent audit.
+The agentic memory cascade solves this. It ingests millions of signals per day, compresses 85-99% of noise deterministically, and retains only the survivors as institutional memory. Each memory is validated empirically (200+ samples, zero false negatives), decays naturally (72 hours, because yesterday's high-performing audience segment may not convert today), and is continuously re-verified by independent audit.
 
 ## Who is this for
 
-- **Financial services compliance teams** building AI agents that must remember every fraud pattern, explain every decision to regulators, and never forget a compliance signal
-- **Healthcare platform engineers** building clinical AI that must retain critical patient safety context across interactions without overwhelming the context window
-- **SRE and AIOps teams** building observability agents that learn from incidents and remember what signals preceded every outage, not just the most recent one
-- **Insurance claims investigators** building agents that remember historical fraud patterns and surface them when similar claims appear months later
+- **AdTech platform engineers** building campaign optimization agents that must remember what bid strategies win auctions across millions of daily events without calling an LLM for every bid
+- **Ad fraud investigators** building detection agents that must learn and remember click fraud patterns, bot traffic signatures, and impression fraud markers, and never forget a confirmed fraud pattern
+- **Brand safety teams** building monitoring agents that must ensure an ad never appears next to harmful content, with an auditable memory of every placement decision
+- **Media buying analysts** building programmatic agents that need bounded, relevant context about audience performance across campaigns without overwhelming a 128K context window with raw bid logs
 
-## Example: Financial services compliance agent
+## Example: AdTech campaign optimization agent
 
-Here's what governed memory looks like for a compliance monitoring agent processing 500,000 transaction signals per day:
+Here's what governed memory looks like for a programmatic advertising agent processing 2 million bid request signals per day:
 
-**Day 1: Cold start.** The cascade has no learned memory. Every signal goes to the LLM for classification. The LLM processes all 500K signals and classifies 92.7% of them as routine (not fraud, not compliance-relevant). Cost: high. Latency: slow.
+**Day 1: Cold start.** The cascade has no learned memory. Every bid event goes to the LLM for classification: is this signal worth remembering (winning bid strategy, unusual click pattern, brand safety flag) or is it noise (routine no-bid, below-floor auction, standard impression)? The LLM processes all 2M signals. Slow and expensive.
 
-**Day 3: Memory forms.** The cascade's corpus analyzer notices that wire transfers under $500 between domestic accounts with established history are always classified as routine. It proposes a nano agent (a deterministic rule) to handle this pattern. The agent is tested against 200+ samples with zero false negatives and promoted to active. Now those signals are filtered in sub-millisecond, never touching the LLM.
+**Day 3: Memory forms.** The corpus analyzer notices that bid requests from known low-viewability placements in the IAB "run of network" category are always classified as noise. It proposes a nano agent (a deterministic rule): "Suppress bid events from placements with viewability below 30% in run-of-network inventory." The agent is tested against 200+ real bid events with zero false negatives (it never suppressed a signal that turned out to be a winning strategy or fraud indicator) and promoted to active. Now those signals are filtered in sub-millisecond, never touching the LLM.
 
-**Day 7: Memory curates.** 14 nano agents are active, compressing 61% of signals. The LLM only processes the 39% that the cascade can't resolve. A shadow validation check catches one agent that started missing a new pattern of structuring (splitting a large transfer into smaller ones). That agent is instantly deactivated, its samples zeroed, and the evidence chain written to the immutable ledger. The cascade learns from the correction.
+**Day 7: Memory curates.** 18 nano agents are active, compressing 88% of bid noise. The LLM only processes the 12% the cascade can't resolve: borderline placements, unusual click-to-conversion ratios, new publisher domains. A shadow validation check catches one agent that started missing a new click fraud pattern (bot traffic mimicking human scroll behavior on a previously clean publisher). That agent is instantly deactivated. The cascade learns from the correction.
 
-**Day 30: Institutional knowledge.** The cascade has compressed 61% of routine noise. The survivor archive contains a curated record of every signal that actually mattered: confirmed fraud patterns, compliance violations, unusual jurisdiction activity, structuring attempts. When the compliance officer asks "what has the system learned about high-risk jurisdictions?", the answer comes from the survivor archive, not a log search. Every memory has a provenance chain: how it was learned, how many times it was validated, when it was last re-verified, and whether the GCL audit loop confirmed or challenged it.
+**Day 30: Institutional knowledge.** The survivor archive contains a curated record of everything that mattered: winning bid strategies by audience segment, confirmed click fraud patterns, brand safety incidents by publisher, seasonal audience behavior shifts. When the media buyer asks "what worked for automotive in the Southeast?", the answer comes from the survivor archive. Every memory has a provenance chain: how it was learned, how many times it was validated, and whether the GCL audit loop confirmed or challenged it.
 
-**What the auditor sees:** An immutable ledger entry for every memory decision. Which agents are active, when they were promoted, their false-negative rate (always zero), their shadow validation history, and their GCL audit verdicts. Not "the AI said so." A proof chain.
+**What the brand safety auditor sees:** An immutable ledger entry for every memory decision. Which patterns are actively being suppressed, when each was promoted, their false-negative rate (always zero), whether any brand safety signal was ever incorrectly suppressed (never, or it would have been caught by shadow validation). Not "the AI decided." A proof chain that holds up in an advertiser review.
 
 ## Detailed description
 
-The cascade maps directly to how memory works. Raw signals arrive as sensory input. The nano tier (working memory) filters and pattern-matches, discarding most input at sub-millisecond latency. The micro tier (episodic memory) classifies notable events using a small CPU model. Macro survivors become semantic memory: a compressed, curated record of things that actually mattered.
+The cascade maps directly to how memory works. Raw signals arrive as sensory input (bid events, click streams, impression logs). The nano tier (working memory) filters and pattern-matches, discarding most input at sub-millisecond latency, fast enough for real-time bidding. The micro tier (episodic memory) classifies notable events using a small CPU model. Macro survivors become semantic memory: a compressed, curated record of things that actually mattered.
 
-The critical difference from a data lake: a data lake remembers everything with no comprehension. It cannot tell you what mattered. The cascade can, because it learned what the LLM considers noise and encoded that knowledge as executable deterministic rules. The LLM only processes what the cascade cannot resolve (typically 0.007% of signals).
+The critical difference from a data warehouse: a data warehouse remembers every impression with no comprehension. It cannot tell you what mattered. The cascade can, because it learned what the LLM considers noise and encoded that knowledge as executable deterministic rules. The LLM only processes what the cascade cannot resolve (typically 0.007% of signals).
 
 Each industry vertical is a "domain pack" -- a collector, a one-paragraph prompt, and historical data. The memory framework stays untouched. You choose your industry at deploy time.
 
@@ -67,46 +67,50 @@ Each industry vertical is a "domain pack" -- a collector, a one-paragraph prompt
 ![Agentic memory cascade architecture](docs/cascade-architecture.png)
 
 ```
-Signals -> [Encoding] -> [Working Memory] -> [Episodic Memory] -> [Semantic Memory]
-           Nano tier     Pattern match       CPU model classify    Survivor archive
-           (99% filtered) (sub-ms)           (~800ms)             (permanent)
-                ^                                    |
-                +---- Shadow validation (5%) --------+
-                ^                                    |
-                +---- GCL audit (1%) ---------------+
-                ^                                    |
-                +---- 72h decay + re-qualify -------+
+Bid events -> [Encoding]  -> [Working Memory] -> [Episodic Memory] -> [Semantic Memory]
+              Nano tier      Pattern match       CPU model classify    Survivor archive
+              (88% filtered) (sub-ms, RTB-safe)  (~800ms)             (query by campaign)
+                   ^                                    |
+                   +---- Shadow validation (5%) --------+
+                   ^                                    |
+                   +---- GCL audit (1%) ---------------+
+                   ^                                    |
+                   +---- 72h decay + re-qualify -------+
 ```
 
 ### How memory forms
 
-| Memory stage | Cascade mechanism | FSI example |
+| Memory stage | Cascade mechanism | AdTech example |
 |---|---|---|
-| **Encoding** | Corpus analyzer proposes a draft agent | "Domestic transfers under $500 with established history are always routine" |
-| **Consolidation** | 5-tier promotion (draft -> candidate -> nano) | Agent tested against 200+ real transactions with 0% false negatives |
-| **Recall** | Nano agent fires on matching signal | New $300 domestic transfer instantly classified as routine, no LLM call |
-| **Forgetting** | 72h TTL + shadow demotion | Agent that missed a structuring pattern is deactivated in < 5 minutes |
-| **Priming** | Threshold modulation after significant event | After a confirmed fraud, related signal types get lower suppression thresholds |
+| **Encoding** | Corpus analyzer proposes a draft agent | "Run-of-network bids with viewability < 30% are always noise" |
+| **Consolidation** | 5-tier promotion (draft -> candidate -> nano) | Agent tested against 200+ real bid events with 0% false negatives |
+| **Recall** | Nano agent fires on matching signal | New low-viewability bid instantly suppressed, no LLM call needed |
+| **Forgetting** | 72h TTL + shadow demotion | Audience behaviors shift fast -- yesterday's pattern may not hold |
+| **Priming** | Threshold modulation after significant event | After confirmed click fraud, related publisher patterns get lower suppression thresholds |
 
 ### Defense in depth
 
 Five layers, none trusting each other:
 
-| Layer | What it does | FSI relevance |
+| Layer | What it does | AdTech relevance |
 |---|---|---|
-| **Zero-FN gate** | 200+ samples with 0% false negatives before a memory forms | No fraud signal is ever suppressed without proof it's safe |
-| **Shadow validation** | 5% of suppressed signals re-checked by LLM | Catches drift in transaction patterns |
-| **GCL audit loop** | Independent system samples 1%, writes verdicts to immutable ledger | Regulatory audit trail for every memory decision |
-| **72h TTL** | Memories expire and must re-qualify against current data | Patterns that worked last week may not work this week |
-| **Human gate** | Optional approval before memories form | Required for regulated environments (FINRA, PCI-DSS) |
+| **Zero-FN gate** | 200+ samples with 0% false negatives before a memory forms | No fraud signal or brand safety event is ever suppressed without proof |
+| **Shadow validation** | 5% of suppressed signals re-checked by LLM | Catches evolving bot traffic patterns and new fraud techniques |
+| **GCL audit loop** | Independent system samples 1%, writes verdicts to immutable ledger | Audit trail for brand safety reviews and advertiser disputes |
+| **72h TTL** | Memories expire and must re-qualify against current data | AdTech patterns shift daily -- stale rules cost money |
+| **Human gate** | Optional approval before memories form | Required for high-value campaigns or sensitive brand categories |
 
 One false negative from any source and the memory is instantly deactivated, samples zeroed, evidence chain written to the immutable ledger.
 
 ## See it in action
 
-Deploy the cascade with the financial services domain pack and replay historical transaction data:
+Deploy the cascade with any domain pack and replay historical data:
 
 ```bash
+# AdTech signals (use retail domain pack for e-commerce advertising)
+cascade-replay --domain retail --data campaign_events.csv --llm-url https://your-llm/v1
+
+# Or financial services, healthcare, telecom, kubernetes...
 cascade-replay --domain finance --data transactions.csv --llm-url https://your-llm/v1
 ```
 
@@ -123,13 +127,15 @@ Choose your industry at deploy time. Each domain is a collector, a one-paragraph
 
 | Domain | Scenario | Compression | Safety guarantee |
 |---|---|---|---|
-| **Financial services** | Transaction monitoring, fraud detection, compliance | 61.1% | 92.7% fraud recall, 100% compliance |
+| **Retail** | Campaign signals, ad performance, audience behavior | 88.3% | 100% shrinkage recall, 100% compliance |
+| **Financial services** | Transaction monitoring, fraud, compliance | 61.1% | 92.7% fraud recall, 100% compliance |
 | **Healthcare** | Clinical signals, patient safety, diagnostic alerts | 91.0% | 96.6% critical recall, 99.0% compliance |
 | **Insurance** | Claims monitoring, fraud patterns, risk signals | 81.2% | 100% fraud recall, 99.8% compliance |
-| **Retail** | Inventory signals, shrinkage detection, demand patterns | 88.3% | 100% shrinkage recall, 100% compliance |
 | **Telecom** | Network events, incident detection, capacity signals | 94.3% | 92.1% incident recall |
 | **Kubernetes** | Production operations (validated on 142.4M signals) | 99.1% | 0 false negatives |
 | **Org Knowledge** | Jira/Git/Confluence -- runbook decay, decision churn | 83% | Knowledge gap detection |
+
+> **Building a custom domain pack?** See the [Domain Pack Guide](docs/domain-pack-guide.md). A domain pack is three files: a collector, a one-paragraph prompt, and seed data. The cascade framework stays untouched.
 
 ## CPU model leaderboard (Intel Xeon 6)
 
@@ -138,7 +144,7 @@ Choose your industry at deploy time. Each domain is a collector, a one-paragraph
 | granite-3-2-8b-instruct | 14/20 | 860ms | **0** |
 | phi4-mini | 14/20 | 734ms | **0** |
 
-Both models: every error is over-escalation (safe failure), never dismissal. Runs entirely on CPU, no GPU required.
+Both models: every error is over-escalation (safe failure), never dismissal. Runs entirely on CPU, no GPU required. Nano tier is sub-millisecond -- fast enough for real-time bidding pipelines.
 
 > **Powered by Intel** -- This quickstart runs on Intel Xeon processors with CPU-optimized inference.
 
@@ -173,11 +179,11 @@ This quickstart can be deployed by a regular user with namespace-level permissio
 
 ### Installation
 
-**Option A: Deploy on Red Hat OpenShift (financial services)**
+**Option A: Deploy on Red Hat OpenShift**
 
 ```bash
 oc new-app https://github.com/jkershawrh/agentic-memory-cascade \
-  -e CASCADE_DOMAIN=finance \
+  -e CASCADE_DOMAIN=retail \
   -e CASCADE_LLM_URL=https://your-llm/v1 \
   -e CASCADE_LLM_KEY=sk-...
 ```
@@ -185,15 +191,15 @@ oc new-app https://github.com/jkershawrh/agentic-memory-cascade \
 **Option B: Deploy with a different domain**
 
 ```bash
-# Healthcare
+# Financial services
 oc new-app https://github.com/jkershawrh/agentic-memory-cascade \
-  -e CASCADE_DOMAIN=healthcare \
+  -e CASCADE_DOMAIN=finance \
   -e CASCADE_LLM_URL=https://your-llm/v1 \
   -e CASCADE_LLM_KEY=sk-...
 
-# Kubernetes operations
+# Healthcare
 oc new-app https://github.com/jkershawrh/agentic-memory-cascade \
-  -e CASCADE_DOMAIN=kubernetes \
+  -e CASCADE_DOMAIN=healthcare \
   -e CASCADE_LLM_URL=https://your-llm/v1 \
   -e CASCADE_LLM_KEY=sk-...
 ```
@@ -205,8 +211,8 @@ git clone https://github.com/jkershawrh/agentic-memory-cascade.git
 cd agentic-memory-cascade
 pip install -e ".[dev]"
 
-# Replay financial services transactions
-cascade-replay --domain finance --data transactions.csv --llm-url https://your-llm/v1
+# Replay ad campaign data
+cascade-replay --domain retail --data campaign_events.csv --llm-url https://your-llm/v1
 
 # Or run live with Kubernetes signals
 cascade-run --domain kubernetes --llm-url https://your-llm/v1 --llm-key sk-...
@@ -272,7 +278,7 @@ oc delete all -l app=agentic-memory-cascade
 
 - **Title:** Build governed memory for AI agents that never forgets
 - **Description:** Self-curating institutional memory for agentic systems, with zero tolerance for forgetting critical context
-- **Industry:** Banking and securities
+- **Industry:** Broadcasting and cable
 - **Product:** Red Hat OpenShift AI
 - **Use case:** AI inference
 - **Partner:** Intel
