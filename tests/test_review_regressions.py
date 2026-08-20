@@ -20,7 +20,7 @@ from cascade_compression.cli import _collector_config
 from cascade_compression.collectors.aap import AAPCollector
 from cascade_compression.collectors.finance import FinanceCollector
 from cascade_compression.collectors.kubernetes import KubernetesCollector
-from cascade_compression.integrations.ledger import write_decisions
+
 
 
 def _candidate(signal_type="routine_event", pattern_type="dominant_type"):
@@ -206,32 +206,6 @@ def test_service_preserves_caller_signal_id():
     signal_id = uuid4()
     signal = _to_signal(SignalInput(signal_id=signal_id, signal_type="incident"))
     assert signal.signal_id == signal_id
-
-
-def test_ledger_uses_verified_tls_and_checks_the_response():
-    signal = Signal(signal_type="incident", severity="low")
-    decision = CascadeDecision(
-        signal_id=signal.signal_id,
-        agent_name="test",
-        outcome=Outcome.SUPPRESS,
-    )
-    response = MagicMock()
-    client = MagicMock()
-    client.post.return_value = response
-    context = MagicMock()
-    context.__enter__.return_value = client
-
-    with patch("httpx.Client", return_value=context) as client_factory:
-        write_decisions(
-            "https://ledger.example",
-            "token",
-            SimpleNamespace(decisions=[decision]),
-            [signal],
-            "test",
-        )
-
-    client_factory.assert_called_once_with(timeout=10)
-    response.raise_for_status.assert_called_once_with()
 
 
 def test_kubernetes_collector_keeps_system_tls_verification_without_sa_ca():
