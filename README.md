@@ -127,46 +127,43 @@ Any signal -> [Encoding]  -> [Working Memory] -> [Episodic Memory] -> [Semantic 
 
 ### How memory forms
 
-| Memory stage | Cascade mechanism | AdTech example |
+| Memory stage | Cascade mechanism | Example |
 |---|---|---|
-| **Encoding** | Corpus analyzer proposes a draft agent | "Run-of-network bids with viewability < 30% are always noise" |
-| **Consolidation** | 5-tier promotion (draft -> candidate -> nano) | Agent tested against 200+ real bid events with 0% false negatives |
-| **Recall** | Nano agent fires on matching signal | New low-viewability bid instantly suppressed, no LLM call needed |
-| **Forgetting** | 72h TTL + shadow demotion | Audience behaviors shift fast -- yesterday's pattern may not hold |
-| **Priming** | Threshold modulation after significant event | After confirmed click fraud, related publisher patterns get lower suppression thresholds |
+| **Encoding** | Corpus analyzer proposes a draft agent | "CrashLoopBackOff on init containers in ci-runners is always transient" |
+| **Consolidation** | 5-tier promotion (draft -> candidate -> nano) | Agent tested against 200+ real signals with 0% false negatives |
+| **Recall** | Nano agent fires on matching signal | New CrashLoopBackOff in ci-runners instantly suppressed, no LLM call |
+| **Forgetting** | 72h TTL + shadow demotion | Infrastructure patterns shift -- yesterday's rule may not hold |
+| **Priming** | Threshold modulation after significant event | After a real outage, related signal types get lower suppression thresholds |
 
 ### Defense in depth
 
 Five layers, none trusting each other:
 
-| Layer | What it does | AdTech relevance |
-|---|---|---|
-| **Zero-FN gate** | 200+ samples with 0% false negatives before a memory forms | No fraud signal or brand safety event is ever suppressed without proof |
-| **Shadow validation** | 5% of suppressed signals re-checked by LLM | Catches evolving bot traffic patterns and new fraud techniques |
-| **GCL audit loop** | Independent system samples 1%, writes verdicts to immutable ledger | Audit trail for brand safety reviews and advertiser disputes |
-| **72h TTL** | Memories expire and must re-qualify against current data | AdTech patterns shift daily -- stale rules cost money |
-| **Human gate** | Optional approval before memories form | Required for high-value campaigns or sensitive brand categories |
+| Layer | What it does |
+|---|---|
+| **Zero-FN gate** | 200+ samples with 0% false negatives before a memory forms |
+| **Shadow validation** | 5% of suppressed signals re-checked by LLM -- catches drift |
+| **GCL audit loop** | Independent system samples 1%, writes verdicts to immutable ledger |
+| **72h TTL** | Memories expire and must re-qualify against current data |
+| **Human gate** | Optional approval before memories form (for regulated environments) |
 
 One false negative from any source and the memory is instantly deactivated, samples zeroed, evidence chain written to the immutable ledger.
 
 ## See it in action
 
-Deploy the cascade with any domain pack and replay historical data:
-
 ```bash
-# AdTech signals (use retail domain pack for e-commerce advertising)
-cascade-replay --domain retail --data campaign_events.csv --llm-url https://your-llm/v1
-
-# Or financial services, healthcare, telecom, kubernetes...
-cascade-replay --domain finance --data transactions.csv --llm-url https://your-llm/v1
+./demo.sh              # One command — watch memory form on the dashboard
+./demo.sh finance fast  # Financial services domain, fast replay
+./demo.sh telecom slow  # Telecom domain, slow for presentations
 ```
 
-The real-time dashboard at `http://localhost:8090` shows:
-- Active memory agents and their promotion history
-- Compression rate over time (watch it climb as agents activate)
-- Survivor archive with classification metadata
-- Shadow validation results and demotion events
-- LLM usage rate (should drop toward 0.007% as memory forms)
+The Gradio dashboard at `http://localhost:7860` shows:
+- **Signal Stream** -- live feed of signals being compressed or surviving, with severity and agent
+- **Memory Map** -- agents appearing, progressing through promotion tiers, activating
+- **Compression** -- real-time gauge climbing as agents learn what is noise
+- **Audit Trail** -- every memory decision with provenance chain
+
+No LLM needed for the demo. Runs on a laptop.
 
 ## Industry domain packs
 
@@ -184,16 +181,32 @@ Choose your industry at deploy time. Each domain is a collector, a one-paragraph
 
 > **Building a custom domain pack?** See the [Domain Pack Guide](docs/domain-pack-guide.md). A domain pack is three files: a collector, a one-paragraph prompt, and seed data. The cascade framework stays untouched.
 
-## CPU model leaderboard (Intel Xeon 6)
+## Intel inference architecture
+
+The cascade is designed around the economics of CPU vs GPU inference. The insight: 85-99% of signals are noise that a deterministic rule can handle in microseconds. Only the survivors need an LLM. This changes the hardware equation.
+
+| Tier | What runs | Hardware | Latency | Cost per signal |
+|---|---|---|---|---|
+| **Nano** (85-99% of signals) | Deterministic agents — pattern matching, dedup, severity gates | Intel Xeon CPU | **< 1ms** | Near zero |
+| **Micro** (1-15% of signals) | Small LLM classification — Granite 8B, Phi-4 Mini | Intel Xeon CPU | **~800ms** | Low (CPU inference) |
+| **Macro** (< 0.1% of signals) | Deep analysis — root cause, evidence bundles | GPU or large CPU model | **seconds** | Higher, but rare |
+
+The nano tier runs on pure CPU at sub-millisecond latency. No GPU, no inference server, no model loading. It's deterministic code executing on Intel Xeon cores. This handles the vast majority of your signal volume.
+
+The micro tier runs a small model on CPU. Benchmarked on Intel Xeon 6 (128 cores):
 
 | Model | Score | Latency | Dangerous misses |
 |---|---|---|---|
-| granite-3-2-8b-instruct | 14/20 | 860ms | **0** |
-| phi4-mini | 14/20 | 734ms | **0** |
+| IBM Granite 3.2 8B Instruct | 14/20 | 860ms | **0** |
+| Microsoft Phi-4 Mini | 14/20 | 734ms | **0** |
 
-Both models: every error is over-escalation (safe failure), never dismissal. Runs entirely on CPU, no GPU required. Nano tier is sub-millisecond -- fast enough for real-time bidding pipelines.
+Both models: every error is over-escalation (safe failure), never dismissal. No GPU required. Intel AMX acceleration on Xeon 4th Gen+ further reduces micro-tier latency.
 
-> **Powered by Intel** -- This quickstart runs on Intel Xeon processors with CPU-optimized inference.
+The macro tier handles the rarest, most complex signals — deep root cause analysis, evidence bundle construction, cross-domain correlation. This is where GPU acceleration (Intel or otherwise) adds value, but it processes < 0.1% of signals. In the production soak, the macro tier produced 19,000+ deep analyses that found real infrastructure issues no single alert would surface.
+
+**The result:** You don't need GPU infrastructure for 99%+ of your signal processing. The cascade runs the volume on Intel Xeon CPU and escalates to GPU only for the signals that genuinely need deep reasoning.
+
+> **Powered by Intel** -- Validated on Intel Xeon 6 (128 cores). CPU handles the volume. GPU handles the depth. No signal left behind.
 
 ## Requirements
 
