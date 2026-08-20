@@ -6,7 +6,8 @@ _Self-curating institutional memory for agentic systems, with zero tolerance for
 
 - [Overview](#overview)
 - [Who is this for](#who-is-this-for)
-- [Example: AdTech campaign optimization agent](#example-adtech-campaign-optimization-agent)
+- [What can you point it at](#what-can-you-point-it-at)
+- [Example: Watch memory form](#example-watch-memory-form)
 - [Detailed description](#detailed-description)
   - [Architecture diagrams](#architecture-diagrams)
   - [How memory forms](#how-memory-forms)
@@ -40,36 +41,58 @@ The agentic memory cascade solves this. It ingests millions of signals per day, 
 - **SRE and AIOps teams** building observability agents that learn from incidents and carry that knowledge forward, not just the most recent alert
 - **Anyone drowning in signal noise** -- if your agents process more data than fits in a context window, the cascade gives them bounded, relevant, governed memory
 
-## Example: What memory formation looks like
+## What can you point it at
 
-Pick any domain -- the pattern is the same. Here's what it looks like for a programmatic advertising agent processing 2 million bid request signals per day:
+Anything that produces a stream of signals. The cascade doesn't care what the signals are. It learns what matters and what doesn't.
 
-**Day 1: Cold start.** The cascade has no learned memory. Every bid event goes to the LLM for classification: is this signal worth remembering (winning bid strategy, unusual click pattern, brand safety flag) or is it noise (routine no-bid, below-floor auction, standard impression)? The LLM processes all 2M signals. Slow and expensive.
+| Signal source | What the cascade learns | What memory looks like |
+|---|---|---|
+| **Factory floor sensors** | Which temperature, vibration, and pressure readings are normal operating range | "Vibration on Line 3 between 2.1-2.8mm/s is always normal" -- agent filters 94% of readings |
+| **Robotic arm telemetry** | Which motion patterns indicate routine operation vs calibration drift | "Joint 4 torque variance under 0.3Nm during pick-place is normal" -- surfaces only anomalies |
+| **Agent output / decision logs** | Which decisions the agent makes repeatedly vs which are novel | "Routing to tier-1 support for password resets is always the right call" -- auto-routes 80% |
+| **Financial transactions** | Which transaction patterns are routine vs suspicious | "Domestic transfers under $500 with established history are always routine" -- flags only anomalies |
+| **Kubernetes events** | Which pod restarts, OOM kills, and scaling events are normal churn | "CrashLoopBackOff on init containers in ci-runners namespace is always transient" -- 99.1% compressed |
+| **Healthcare alerts** | Which clinical signals are routine vs require attention | "Heart rate 60-100 bpm with stable trend is normal" -- surfaces only deviations |
+| **IoT / edge devices** | Which readings are within operating parameters vs indicate failure | "Humidity sensor reads between 40-60% RH during business hours" -- alerts only on drift |
 
-**Day 3: Memory forms.** The corpus analyzer notices that bid requests from known low-viewability placements in the IAB "run of network" category are always classified as noise. It proposes a nano agent (a deterministic rule): "Suppress bid events from placements with viewability below 30% in run-of-network inventory." The agent is tested against 200+ real bid events with zero false negatives (it never suppressed a signal that turned out to be a winning strategy or fraud indicator) and promoted to active. Now those signals are filtered in sub-millisecond, never touching the LLM.
+The domain pack is three files: a collector (how to read the signals), a one-paragraph prompt (what "matters" means in this domain), and seed data. The cascade framework stays untouched.
 
-**Day 7: Memory curates.** 18 nano agents are active, compressing 88% of bid noise. The LLM only processes the 12% the cascade can't resolve: borderline placements, unusual click-to-conversion ratios, new publisher domains. A shadow validation check catches one agent that started missing a new click fraud pattern (bot traffic mimicking human scroll behavior on a previously clean publisher). That agent is instantly deactivated. The cascade learns from the correction.
+## Example: Watch memory form
 
-**Day 30: Institutional knowledge.** The survivor archive contains a curated record of everything that mattered: winning bid strategies by audience segment, confirmed click fraud patterns, brand safety incidents by publisher, seasonal audience behavior shifts. When the media buyer asks "what worked for automotive in the Southeast?", the answer comes from the survivor archive. Every memory has a provenance chain: how it was learned, how many times it was validated, and whether the GCL audit loop confirmed or challenged it.
+Run the demo and watch the dashboard. Here's what happens:
 
-**What the brand safety auditor sees:** An immutable ledger entry for every memory decision. Which patterns are actively being suppressed, when each was promoted, their false-negative rate (always zero), whether any brand safety signal was ever incorrectly suppressed (never, or it would have been caught by shadow validation). Not "the AI decided." A proof chain that holds up in an advertiser review.
+**Minute 0-1: Cold start.** The cascade has no learned memory. Every signal goes to the LLM for classification. Compression is 0%. Everything is new.
+
+**Minute 1-2: First pattern emerges.** The corpus analyzer notices a recurring signal type that the LLM always classifies as noise. It proposes a draft agent -- a deterministic rule to handle this pattern. The agent appears on the Memory Map tab.
+
+**Minute 2-3: Memory forms.** The draft agent hits 200 samples with zero false negatives. It's promoted to active. Compression jumps. On the dashboard, the compression gauge climbs and the agent card shows "nano" tier.
+
+**Minute 3-4: More agents activate.** The cascade discovers more patterns. Each agent handles one type of noise. Compression climbs to 60-85%. The LLM is only processing what the cascade genuinely can't resolve.
+
+**Minute 4-5: Self-correction.** Shadow validation catches an agent that started missing a new pattern. The agent is instantly deactivated -- you see it strikethrough on the Memory Map with the reason. The cascade learns from the correction and tightens its rules.
+
+**Minute 5+: Institutional knowledge.** The survivor archive now contains a curated record of everything that mattered. Query it: "What has the system learned?" The answer is a compressed narrative of significant events, not a log search.
+
+```bash
+./demo.sh              # See it live — no LLM needed, runs on a laptop
+```
 
 ## Detailed description
 
-The cascade maps directly to how memory works. Raw signals arrive as sensory input (bid events, click streams, impression logs). The nano tier (working memory) filters and pattern-matches, discarding most input at sub-millisecond latency, fast enough for real-time bidding. The micro tier (episodic memory) classifies notable events using a small CPU model. Macro survivors become semantic memory: a compressed, curated record of things that actually mattered.
+The cascade maps directly to how memory works. Raw signals arrive as sensory input. The nano tier (working memory) filters and pattern-matches, discarding most input at sub-millisecond latency. The micro tier (episodic memory) classifies notable events using a small CPU model. Macro survivors become semantic memory: a compressed, curated record of things that actually mattered.
 
-The critical difference from a data warehouse: a data warehouse remembers every impression with no comprehension. It cannot tell you what mattered. The cascade can, because it learned what the LLM considers noise and encoded that knowledge as executable deterministic rules. The LLM only processes what the cascade cannot resolve (typically 0.007% of signals).
+The critical difference from a data lake: a data lake remembers everything with no comprehension. It cannot tell you what mattered. The cascade can, because it learned what the LLM considers noise and encoded that knowledge as executable deterministic rules. The LLM only processes what the cascade cannot resolve (typically 0.007% of signals).
 
-Each industry vertical is a "domain pack" -- a collector, a one-paragraph prompt, and historical data. The memory framework stays untouched. You choose your industry at deploy time.
+Each vertical is a "domain pack" -- a collector, a one-paragraph prompt, and historical data. The memory framework stays untouched. You choose your domain at deploy time, or write your own in three files.
 
 ### Architecture diagrams
 
 ![Agentic memory cascade architecture](docs/cascade-architecture.png)
 
 ```
-Bid events -> [Encoding]  -> [Working Memory] -> [Episodic Memory] -> [Semantic Memory]
+Any signal -> [Encoding]  -> [Working Memory] -> [Episodic Memory] -> [Semantic Memory]
               Nano tier      Pattern match       CPU model classify    Survivor archive
-              (88% filtered) (sub-ms, RTB-safe)  (~800ms)             (query by campaign)
+              (85-99%)       (sub-ms)            (~800ms)             (query anytime)
                    ^                                    |
                    +---- Shadow validation (5%) --------+
                    ^                                    |
