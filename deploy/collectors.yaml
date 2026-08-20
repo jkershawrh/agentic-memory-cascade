@@ -1,28 +1,19 @@
 ---
-# Signal collector sidecars for infra01
+# Signal collectors — generic infrastructure + knowledge domain
 #
-# K8s collector: polls 5 OCP clusters, pushes to cascade-k8s
-# AAP collector: polls AAP database, pushes to cascade-aap
-# Jira collector: polls Jira issues, pushes to cascade-knowledge
-# Git collector: polls rhpds GitHub org, pushes to cascade-knowledge
-# Confluence collector: polls Confluence pages, pushes to cascade-knowledge
-#
-# Reuses the same cluster tokens and AAP credentials as deepfield.
-# Apply after openshift-federated.yaml.
-#
-# Usage:
-#   oc apply -f deploy/collectors.yaml
+# K8s collector: polls OCP clusters
+# AAP collector: polls AAP database
+# Jira/Git/Confluence: organizational knowledge domain
 
 ---
-# ── K8s Signal Collector ────────────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: collector-k8s
-  namespace: cascade-compression
   labels:
     app: collector-k8s
     component: collector
+  name: collector-k8s
+  namespace: cascade-compression
 spec:
   replicas: 1
   selector:
@@ -35,9 +26,7 @@ spec:
         component: collector
     spec:
       containers:
-      - name: collector
-        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
-        command:
+      - command:
         - python3
         - -m
         - cascade_compression.collector_sidecar
@@ -47,24 +36,24 @@ spec:
         envFrom:
         - secretRef:
             name: collector-clusters
+        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
+        name: collector
         resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
           limits:
             cpu: 500m
             memory: 256Mi
-
+          requests:
+            cpu: 100m
+            memory: 128Mi
 ---
-# ── AAP Signal Collector ────────────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: collector-aap
-  namespace: cascade-compression
   labels:
     app: collector-aap
     component: collector
+  name: collector-aap
+  namespace: cascade-compression
 spec:
   replicas: 1
   selector:
@@ -77,9 +66,7 @@ spec:
         component: collector
     spec:
       containers:
-      - name: collector
-        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
-        command:
+      - command:
         - python3
         - -m
         - cascade_compression.collector_sidecar
@@ -89,108 +76,24 @@ spec:
         envFrom:
         - secretRef:
             name: collector-aap-db
+        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
+        name: collector
         resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
           limits:
             cpu: 500m
             memory: 256Mi
-
----
-# ── Poolboy Collector ───────────────────────────────────────────────
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: collector-poolboy
-  namespace: cascade-compression
-  labels:
-    app: collector-poolboy
-    component: collector
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: collector-poolboy
-  template:
-    metadata:
-      labels:
-        app: collector-poolboy
-        component: collector
-    spec:
-      containers:
-      - name: collector
-        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
-        command:
-        - python3
-        - -m
-        - cascade_compression.collector_sidecar
-        - --mode=poolboy
-        - --target=http://cascade-k8s:8090
-        - --interval=60
-        envFrom:
-        - secretRef:
-            name: collector-clusters
-        resources:
           requests:
-            cpu: 50m
+            cpu: 100m
             memory: 128Mi
-          limits:
-            cpu: 200m
-            memory: 256Mi
-
 ---
-# ── Babylon/Anarchy Collector ───────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: collector-babylon
-  namespace: cascade-compression
-  labels:
-    app: collector-babylon
-    component: collector
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: collector-babylon
-  template:
-    metadata:
-      labels:
-        app: collector-babylon
-        component: collector
-    spec:
-      containers:
-      - name: collector
-        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
-        command:
-        - python3
-        - -m
-        - cascade_compression.collector_sidecar
-        - --mode=babylon
-        - --target=http://cascade-k8s:8090
-        - --interval=60
-        envFrom:
-        - secretRef:
-            name: collector-clusters
-        resources:
-          requests:
-            cpu: 50m
-            memory: 64Mi
-          limits:
-            cpu: 200m
-            memory: 128Mi
-
----
-# ── GitOps/ArgoCD Collector ─────────────────────────────────────────
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: collector-gitops
-  namespace: cascade-compression
   labels:
     app: collector-gitops
     component: collector
+  name: collector-gitops
+  namespace: cascade-compression
 spec:
   replicas: 1
   selector:
@@ -203,9 +106,7 @@ spec:
         component: collector
     spec:
       containers:
-      - name: collector
-        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
-        command:
+      - command:
         - python3
         - -m
         - cascade_compression.collector_sidecar
@@ -215,24 +116,24 @@ spec:
         envFrom:
         - secretRef:
             name: collector-clusters
+        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
+        name: collector
         resources:
-          requests:
-            cpu: 50m
-            memory: 64Mi
           limits:
             cpu: 200m
             memory: 128Mi
-
+          requests:
+            cpu: 50m
+            memory: 64Mi
 ---
-# ── OVN Networking Collector ────────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: collector-ovn
-  namespace: cascade-compression
   labels:
     app: collector-ovn
     component: collector
+  name: collector-ovn
+  namespace: cascade-compression
 spec:
   replicas: 1
   selector:
@@ -245,9 +146,7 @@ spec:
         component: collector
     spec:
       containers:
-      - name: collector
-        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
-        command:
+      - command:
         - python3
         - -m
         - cascade_compression.collector_sidecar
@@ -257,24 +156,24 @@ spec:
         envFrom:
         - secretRef:
             name: collector-clusters
+        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
+        name: collector
         resources:
-          requests:
-            cpu: 50m
-            memory: 64Mi
           limits:
             cpu: 200m
             memory: 128Mi
-
+          requests:
+            cpu: 50m
+            memory: 64Mi
 ---
-# ── Ceph/ODF Storage Collector ─────────────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: collector-ceph
-  namespace: cascade-compression
   labels:
     app: collector-ceph
     component: collector
+  name: collector-ceph
+  namespace: cascade-compression
 spec:
   replicas: 1
   selector:
@@ -287,9 +186,7 @@ spec:
         component: collector
     spec:
       containers:
-      - name: collector
-        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
-        command:
+      - command:
         - python3
         - -m
         - cascade_compression.collector_sidecar
@@ -299,24 +196,24 @@ spec:
         envFrom:
         - secretRef:
             name: collector-clusters
+        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
+        name: collector
         resources:
-          requests:
-            cpu: 50m
-            memory: 64Mi
           limits:
             cpu: 200m
             memory: 128Mi
-
+          requests:
+            cpu: 50m
+            memory: 64Mi
 ---
-# ── Jira Collector (Knowledge Domain) ─────────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: collector-jira
-  namespace: cascade-compression
   labels:
     app: collector-jira
     component: collector
+  name: collector-jira
+  namespace: cascade-compression
 spec:
   replicas: 1
   selector:
@@ -329,39 +226,37 @@ spec:
         component: collector
     spec:
       containers:
-      - name: collector
-        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
-        command:
+      - command:
         - python3
         - -m
         - cascade_compression.collector_sidecar
         - --mode=jira
         - --target=http://cascade-knowledge:8090
         - --interval=60
+        env:
+        - name: JIRA_PROJECT
+          value: GPTEINFRA,RHDP,CPEX
         envFrom:
         - secretRef:
             name: collector-atlassian
-        env:
-        - name: JIRA_PROJECT
-          value: "GPTEINFRA,RHDP,CPEX"
+        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
+        name: collector
         resources:
-          requests:
-            cpu: 50m
-            memory: 64Mi
           limits:
             cpu: 200m
             memory: 128Mi
-
+          requests:
+            cpu: 50m
+            memory: 64Mi
 ---
-# ── Git/GitHub Collector (Knowledge Domain) ────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: collector-git
-  namespace: cascade-compression
   labels:
     app: collector-git
     component: collector
+  name: collector-git
+  namespace: cascade-compression
 spec:
   replicas: 1
   selector:
@@ -374,39 +269,37 @@ spec:
         component: collector
     spec:
       containers:
-      - name: collector
-        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
-        command:
+      - command:
         - python3
         - -m
         - cascade_compression.collector_sidecar
         - --mode=git
         - --target=http://cascade-knowledge:8090
         - --interval=3600
+        env:
+        - name: GIT_ORG
+          value: rhpds
         envFrom:
         - secretRef:
             name: collector-github
-        env:
-        - name: GIT_ORG
-          value: "rhpds"
+        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
+        name: collector
         resources:
-          requests:
-            cpu: 50m
-            memory: 64Mi
           limits:
             cpu: 200m
             memory: 128Mi
-
+          requests:
+            cpu: 50m
+            memory: 64Mi
 ---
-# ── Confluence Collector (Knowledge Domain) ────────────────────────
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: collector-confluence
-  namespace: cascade-compression
   labels:
     app: collector-confluence
     component: collector
+  name: collector-confluence
+  namespace: cascade-compression
 spec:
   replicas: 1
   selector:
@@ -419,9 +312,7 @@ spec:
         component: collector
     spec:
       containers:
-      - name: collector
-        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
-        command:
+      - command:
         - python3
         - -m
         - cascade_compression.collector_sidecar
@@ -431,10 +322,12 @@ spec:
         envFrom:
         - secretRef:
             name: collector-atlassian
+        image: image-registry.openshift-image-registry.svc:5000/cascade-compression/cascade-compression:latest
+        name: collector
         resources:
-          requests:
-            cpu: 50m
-            memory: 64Mi
           limits:
             cpu: 200m
             memory: 128Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
