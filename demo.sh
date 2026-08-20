@@ -63,13 +63,14 @@ fi
 echo "Model ready: $MODEL"
 echo ""
 
-# -- Start the FastAPI service --
-echo "Starting cascade service..."
+# -- Start the FastAPI service (with pre-learned seed state) --
+echo "Starting cascade service (with seed state — 3 pre-learned agents)..."
 CASCADE_DOMAIN="$DOMAIN" \
   CASCADE_LLM_URL="http://localhost:11434" \
   CASCADE_LLM_KEY="ollama" \
   CASCADE_LLM_MODEL="$MODEL" \
   CASCADE_LLM_BATCH="10" \
+  CASCADE_STATE_FILE="$SCRIPT_DIR/data/demo-seed-state.json" \
   python3 -m uvicorn cascade_compression.service:app \
   --port 8090 --log-level warning &
 SERVICE_PID=$!

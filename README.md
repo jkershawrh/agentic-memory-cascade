@@ -170,6 +170,8 @@ The Gradio dashboard at `http://localhost:7860` shows:
 
 **Requirements:** [Ollama](https://ollama.com) installed, ~5 GB disk for the model, 16 GB RAM recommended.
 
+> **How the demo works:** The demo starts with a pre-learned seed state — 3 agents that the cascade discovered during a prior training run on financial services signals. These agents already compress routine dispute classifications, compliance screenings, and document extractions. When you run the demo, new signals hit the cascade and you see these agents working immediately: compression starts at ~60% and climbs as the LLM classifies more signals and the cascade discovers additional patterns. On production hardware (Intel Xeon 6), the cascade learns these agents from scratch in minutes. The seed state lets you see the result on any hardware without waiting for the full learning cycle.
+
 ## Industry domain packs
 
 Choose your industry at deploy time. Each domain is a collector, a one-paragraph prompt, and historical data.
