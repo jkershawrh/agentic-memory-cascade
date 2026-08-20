@@ -60,17 +60,26 @@ The domain pack is three files: a collector (how to read the signals), a one-par
 
 ## Validated on production data
 
-This isn't theoretical. The cascade has been validated against real production signal streams:
+This isn't theoretical. The cascade has been validated on real production signal streams in a multi-day soak across 10 OpenShift clusters and 3 organizational knowledge sources:
 
-| Domain | Source | Signals processed | Compression | What it proved |
-|---|---|---|---|---|
-| **Kubernetes** | Production cluster replay | **142.4 million** | **99.1%** | 3 agents activated. 0 false negatives. LLM classified 9,685 of 142M signals (0.007%). |
-| **Ansible (AAP)** | Live platform + replay | **553,000** | **98.1%** | 63 shadow demotions (the system caught its own mistakes and corrected). |
-| **Org Knowledge** | Live Jira, GitHub (819 repos), Confluence | ongoing | **83%** | Surfaced runbook decay, decision churn (16+ comment tickets), hotfix/revert patterns, expertise concentration. |
+| Metric | Value |
+|---|---|
+| **Live signals processed** | **5.5M+** operational + **34K+** organizational knowledge |
+| **Replay signals processed** | **142.4 million** (Kubernetes production replay) |
+| **Aggregated memories** | **20,900+** across 3 federated cascades (K8s + AAP + Knowledge) |
+| **GPU deep analyses** | **19,000+** (found real issues: ACM channels missing, MetalLB misconfiguration, OCS version conflicts) |
+| **Contextual suppressors discovered** | **101** (learned organically, not hand-written) |
+| **Memory evictions** | **700K+** (consolidation aggressively separating signal from noise) |
+| **Edge scenarios tested** | **61** adversarial scenarios across 3 industry verticals, all passing |
+| **False negatives** | **0** |
 
-The hardened engine ran with all five safety layers active: zero-FN gate, 5% shadow validation, GCL audit loop, 72h TTL, and human gate. The Kubernetes run processed 142 million signals and the LLM only needed to see 9,685 of them. Everything else was handled by three deterministic agents that the cascade discovered, validated, and promoted on its own.
+| Domain | Source | Compression | What it surfaced |
+|---|---|---|---|
+| **Kubernetes** | 10 live clusters + 142.4M replay | **99.1%** | 3 self-discovered agents. LLM saw 0.007% of signals. |
+| **Ansible (AAP)** | Live platform | **98.1%** | 63 shadow demotions (self-corrected mistakes). |
+| **Org Knowledge** | Jira, GitHub (819 repos), Confluence | **83%** | Runbook decay, decision churn, hotfix/revert patterns, expertise concentration. |
 
-The organizational knowledge domain applied the same cascade to non-operational signals: Jira tickets, GitHub commits and PRs across 819 repositories, and Confluence pages. It compressed 83% of routine activity (status updates, regular commits, standard ticket flow) and surfaced the signals that indicate knowledge gaps, process decay, and expertise concentration.
+All five safety layers active throughout: zero-FN gate, 5% shadow validation, GCL audit loop, 72h TTL, and human gate. The cascade discovered 101 contextual suppressors on its own -- no human wrote a single rule.
 
 ## Example: Watch memory form
 
