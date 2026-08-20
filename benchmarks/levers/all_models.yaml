@@ -1,7 +1,0 @@
-# Lever: All Models — run every deployed model
-# Use this for comprehensive comparison across all runtimes and quantizations
-
-lever: all_models
-description: All deployed models — OVMS baseline, OVMS INT8, llama.cpp GGUF, BitNet
-
-# No explicit models list — resolver will return ALL from models.yaml
