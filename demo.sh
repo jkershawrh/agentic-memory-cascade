@@ -66,8 +66,10 @@ echo ""
 # -- Start the FastAPI service --
 echo "Starting cascade service..."
 CASCADE_DOMAIN="$DOMAIN" \
-  CASCADE_LLM_URL="http://localhost:11434/v1" \
+  CASCADE_LLM_URL="http://localhost:11434" \
+  CASCADE_LLM_KEY="ollama" \
   CASCADE_LLM_MODEL="$MODEL" \
+  CASCADE_LLM_BATCH="10" \
   python3 -m uvicorn cascade_compression.service:app \
   --port 8090 --log-level warning &
 SERVICE_PID=$!
