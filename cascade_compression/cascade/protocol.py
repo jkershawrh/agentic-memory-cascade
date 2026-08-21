@@ -65,3 +65,22 @@ class CascadeAgent(Protocol):
     stage: int  # 1=noise, 2=classify, 3=domain
 
     def process(self, signals: List[Signal]) -> List[CascadeDecision]: ...
+
+
+def chat_completions_url(base: str) -> str:
+    """Build the chat-completions endpoint from an OpenAI-compatible base URL.
+
+    Accepts a base with or without the ``/v1`` suffix, because both forms are
+    in the wild: Ollama is addressed as ``http://localhost:11434`` while vLLM
+    and most hosted gateways are published as ``https://host/v1``. Appending
+    ``/v1/chat/completions`` unconditionally turns the latter into a 404.
+
+        >>> chat_completions_url("http://localhost:11434")
+        'http://localhost:11434/v1/chat/completions'
+        >>> chat_completions_url("https://gateway.example.com/v1")
+        'https://gateway.example.com/v1/chat/completions'
+    """
+    trimmed = base.rstrip("/")
+    if trimmed.endswith("/v1"):
+        trimmed = trimmed[: -len("/v1")]
+    return f"{trimmed}/v1/chat/completions"

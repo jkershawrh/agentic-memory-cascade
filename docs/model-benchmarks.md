@@ -101,7 +101,7 @@ This is distinct from the per-domain FN rate. The precision metric checks the ot
 
 ## Live Cascade Performance
 
-### K8s cascade (infra01, granite-3-2-8b-instruct-cpu, tuned prompt)
+### K8s cascade (production cluster, granite-3-2-8b-instruct-cpu, tuned prompt)
 
 **Peak sustained run:**
 ```
@@ -129,7 +129,7 @@ FN:          0
 Latency:     ~595ms per classification
 ```
 
-### AAP cascade (infra01, granite-3-2-8b-instruct-cpu)
+### AAP cascade (production cluster, granite-3-2-8b-instruct-cpu)
 
 ```
 Signals:     1.0M+

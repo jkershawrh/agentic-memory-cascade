@@ -1,5 +1,5 @@
 # Financial Services Industry Workloads
-# Source: triforce benchmark_rubric.yaml + TCO calculator workload_profiles.json
+# Source: internal benchmark rubric + TCO calculator workload_profiles.json
 
 industry: fsi
 description: Transaction processing — fraud detection, disputes, compliance, loan intake

@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "compiled_at": "2026-08-01T06:10:20.180898+00:00",
-  "cluster": "oberon",
+  "cluster": "bench-cluster",
   "hardware": "Intel Xeon 6767P",
   "instruction_sets": [
     "AMX-BF16",

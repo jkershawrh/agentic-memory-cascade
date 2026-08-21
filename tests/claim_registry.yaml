@@ -8,97 +8,97 @@ claims:
     file: README.md
     line: null
     source: "Kubernetes production replay, hardened engine"
-    source_url: ""
+    source_url: "https://github.com/jkershawrh/cascade-compression/blob/main/docs/REPLAY-METHODOLOGY.md"
     verified: false
-    verified_date: null
-    notes: "Core metric — cascade retains only signals that matter as memory"
+    verified_date: 2026-08-20
+    notes: "NOT REPRODUCIBLE FROM THIS REPO — run artifact not published; see source_url. Core metric — cascade retains only signals that matter as memory"
 
   - id: memory-compression-aap
     value: "98.1% noise compressed from 553K AAP signals"
     file: README.md
     line: null
     source: "AAP live + replay, hardened engine"
-    source_url: ""
+    source_url: "https://github.com/jkershawrh/cascade-compression/blob/main/docs/REPLAY-METHODOLOGY.md"
     verified: false
-    verified_date: null
-    notes: "Second production domain validation"
+    verified_date: 2026-08-20
+    notes: "NOT REPRODUCIBLE FROM THIS REPO — run artifact not published; see source_url. Second production domain validation"
 
   - id: zero-false-negative-gate
     value: "200+ samples with 0% false negatives to form a memory"
     file: README.md
     line: null
     source: "Promotion engine threshold"
-    source_url: ""
-    verified: false
-    verified_date: null
-    notes: "Core safety claim — agents never forget what matters"
+    source_url: "cascade_compression/cascade/promotion.py"
+    verified: true
+    verified_date: 2026-08-20
+    notes: "VERIFIED IN SOURCE — nano tier requires min_samples=200 and max_false_negative=0.0. Core safety claim — agents never forget what matters"
 
   - id: memory-decay-ttl
     value: "72-hour TTL — memories expire and must re-qualify"
     file: README.md
     line: null
     source: "Configuration default"
-    source_url: ""
-    verified: false
-    verified_date: null
-    notes: "Prevents stale context from persisting"
+    source_url: "cascade_compression/bridge.py"
+    verified: true
+    verified_date: 2026-08-20
+    notes: "VERIFIED IN SOURCE — CASCADE_ACTIVATION_TTL_HOURS defaults to 72. Prevents stale context from persisting"
 
   - id: shadow-validation-rate
     value: "5% of suppressed signals re-checked by LLM"
     file: README.md
     line: null
     source: "Configuration default"
-    source_url: ""
-    verified: false
-    verified_date: null
-    notes: "Continuous memory integrity verification"
+    source_url: "cascade_compression/bridge.py"
+    verified: true
+    verified_date: 2026-08-20
+    notes: "VERIFIED IN SOURCE — CASCADE_SHADOW_RATE defaults to 0.05. Continuous memory integrity verification"
 
   - id: llm-usage-rate
     value: "LLM classified 0.007% of signals (9,685 of 142M)"
     file: README.md
     line: null
     source: "Kubernetes production replay"
-    source_url: ""
+    source_url: "https://github.com/jkershawrh/cascade-compression/blob/main/docs/REPLAY-METHODOLOGY.md"
     verified: false
-    verified_date: null
-    notes: "Demonstrates cost reduction — LLM only for what cascade can't resolve"
+    verified_date: 2026-08-20
+    notes: "NOT REPRODUCIBLE FROM THIS REPO — run artifact not published; see source_url. Demonstrates cost reduction — LLM only for what cascade can't resolve"
 
   - id: recall-latency-granite
     value: "860ms classification latency (Granite 8B on Xeon 6)"
     file: README.md
     line: null
     source: "20-signal AAP benchmark"
-    source_url: ""
+    source_url: "https://github.com/jkershawrh/cascade-compression/blob/main/docs/CLAIMS.md"
     verified: false
-    verified_date: null
-    notes: "Micro-tier recall latency"
+    verified_date: 2026-08-20
+    notes: "NOT REPRODUCIBLE FROM THIS REPO — run artifact not published; see source_url. Micro-tier recall latency"
 
   - id: recall-latency-phi4
     value: "734ms classification latency (Phi-4 Mini on Xeon 6)"
     file: README.md
     line: null
     source: "20-signal AAP benchmark"
-    source_url: ""
+    source_url: "https://github.com/jkershawrh/cascade-compression/blob/main/docs/CLAIMS.md"
     verified: false
-    verified_date: null
-    notes: "Alternative micro-tier model"
+    verified_date: 2026-08-20
+    notes: "NOT REPRODUCIBLE FROM THIS REPO — run artifact not published; see source_url. Alternative micro-tier model"
 
   - id: test-count
-    value: "776 tests"
+    value: "588 tests"
     file: README.md
     line: null
     source: "pytest suite"
-    source_url: ""
-    verified: false
-    verified_date: null
-    notes: "Verify current count"
+    source_url: "make test-all"
+    verified: true
+    verified_date: 2026-08-20
+    notes: "VERIFIED — 588 pass in this repo; 776 is the main cascade-compression repo. Verify current count"
 
   - id: cross-domain-memory
     value: "10 domain packs with federated memory aggregation"
     file: README.md
     line: null
     source: "Architecture documentation"
-    source_url: ""
-    verified: false
-    verified_date: null
-    notes: "Kubernetes, AAP, finance, healthcare, insurance, retail, telecom, knowledge, memory, synthetic"
+    source_url: "cascade_compression/domains/"
+    verified: true
+    verified_date: 2026-08-20
+    notes: "VERIFIED IN SOURCE — 10 domain pack modules present. Kubernetes, AAP, finance, healthcare, insurance, retail, telecom, knowledge, memory, synthetic"
