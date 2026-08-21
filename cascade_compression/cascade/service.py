@@ -17,7 +17,7 @@ from pydantic import BaseModel, Field
 
 from .agents import default_agents
 from .pipeline import CascadePipeline, CascadeResult
-from .protocol import Signal
+from .protocol import chat_completions_url, Signal
 from .router import CascadeRouter
 
 log = logging.getLogger(__name__)
@@ -160,7 +160,7 @@ async def _forward_to_inference(result: CascadeResult) -> list:
 
             try:
                 t0 = time.monotonic()
-                r = await client.post(f"{url}/v1/chat/completions", json={
+                r = await client.post(chat_completions_url(url), json={
                     "model": alias,
                     "messages": [
                         {"role": "system", "content": "Analyze concisely."},

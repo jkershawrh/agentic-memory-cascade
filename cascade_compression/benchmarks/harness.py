@@ -1,6 +1,6 @@
 """Benchmark harness — async runner against Oberon LiteLLM endpoint.
 
-Adapted from triforce/scripts/benchmark-suite.py.
+Adapted from an internal benchmark-suite script.
 Supports three execution modes: single, batched, workflow.
 Supports all 9 optimization levers including routing, caching, and composed.
 Follows cold → warm-up → steady-state measurement protocol.

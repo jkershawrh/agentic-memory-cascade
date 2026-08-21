@@ -1,5 +1,6 @@
 """Next-gen model shootout — with re-auth before each model swap."""
 
+import os
 import subprocess
 import sys
 import time
@@ -16,12 +17,25 @@ NEXTGEN = [
 _original_swap = shootout.swap_model
 
 def swap_with_reauth(name, path, thinking, threads, mem):
-    print(f"\n  Re-authenticating to Oberon...", file=sys.stderr)
-    subprocess.run(
-        "oc login https://api.REDACTED_CLUSTER.example.com:6443 -u kubeadmin "
-        "-p REDACTED_PASSWORD --insecure-skip-tls-verify",
-        shell=True, capture_output=True, timeout=15,
-    )
+    """Re-authenticate before each model swap.
+
+    Credentials come from the environment — never hardcode them here:
+        export OC_LOGIN_URL=https://api.example.com:6443
+        export OC_LOGIN_TOKEN=$(oc whoami -t)
+    """
+    login_url = os.environ.get("OC_LOGIN_URL", "")
+    login_token = os.environ.get("OC_LOGIN_TOKEN", "")
+    if login_url and login_token:
+        print("\n  Re-authenticating to the cluster...", file=sys.stderr)
+        subprocess.run(
+            ["oc", "login", login_url, f"--token={login_token}"],
+            capture_output=True, timeout=15,
+        )
+    else:
+        print(
+            "\n  Skipping re-auth: set OC_LOGIN_URL and OC_LOGIN_TOKEN to enable.",
+            file=sys.stderr,
+        )
     return _original_swap(name, path, thinking, threads, mem)
 
 shootout.swap_model = swap_with_reauth

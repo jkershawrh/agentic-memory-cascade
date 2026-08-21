@@ -94,7 +94,7 @@ async def run_preflight(models: list[str] | None = None) -> dict:
     if not API_BASE:
         print(f"{c['red']}ERROR: LITELLM_API_BASE not set{c['reset']}")
         print(f"\n  export LITELLM_API_BASE='https://<litellm-route>'")
-        print(f"  export LITELLM_API_KEY='local-oberon-key'")
+        print(f"  export LITELLM_API_KEY='${LITELLM_API_KEY}'")
         return {"passed": False, "reason": "LITELLM_API_BASE not set"}
 
     print(f"{c['bold']}═══ PRE-FLIGHT CHECK ═══{c['reset']}")

@@ -1,6 +1,6 @@
 # Red/Green/Yellow Benchmark Matrix
 # Thresholds for evaluating benchmark results
-# Pattern: triforce benchmark_rubric.yaml + validation_matrix.yaml
+# Pattern: internal benchmark rubric + validation_matrix.yaml
 
 metrics:
   throughput_tok_s:
@@ -54,7 +54,7 @@ metrics:
     description: Optimized throughput / baseline throughput
     unit: x
     thresholds:
-      green: 1.5    # Matches triforce INT8 claim threshold
+      green: 1.5    # Matches the internal INT8 claim threshold
       yellow: 1.2
 
   batch_scaling:

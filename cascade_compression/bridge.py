@@ -24,7 +24,7 @@ from .cascade.inverse import SuppressionArchive
 from .cascade.memory import MemoryArchive
 from .cascade.pipeline import CascadePipeline
 from .cascade.promotion import AgentMetrics, Baseline, PromotionEngine, RuleAgent
-from .cascade.protocol import Signal
+from .cascade.protocol import Signal, chat_completions_url
 
 log = logging.getLogger(__name__)
 
@@ -492,7 +492,7 @@ class CascadeBridge:
         model = self._macro_model if sev in ("critical", "high") else self._micro_model
         t0 = time.monotonic()
         r = client.post(
-            f"{self._llm_url}/v1/chat/completions",
+            chat_completions_url(self._llm_url),
             json={
                 "model": model,
                 "messages": [
@@ -559,7 +559,7 @@ class CascadeBridge:
 
             t0 = time.monotonic()
             r = client.post(
-                f"{self._gpu_url}/v1/chat/completions",
+                chat_completions_url(self._gpu_url),
                 json={
                     "model": self._gpu_model,
                     "messages": [
@@ -752,7 +752,7 @@ class CascadeBridge:
                     )
                     try:
                         r = client.post(
-                            f"{shadow_url}/v1/chat/completions",
+                            chat_completions_url(shadow_url),
                             json={
                                 "model": shadow_model,
                                 "messages": [

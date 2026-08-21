@@ -1,5 +1,5 @@
 # Healthcare Industry Workloads
-# Source: triforce benchmark-suite.py + healthcare-agent/benchmark.py
+# Source: internal benchmark suite + healthcare-agent/benchmark.py
 
 industry: healthcare
 description: Clinical document processing — classification, entity extraction, summarization
