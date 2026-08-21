@@ -6,7 +6,7 @@ measures actual latency and throughput per lane.
 
 Usage:
     LITELLM_API_BASE=http://localhost:4000 \
-    LITELLM_API_KEY=local-oberon-key \
+    LITELLM_API_KEY=${LITELLM_API_KEY} \
     python -m benchmarks.simulate_lanes --rounds 5
 """
 

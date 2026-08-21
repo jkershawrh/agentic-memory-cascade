@@ -1,15 +1,16 @@
 """GPU comparison reference data.
 
-Pulls Gaudi benchmark results from triforce test-receipts and published
+Pulls Gaudi benchmark results from a local receipts directory and published
 H100 reference data. Generates side-by-side comparison with CPU results.
 """
 from __future__ import annotations
 
+import os
 import json
 import sys
 from pathlib import Path
 
-TRIFORCE_RECEIPTS = Path.home() / "Documents" / "triforce" / "test-receipts"
+RECEIPTS_DIR = Path(os.environ.get("CASCADE_RECEIPTS_DIR", "benchmarks/receipts"))
 
 # Published H100 SXM reference throughput (tokens/second, single-stream)
 # Sources: NVIDIA MLPerf submissions, vLLM benchmarks, community reports
@@ -36,12 +37,12 @@ CLOUD_API_PRICING = {
 
 
 def load_gaudi_benchmarks() -> list[dict]:
-    """Load Gaudi benchmark results from triforce test-receipts."""
+    """Load Gaudi benchmark results from CASCADE_RECEIPTS_DIR."""
     results = []
-    if not TRIFORCE_RECEIPTS.exists():
+    if not RECEIPTS_DIR.exists():
         return results
 
-    for path in sorted(TRIFORCE_RECEIPTS.glob("benchmark-suite-*.json")):
+    for path in sorted(RECEIPTS_DIR.glob("benchmark-suite-*.json")):
         with open(path) as f:
             data = json.load(f)
         meta = data.get("metadata", {})

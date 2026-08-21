@@ -6,8 +6,8 @@ Grades each snapshot against the rubric matrix and detects drift from
 benchmark baselines.
 
 Usage:
-    LITELLM_API_BASE=http://litellm.triforce.svc:4000 \
-    LITELLM_API_KEY=local-oberon-key \
+    LITELLM_API_BASE=http://litellm.<your-namespace>.svc:4000 \
+    LITELLM_API_KEY=${LITELLM_API_KEY} \
     python -m benchmarks.soak --duration 1 --rps 5
 
 Environment:

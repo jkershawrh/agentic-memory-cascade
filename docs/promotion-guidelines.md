@@ -199,7 +199,7 @@ AgentMetrics:
 
 ## Live Examples
 
-### K8s cascade (observed on infra01)
+### K8s cascade (observed in production)
 
 **Peak run (68.7M signals):**
 ```
@@ -221,7 +221,7 @@ Activated agents (self-discovered):
 Result: 70-74% compression
 ```
 
-### AAP cascade (observed on infra01)
+### AAP cascade (observed in production)
 
 ```
 Signals:   1.0M+

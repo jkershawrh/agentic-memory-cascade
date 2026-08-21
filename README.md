@@ -81,6 +81,19 @@ This isn't theoretical. The cascade has been validated on real production signal
 
 All five safety layers active throughout: zero-FN gate, 5% shadow validation, GCL audit loop, 72h TTL, and human gate. The cascade discovered 101 contextual suppressors on its own -- no human wrote a single rule.
 
+> **How to read these numbers.** The 142.4M Kubernetes figure is a **replay** -- historical
+> signals reprocessed through the same pipeline -- and its raw artifact is not published.
+> See [Replay methodology](https://github.com/jkershawrh/cascade-compression/blob/main/docs/REPLAY-METHODOLOGY.md) for how the run was performed and what it does and does not
+> demonstrate. Every figure here is tracked in the [claims register](https://github.com/jkershawrh/cascade-compression/blob/main/docs/CLAIMS.md), and
+> `tests/claim_registry.yaml` in this repo records which claims are verifiable from source
+> (`make audit-claims`).
+>
+> **"Zero false negatives" means zero shadow-detected disagreements with the oracle model**,
+> not zero signals wrongly suppressed in absolute terms. The oracle is a small CPU model
+> scoring 14/20 on a 20-signal grading set. The promotion gate genuinely enforces 200+ samples
+> at 0% false negatives (`cascade/promotion.py`) -- the guarantee is real, but it is relative
+> to the oracle.
+
 ## Example: Watch memory form
 
 Run the demo and watch the dashboard. Here's what happens:
@@ -91,14 +104,14 @@ Run the demo and watch the dashboard. Here's what happens:
 
 **Minute 2-3: Memory forms.** The draft agent hits 200 samples with zero false negatives. It's promoted to active. Compression jumps. On the dashboard, the compression gauge climbs and the agent card shows "nano" tier.
 
-**Minute 3-4: More agents activate.** The cascade discovers more patterns. Each agent handles one type of noise. Compression climbs to 60-85%. The LLM is only processing what the cascade genuinely can't resolve.
+**Minute 3-4: More agents activate.** The cascade discovers more patterns. Each agent handles one type of noise. Compression climbs past 60% and settles around 70% on the bundled FSI corpus. The LLM is only processing what the cascade genuinely can't resolve.
 
 **Minute 4-5: Self-correction.** Shadow validation catches an agent that started missing a new pattern. The agent is instantly deactivated -- you see it strikethrough on the Memory Map with the reason. The cascade learns from the correction and tightens its rules.
 
 **Minute 5+: Institutional knowledge.** The survivor archive now contains a curated record of everything that mattered. Query it: "What has the system learned?" The answer is a compressed narrative of significant events, not a log search.
 
 ```bash
-./demo.sh              # See it live — no LLM needed, runs on a laptop
+./demo.sh              # See it live — runs on a laptop (needs Ollama, see below)
 ```
 
 ## Detailed description
@@ -169,6 +182,13 @@ The Gradio dashboard at `http://localhost:7860` shows:
 - **Audit Trail** -- every memory decision with provenance chain
 
 **Requirements:** [Ollama](https://ollama.com) installed, ~5 GB disk for the model, 16 GB RAM recommended.
+
+**What you should see.** On the bundled FSI corpus the run starts at 0%, crosses 60% around
+signal 100, and settles near 71% over 400 signals. The three seeded noise types
+(dispute classification, compliance screening, document extraction) compress at ~95%, while
+**fraud scoring is never suppressed** -- 0% of those 100 signals are compressed. That contrast
+is the point of the demo: the cascade learns what is routine without learning to drop what
+matters. If you see 0% compression throughout, something is wrong -- please open an issue.
 
 > **How the demo works:** The demo starts with a pre-learned seed state — 3 agents that the cascade discovered during a prior training run on financial services signals. These agents already compress routine dispute classifications, compliance screenings, and document extractions. When you run the demo, new signals hit the cascade and you see these agents working immediately: compression starts at ~60% and climbs as the LLM classifies more signals and the cascade discovers additional patterns. On production hardware (Intel Xeon 6), the cascade learns these agents from scratch in minutes. The seed state lets you see the result on any hardware without waiting for the full learning cycle.
 
@@ -297,7 +317,7 @@ python3 -m uvicorn cascade_compression.service:app --port 8090
 ### Validating the deployment
 
 ```bash
-# Run the full test suite (776 tests)
+# Run the full test suite (588 tests)
 make test-all
 
 # Check cascade status
@@ -316,18 +336,15 @@ oc delete all -l app=agentic-memory-cascade
 .
 ├── cascade_compression/          # Core engine
 │   ├── cascade/                  # Pipeline, agents, promotion, memory, recall
-│   ├── collectors/               # 20 collectors (k8s, aap, jira, git, confluence, ...)
+│   ├── collectors/               # 20 collector modules (k8s, aap, jira, git, confluence, ...)
 │   ├── domains/                  # 10 domain packs (choose at deploy time)
 │   ├── routing/                  # Benchmark-graded model selection
-│   ├── tco/                      # TCO calculator
-│   ├── infra/                    # Pressure-aware scaler, fleet manager
-│   ├── integrations/             # Immutable ledger client
 │   ├── service.py                # FastAPI service with dashboard
 │   └── cli.py                    # cascade-run, cascade-replay entrypoints
-├── benchmarks/                   # Harness, configs, corpora, results
-├── contracts/                    # OpenAPI specs + JSON schemas (memory-event, memory-record)
+├── benchmarks/                   # Configs and corpora (the harness lives in cascade-compression)
+├── contracts/schemas/            # JSON schemas (memory-event, memory-record, audit-verdict, ...)
 ├── docs/                         # Architecture, whitepaper, memory formation model
-├── tests/                        # 776 tests
+├── tests/                        # 588 tests
 ├── Containerfile                 # UBI9 Python 3.11
 ├── Makefile
 ├── LICENSE

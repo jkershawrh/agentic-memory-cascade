@@ -41,7 +41,7 @@ NOISE_CLAIMS = [
     ("3/3 pods Running, 1 CrashLoopBackOff (postgres, 12d)", "session_noise"),
     ("deepfield-backend-8565ddb666 2/2 Running 0 28h", "session_noise"),
     ("GATEWAY_PORT=28099", "config_ref"),
-    ("oc config use-context deepfield/api-ocpv-infra01", "config_ref"),
+    ("oc config use-context app/api-cluster-01", "config_ref"),
     ("Stash: none", "session_noise"),
     ("Last commit: 8543b79 feat: expanded shootout scripts", "session_noise"),
 ]
@@ -76,7 +76,7 @@ CRITICAL_CLAIMS = [
     ("Stop summarizing what you just did at the end of every response.", "rule"),
     ("Cascade is the star — GCL and ledger are supplementary work.", "rule"),
     ("Do not use hivemind in anything.", "rule"),
-    ("ALWAYS use infra01 context. Never Oberon.", "rule"),
+    ("ALWAYS use the target cluster context. Never the benchmark cluster.", "rule"),
     ("H100 system cost is $200-400K for full system, not $50K card only.", "fact"),
     ("Throughput numbers in data/ are ESTIMATED — not validated benchmarks.", "caveat"),
     ("Changed from Flask to FastAPI for the ledger gateway.", "decision"),

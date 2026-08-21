@@ -1,4 +1,4 @@
-.PHONY: test test-cascade test-routing test-infra test-tco test-all up
+.PHONY: test test-memory test-cascade test-routing test-contracts test-all audit-claims up demo
 
 ## ── Memory tests ───────────────────────────────────────────────────
 test-memory:
@@ -12,64 +12,31 @@ test-cascade:
 test-routing:
 	python -m pytest tests/test_corpora.py tests/test_strategy_router.py tests/test_bootstrapper.py tests/test_task_mapping.py tests/test_synthetic_routing.py -v
 
-## ── Infrastructure tests ────────────────────────────────────────────
-test-infra:
-	python -m pytest tests/test_scaler.py tests/test_fleet_manager.py -v
-
-## ── TCO calculator tests ────────────────────────────────────────────
+## ── Contract tests ──────────────────────────────────────────────────
 test-contracts:
 	python -m pytest tests/test_contracts.py -v
-
-test-calculations:
-	python -m pytest tests/test_calculations.py -v
-
-test-scenarios:
-	python -m pytest tests/test_scenarios.py -v
-
-test-api:
-	python -m pytest tests/test_api.py -v
-
-test-tco:
-	python -m pytest tests/test_contracts.py tests/test_calculations.py tests/test_scenarios.py tests/test_api.py -v
 
 ## ── All tests ───────────────────────────────────────────────────────
 test-all:
 	python -m pytest tests/ -v
 
+test: test-all
+
+## ── Claim provenance ────────────────────────────────────────────────
+## Prints every claim in tests/claim_registry.yaml that has no source,
+## so unbacked numbers can't quietly accumulate in the README.
+audit-claims:
+	@python3 -c "import yaml,sys; \
+	claims=yaml.safe_load(open('tests/claim_registry.yaml'))['claims']; \
+	un=[c for c in claims if not c.get('verified')]; \
+	[print(f\"  UNVERIFIED  {c['id']}: {c['value']}\") for c in un]; \
+	print(f\"\n{len(claims)-len(un)}/{len(claims)} claims verified\"); \
+	sys.exit(0)"
+
 ## ── Run the app ─────────────────────────────────────────────────────
 up:
-	uvicorn cascade_compression.tco.api:app --host 0.0.0.0 --port 8090 --reload
+	python -m uvicorn cascade_compression.service:app --host 0.0.0.0 --port 8090 --reload
 
-## ── Benchmark targets ───────────────────────────────────────────────
-BENCH_REGISTRY ?= default-route-openshift-image-registry.apps.REDACTED_CLUSTER.example.com
-BENCH_IMAGE ?= $(BENCH_REGISTRY)/triforce/cascade-benchmark-harness:latest
-
-bench-build:
-	podman build -f benchmarks/Containerfile -t $(BENCH_IMAGE) --platform linux/amd64 .
-
-bench-push:
-	podman login $(BENCH_REGISTRY) -u kubeadmin -p $$(oc whoami -t)
-	podman push $(BENCH_IMAGE)
-
-bench-setup:
-	oc apply -f benchmarks/k8s/results-pvc.yaml
-
-bench-run-all:
-	@for f in benchmarks/k8s/job-*.yaml; do \
-		name=$$(grep "name:" "$$f" | head -1 | awk '{print $$2}'); \
-		oc delete job "$$name" -n triforce --ignore-not-found; \
-		oc apply -f "$$f"; \
-	done
-	@echo "All jobs submitted. Watch with: make bench-status"
-
-bench-status:
-	oc get jobs -n triforce -l app=benchmark-harness
-
-bench-results:
-	mkdir -p benchmarks/results
-	oc rsync $$(oc get pod -n triforce -l app=benchmark-harness --field-selector=status.phase=Succeeded -o jsonpath='{.items[-1].metadata.name}'):/results/ benchmarks/results/ -n triforce
-
-bench-report:
-	@for f in benchmarks/results/benchmark-*.json; do \
-		python3 -m cascade_compression.benchmarks.rubric "$$f"; \
-	done
+## ── Run the demo ────────────────────────────────────────────────────
+demo:
+	./demo.sh
