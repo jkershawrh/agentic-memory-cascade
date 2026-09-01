@@ -1,4 +1,12 @@
 __pycache__/
+results/
+.venv/
+deploy/
+evidence/
+customer-data/
+worklogs/
+kubeconfig*
+*.local.yaml
 *.py[cod]
 *$py.class
 *.egg-info/
@@ -18,7 +26,6 @@ htmlcov/
 *.secrets*
 credentials*
 *secret*
-!cascade_compression/collectors/*.py
 
 # State
 *.state.json

@@ -3,15 +3,15 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "cascade-compression"
+name = "agentic-memory-cascade"
 version = "0.1.0"
-description = "Three-tier cascade compression for CPU inference — nano/micro/macro signal processing with benchmark-graded routing"
+description = "Cross-session agent memory proof built on Cascade Compression"
 readme = "README.md"
 requires-python = ">=3.9"
 license = "Apache-2.0"
 dependencies = [
+    "cascade-compression @ https://github.com/jkershawrh/cascade-compression/archive/2f3206cc53dd20f4f9a5f5957db0aab5c8a72036.tar.gz",
     "pydantic>=2.0",
-    "pyyaml>=6.0",
     "fastapi>=0.100.0",
     "httpx>=0.24.0",
     "uvicorn[standard]>=0.22.0",
@@ -24,25 +24,11 @@ dev = [
     "pytest-asyncio",
     "jsonschema>=4.0",
 ]
-search = [
-    "psycopg2-binary>=2.9",
-    "pgvector>=0.2.0",
-    "sentence-transformers>=2.2.0",
-]
-aap = ["psycopg2-binary>=2.9"]
-finance = ["psycopg2-binary>=2.9"]
-
 [project.scripts]
-compile-corpora = "cascade_compression.routing.compile_corpora:main"
-cascade-run = "cascade_compression.cli:run"
-cascade-replay = "cascade_compression.cli:replay"
+agentic-memory-proof = "agentic_memory_cascade.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["cascade_compression*"]
-
-[tool.setuptools.data-files]
-"share/cascade-compression/config" = ["config/*.json", "config/*.yaml"]
-"share/cascade-compression/data" = ["data/*.json"]
+include = ["agentic_memory_cascade*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

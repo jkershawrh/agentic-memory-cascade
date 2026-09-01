@@ -15,16 +15,16 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.9", "3.11", "3.13"]
-
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
         with:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
-      # No uv.lock is committed, so resolve fresh rather than --locked.
       - run: uv sync --extra dev
       - run: uv run python -m pytest -q
+      - run: uv run agentic-memory-proof --output results/proof.json
+      - run: uv run python scripts/check_boundary.py
 
   package:
     runs-on: ubuntu-latest
@@ -38,24 +38,5 @@ jobs:
           python -m venv .wheel-venv
           .wheel-venv/bin/pip install dist/*.whl
           cd /tmp
-          "$GITHUB_WORKSPACE/.wheel-venv/bin/python" - <<'PY'
-          # Smoke-test the installed wheel: the packaged config must be
-          # reachable and the service must import outside the source tree.
-          from cascade_compression.resources import resource_path
-          from cascade_compression.service import app
-
-          assert resource_path("config", "strategies.yaml").is_file()
-          assert app is not None
-          print("wheel smoke test OK")
-          PY
-
-  claims:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
-        with:
-          python-version: "3.11"
-      # Surfaces any claim in the README that has no recorded source.
-      # Informational — it reports, it does not gate.
-      - run: uv run --with pyyaml make audit-claims
+          "$GITHUB_WORKSPACE/.wheel-venv/bin/agentic-memory-proof" >/tmp/proof.json
+          python -c 'import json; assert json.load(open("/tmp/proof.json"))["passed"]'
