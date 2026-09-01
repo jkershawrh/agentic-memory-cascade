@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
 
 from agentic_memory_cascade.engine import AgenticMemoryEngine
+from agentic_memory_cascade.cli import render_summary
 from agentic_memory_cascade.models import MemoryObservation, RecallRequest
 from agentic_memory_cascade.proof import EXPECTED_FACTS, SUBJECT_ID, run_proof
 from agentic_memory_cascade.service import app
@@ -25,6 +26,11 @@ def test_deterministic_proof_passes_across_distinct_sessions():
     assert report.control_score == 0
     assert report.treatment_score == report.maximum_score == 3
     assert report.unsupported_claims == 0
+
+    summary = render_summary(report)
+    assert "Without memory: 0/3" in summary
+    assert "With memory:    3/3" in summary
+    assert "Result: PASS" in summary
 
 
 def test_info_chatter_is_compressed_and_not_remembered():

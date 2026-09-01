@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-args=(--output results/proof.json)
+args=(--summary --output results/proof.json)
 if [[ -n "${OLLAMA_URL:-}" ]]; then
   args+=(--ollama-url "$OLLAMA_URL")
   args+=(--ollama-model "${OLLAMA_MODEL:-granite3.2:8b-instruct}")
