@@ -4,8 +4,11 @@ Agentic Memory Cascade is a focused proof that consequential information learned
 agent session can be curated by [Cascade Compression](https://github.com/jkershawrh/cascade-compression)
 and recalled by a fresh session later.
 
-This repository is intentionally a thin consumer of Cascade Compression v0.1.0. It does
-not contain a second copy of the compression engine.
+This repository is intentionally a thin consumer of Cascade Compression. It
+pins the OSS package by exact commit (currently `v0.2.0`, commit `ba5d53d6`,
+bumped 2026-11-12 from the original 0.1.0-era pin with the engine adapted to
+0.2.0's explicit-agent semantics) and does not contain a second copy of the
+compression engine.
 
 ## What the proof establishes
 
