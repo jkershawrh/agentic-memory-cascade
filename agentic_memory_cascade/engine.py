@@ -2,9 +2,10 @@
 
 from datetime import datetime, timezone
 from typing import Dict, List
-from uuid import uuid4
+from uuid import NAMESPACE_URL, uuid4, uuid5
 
 from cascade_compression.cascade import CascadePipeline, MemoryArchive, RecallEngine, Signal
+from cascade_compression.cascade.agents import default_agents
 
 from .models import (
     MemoryObservation,
@@ -23,7 +24,10 @@ class AgenticMemoryEngine:
     """Curate observations once and recall them from a later agent session."""
 
     def __init__(self, *, max_memories: int = 1_000):
-        self._pipeline = CascadePipeline()
+        # Cascade v0.2.0 removed the pipeline's implicit info-severity drop;
+        # the severity gate is an explicit agent. Register the documented
+        # default set so chatter compression behaves like the 0.1.0-era proof.
+        self._pipeline = CascadePipeline(default_agents())
         self._archive = MemoryArchive(max_capacity=max_memories, instance_id="local-proof")
         self._recall = RecallEngine()
         self._sessions: Dict[str, SessionRecord] = {}
@@ -48,7 +52,16 @@ class AgenticMemoryEngine:
             "subject_id": observation.subject_id,
             "kind": observation.kind,
         }
+        # Deterministic observation identity: v0.2.0 binds archive content
+        # hashes to observation ids, so the same observation from the same
+        # session must carry the same id to reinforce one memory instead of
+        # forming a duplicate.
         signal = Signal(
+            signal_id=uuid5(
+                NAMESPACE_URL,
+                f"agentic-memory:{session_id}:{observation.subject_id}:"
+                f"{observation.kind}:{observation.text}",
+            ),
             signal_type=f"agent_memory_{observation.kind}",
             severity=observation.severity,
             source=session_id,
@@ -58,6 +71,20 @@ class AgenticMemoryEngine:
         )
         result = self._pipeline.run([signal])
         if not result.remaining:
+            if result.deduped_count and signal.severity not in ("info", "low"):
+                # A repeat the pipeline deduplicated still reinforces the
+                # existing memory: the archive dedups by content hash and
+                # returns the original entry. Info/low repeats keep the
+                # severity gate's not-remembered semantics.
+                memory = self._archive.store(
+                    signal,
+                    classification="consequential_agent_memory",
+                )
+                return ObservationResult(
+                    remembered=True,
+                    memory_id=str(memory.memory_id),
+                    compressed=True,
+                )
             return ObservationResult(remembered=False, compressed=True)
 
         memory = self._archive.store(

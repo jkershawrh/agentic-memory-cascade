@@ -34,7 +34,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "cascade-compression", url = "https://github.com/jkershawrh/cascade-compression/archive/2f3206cc53dd20f4f9a5f5957db0aab5c8a72036.tar.gz" },
+    { name = "cascade-compression", url = "https://github.com/jkershawrh/cascade-compression/archive/ba5d53d654f2dc9792672163e934616f53b831c7.tar.gz" },
     { name = "fastapi", specifier = ">=0.100.0" },
     { name = "httpx", specifier = ">=0.24.0" },
     { name = "jsonschema", marker = "extra == 'dev'", specifier = ">=4.0" },
@@ -135,8 +135,8 @@ wheels = [
 
 [[package]]
 name = "cascade-compression"
-version = "0.1.0"
-source = { url = "https://github.com/jkershawrh/cascade-compression/archive/2f3206cc53dd20f4f9a5f5957db0aab5c8a72036.tar.gz" }
+version = "0.2.0"
+source = { url = "https://github.com/jkershawrh/cascade-compression/archive/ba5d53d654f2dc9792672163e934616f53b831c7.tar.gz" }
 dependencies = [
     { name = "fastapi", version = "0.128.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "fastapi", version = "0.141.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
@@ -146,14 +146,17 @@ dependencies = [
     { name = "uvicorn", version = "0.39.0", source = { registry = "https://pypi.org/simple" }, extra = ["standard"], marker = "python_full_version < '3.10'" },
     { name = "uvicorn", version = "0.52.4", source = { registry = "https://pypi.org/simple" }, extra = ["standard"], marker = "python_full_version >= '3.10'" },
 ]
-sdist = { hash = "sha256:6945fcb07bd0658474796315a249fd3d4ea269fa44ff28d5f2295a99a6baf886" }
+sdist = { hash = "sha256:3104a2f823ca402a74304a234e7734db658b83419f66831de0f7e057304ea791" }
 
 [package.metadata]
 requires-dist = [
     { name = "fastapi", specifier = ">=0.100.0" },
+    { name = "grpcio", marker = "extra == 'semantic-classifier'", specifier = ">=1.80" },
     { name = "httpx", specifier = ">=0.24.0" },
     { name = "jsonschema", marker = "extra == 'dev'", specifier = ">=4.0" },
+    { name = "mcp", marker = "python_full_version >= '3.10' and extra == 'mcp'", specifier = ">=2.0" },
     { name = "pgvector", marker = "extra == 'search'", specifier = ">=0.2.0" },
+    { name = "protobuf", marker = "extra == 'semantic-classifier'", specifier = ">=6.31.1" },
     { name = "psycopg2-binary", marker = "extra == 'finance'", specifier = ">=2.9" },
     { name = "psycopg2-binary", marker = "extra == 'search'", specifier = ">=2.9" },
     { name = "pydantic", specifier = ">=2.0" },
@@ -164,7 +167,7 @@ requires-dist = [
     { name = "sentence-transformers", marker = "extra == 'search'", specifier = ">=2.2.0" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.22.0" },
 ]
-provides-extras = ["dev", "search", "finance"]
+provides-extras = ["dev", "search", "semantic-classifier", "mcp", "finance"]
 
 [[package]]
 name = "certifi"
